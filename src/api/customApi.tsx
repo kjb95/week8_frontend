@@ -23,15 +23,15 @@ export function findAllUserAccess() {
 	return api.get("/api/user-access/all");
 }
 
-interface user {
+interface member {
 	username: string;
 	password: string;
 }
 
-export function jwtAuthenticate(data: user) {
+export function jwtAuthenticate(data: member) {
 	return api.post("/api/jwt", data);
 }
 
 export function findAuthorities(username: string) {
-	return api.get("/api/client/" + username);
+	return api.get("/api/member/" + username);
 }

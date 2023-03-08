@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Input} from "antd";
-import {findAuthorities, jwtAuthenticate} from "../../../api/customApi";
-import {AUTHENTICATED_USERNAME_SESSION_KEY, JWT_TOKEN} from "../../../const/Const";
+import {findAuthorities, jwtAuthenticate} from "../api/customApi";
+import {AUTHENTICATED_USERNAME_SESSION_KEY, JWT_TOKEN, ROLE_ADV} from "../const/Const";
 
 interface LoginForm {
     username: string;
@@ -9,30 +9,27 @@ interface LoginForm {
 }
 
 const LoginFormDefault: LoginForm = {
-    username: "",
-    password: ""
+    username: "", password: ""
 }
 
 function setAuthorities(data: LoginForm) {
-    findAuthorities(data.username)
-        .then((res) => {
-            const authorities = res.data.authorities;
-            authorities.forEach((authority: string) => sessionStorage.setItem(authority, authority));
-        })
-        .then(() => (window.location.href = "/"));
+    findAuthorities(data.username).then((res) => {
+        const roles = res.data.roles;
+        roles.forEach((role: string) => sessionStorage.setItem(role, role));
+        const nextHref = roles.includes(ROLE_ADV) ? "/adReg" : "/adMng";
+        window.location.href = nextHref;
+    })
 }
 
 function login(data: LoginForm, setIsLoginFail: React.Dispatch<React.SetStateAction<boolean>>) {
-    jwtAuthenticate(data)
-        .then((res) => {
-            sessionStorage.setItem(JWT_TOKEN, res.data.token);
-            sessionStorage.setItem(AUTHENTICATED_USERNAME_SESSION_KEY, data.username);
-            setAuthorities(data);
-        })
-        .catch((e) => {
-            setIsLoginFail(true);
-            console.log(e);
-        });
+    jwtAuthenticate(data).then((res) => {
+        sessionStorage.setItem(JWT_TOKEN, res.data.token);
+        sessionStorage.setItem(AUTHENTICATED_USERNAME_SESSION_KEY, data.username);
+        setAuthorities(data);
+    }).catch((e) => {
+        setIsLoginFail(true);
+        console.log(e);
+    });
 }
 
 function Login() {
@@ -57,10 +54,7 @@ function Login() {
                             placeholder="아이디를 입력해주세요."
                             size="large"
                             prefix={<i className="ico ico-id"/>}
-                            onChange={(e) => setLoginForm({
-                                username: e.target.value,
-                                password: loginForm.password
-                            })}
+                            onChange={(e) => setLoginForm({username: e.target.value, password: loginForm.password})}
                             value={loginForm.username}
                         />
                         <Input.Password
@@ -68,10 +62,7 @@ function Login() {
                             placeholder="비밀번호를 입력해주세요."
                             size="large"
                             prefix={<i className="ico ico-pw"/>}
-                            onChange={(e) => setLoginForm({
-                                username: loginForm.username,
-                                password: e.target.value
-                            })}
+                            onChange={(e) => setLoginForm({username: loginForm.username, password: e.target.value})}
                             value={loginForm.password}
                             onPressEnter={() => login(loginForm, setIsLoginFail)}
                         />
@@ -82,11 +73,10 @@ function Login() {
                     </div>
                 </div>
                 <div className="box-right">
-                    <img src={require('../../../images/img-login-object.jpg')} alt="NBS 솔루션 화면 이미지"/>
+                    <img src={require('../images/img-login-object.jpg')} alt="NBS 솔루션 화면 이미지"/>
                 </div>
             </div>
-        </div>
-    );
+        </div>);
 }
 
 export default Login;
