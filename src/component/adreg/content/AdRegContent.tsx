@@ -3,6 +3,7 @@ import {Layout} from 'antd';
 import ItemLookUp from "./contentbody/ItemLookUp";
 import ItemLookUpResult from "./contentbody/ItemLookUpResult";
 import ItemSelected from "./contentbody/ItemSelected";
+import AdGroupSelect from "./contentbody/AdGroupSelect";
 
 export interface Item {
 	key: string,
@@ -66,6 +67,7 @@ function AdRegContent() {
 							<ItemLookUp/>
 							{isLookUp && <ItemLookUpResult/>}
 							{isSelectedItem && <ItemSelected/>}
+							{isSelectedItem && <AdGroupSelect/>}
 						</ItemContext.Provider>
 					</div>
 				</div>
