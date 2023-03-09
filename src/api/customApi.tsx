@@ -1,8 +1,10 @@
 import axios from "axios";
-import { JWT_TOKEN } from "../const/Const";
+import {JWT_TOKEN} from "../const/Const";
+import {ItemData} from "../component/adreg/content/contentbody/ItemLookUp";
+import {LoginForm} from "../page/Login";
 
 export const api = axios.create({
-	headers: { "Content-Type": "application/json" },
+	headers: {"Content-Type": "application/json"},
 });
 
 api.interceptors.request.use(function (config) {
@@ -11,27 +13,14 @@ api.interceptors.request.use(function (config) {
 	return config;
 });
 
-export function findAllImpCnt() {
-	return api.get("/api/user-access/all/impCnt");
-}
-
-export function findAllClickCnt() {
-	return api.get("/api/user-access/all/clickCnt");
-}
-
-export function findAllUserAccess() {
-	return api.get("/api/user-access/all");
-}
-
-interface member {
-	username: string;
-	password: string;
-}
-
-export function jwtAuthenticate(data: member) {
+export function jwtAuthenticate(data: LoginForm) {
 	return api.post("/api/jwt", data);
 }
 
 export function findAuthorities(username: string) {
 	return api.get("/api/member/" + username);
+}
+
+export function itemLookUp(itemData: ItemData) {
+	return api.post("/api/item/search", itemData);
 }

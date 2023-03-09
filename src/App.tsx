@@ -16,36 +16,36 @@ import AdMng from './page/AdMng';
 import Home from "./page/Home";
 
 function App() {
-    const roleAdv = sessionStorage.getItem(ROLE_ADV);
-    const roleAdmin = sessionStorage.getItem(ROLE_ADMIN);
-    const jwtToken = sessionStorage.getItem(JWT_TOKEN);
-    if (!jwtToken) {
-        sessionStorage.clear();
-    }
+	const roleAdv = sessionStorage.getItem(ROLE_ADV);
+	const roleAdmin = sessionStorage.getItem(ROLE_ADMIN);
+	const jwtToken = sessionStorage.getItem(JWT_TOKEN);
+	if (!jwtToken) {
+		sessionStorage.clear();
+	}
 
-    return (
-        <div className="wrap">
-            <BrowserRouter>
-                <Routes>
-                    <Route element={<AuthenticationRequiredRouter/>}>
-                        <Route path="/" element={<Navigate to="/home"/>}/>
-                        <Route path="/home" element={<Home/>}/>
-                        <Route element={<RoleRequiredRouter role={roleAdv}/>}>
-                            <Route path="/adReg" element={<AdReg/>}/>
-                        </Route>
-                        <Route element={<RoleRequiredRouter role={roleAdmin}/>}>
-                            <Route path="/adMng" element={<AdMng/>}/>
-                        </Route>
-                    </Route>
-                    <Route element={<AuthenticationNoneRequiredRouter/>}>
-                        <Route path="/login" element={<Login/>}/>
-                    </Route>
-                    <Route path="*" element={<SimplePageForm title="404 Not Found"/>}></Route>
-                </Routes>
+	return (
+		<>
+			<BrowserRouter>
+				<Routes>
+					<Route element={<AuthenticationRequiredRouter/>}>
+						<Route path="/" element={<Navigate to="/home"/>}/>
+						<Route path="/home" element={<Home/>}/>
+						<Route element={<RoleRequiredRouter role={roleAdv}/>}>
+							<Route path="/adReg" element={<AdReg/>}/>
+						</Route>
+						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
+							<Route path="/adMng" element={<AdMng/>}/>
+						</Route>
+					</Route>
+					<Route element={<AuthenticationNoneRequiredRouter/>}>
+						<Route path="/login" element={<Login/>}/>
+					</Route>
+					<Route path="*" element={<SimplePageForm title="404 Not Found"/>}></Route>
+				</Routes>
 
-            </BrowserRouter>
-        </div>
-    );
+			</BrowserRouter>
+		</>
+	);
 }
 
 export default App;

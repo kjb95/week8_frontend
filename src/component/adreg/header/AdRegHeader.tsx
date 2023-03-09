@@ -32,8 +32,7 @@ function AdRegHeader() {
     const roleAdmin = sessionStorage.getItem(ROLE_ADMIN);
     const location = useLocation().pathname.substring(1);
     const {Header} = Layout;
-    const items = createItems(roleAdv, roleAdmin);
-    const menuItems: MenuProps['items'] = items;
+    const menuItems: MenuProps['items'] = createItems(roleAdv, roleAdmin);
 
     return (
         <Header>
@@ -42,7 +41,7 @@ function AdRegHeader() {
             <div className="user-info">
                 <Space split={<Divider type="vertical"/>}>
                     <Space>
-                        <i className="ico ico-user-info"></i>
+                        <i className="ico ico-user-info"/>
                         <span className="fz-16 fc-gray-300">{sessionStorage.getItem(AUTHENTICATED_USERNAME_SESSION_KEY)}</span>
                     </Space>
                     <Button className="gray" size="small" onClick={logout}>로그아웃</Button>
