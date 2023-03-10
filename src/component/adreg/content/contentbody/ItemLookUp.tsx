@@ -16,8 +16,9 @@ function ItemLookUp() {
 	const context = useContext(ItemContext);
 	const [itemData, setItemData] = useState<ItemData>(ItemDataDefault);
 
-	function onClick(itemData: ItemData) {
-		itemLookUp(itemData).then((res) => context.setItems(res.data.items))
+	function handleClick(itemData: ItemData) {
+		itemLookUp(itemData)
+			.then((res) => context.setItems(res.data.items))
 			.catch((e) => console.log(e))
 	}
 
@@ -58,7 +59,7 @@ function ItemLookUp() {
 			</div>
 			<div className="box-footer">
 				<div className="box-center">
-					<Button type="primary" size="large" className="pink" onClick={() => onClick(itemData)}>
+					<Button type="primary" size="large" className="pink" onClick={() => handleClick(itemData)}>
 						<span>조회</span>
 					</Button>
 				</div>

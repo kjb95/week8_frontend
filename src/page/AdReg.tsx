@@ -1,17 +1,13 @@
 import React from 'react';
-import {Layout} from 'antd';
-import AdRegHeader from '../component/adreg/header/AdRegHeader';
 import AdRegContent from '../component/adreg/content/AdRegContent';
-import AdRegFooter from '../component/adreg/footer/AdRegFooter';
+import AdPage from "./AdPage";
 
 function AdReg() {
-    return (
-        <Layout>
-            <AdRegHeader/>
-            <AdRegContent/>
-            <AdRegFooter/>
-        </Layout>
-    );
+	return (
+		<AdPage>
+			<AdRegContent/>
+		</AdPage>
+	);
 
 }
 

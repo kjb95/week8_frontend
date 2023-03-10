@@ -1,12 +1,12 @@
 import React from "react";
 
-interface SimplePageFormProps {
+interface Props {
     title: string;
 }
 
-function SimplePageForm({title}: SimplePageFormProps) {
+function SimplePageForm({title}: Props) {
     return (
-        <div>
+        <div style={{fontSize:50}}>
             {title}
         </div>
     );

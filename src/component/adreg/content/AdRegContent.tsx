@@ -4,6 +4,7 @@ import ItemLookUp from "./contentbody/ItemLookUp";
 import ItemLookUpResult from "./contentbody/ItemLookUpResult";
 import ItemSelected from "./contentbody/ItemSelected";
 import AdGroupSelect from "./contentbody/AdGroupSelect";
+import AdKeyword from "./contentbody/adkeywordlist/AdKeywordList";
 
 export interface Item {
 	key: string,
@@ -68,6 +69,7 @@ function AdRegContent() {
 							{isLookUp && <ItemLookUpResult/>}
 							{isSelectedItem && <ItemSelected/>}
 							{isSelectedItem && <AdGroupSelect/>}
+							{isSelectedItem && <AdKeyword/>}
 						</ItemContext.Provider>
 					</div>
 				</div>
