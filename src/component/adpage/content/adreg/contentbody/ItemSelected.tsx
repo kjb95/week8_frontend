@@ -3,7 +3,7 @@ import {ItemContext} from "../AdRegContent";
 
 function ItemSelected() {
 	const context = useContext(ItemContext);
-	const adultYn = context.selectedItem.adultYn == 'YES' ? '성인상품' : '일반상품';
+	const adultYn = context.selectedItem.adultYn === 'YES' ? '성인상품' : '일반상품';
 
 	return (
 		<section className="wrap-section wrap-tbl">

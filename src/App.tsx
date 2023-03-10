@@ -27,6 +27,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route element={<AuthenticationRequiredRouter/>}>
+						<Route path="/" element={<SimplePageForm title="Home"/>}></Route>
 						<Route element={<RoleRequiredRouter role={roleAdv}/>}>
 							<Route path="/adReg" element={<AdReg/>}/>
 						</Route>

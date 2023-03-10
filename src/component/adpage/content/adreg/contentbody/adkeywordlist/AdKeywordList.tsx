@@ -1,6 +1,6 @@
 import React, {createContext, useMemo, useState} from 'react';
 import AdKeywordListHeader from "./AdKeywordListHeader";
-import AddKeywordModal from "../../../../modal/AddKeywordModal";
+import AddKeywordModal from "../../../../../modal/AddKeywordModal";
 import AdKeywordListBody from "./AdKeywordListBody";
 
 export interface Keyword {

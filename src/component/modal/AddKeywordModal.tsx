@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {Button, Input, Modal} from "antd";
-import {AdKeywordContext, Keyword, KeywordDefaultValue} from "../adreg/content/contentbody/adkeywordlist/AdKeywordList";
+import {AdKeywordContext, Keyword, KeywordDefaultValue} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
 
 function AddKeywordModal() {
 	const context = useContext(AdKeywordContext);
