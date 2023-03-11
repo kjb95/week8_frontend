@@ -24,3 +24,11 @@ export function findAuthorities(username: string) {
 export function itemLookUp(itemData: ItemData) {
 	return api.post("/api/item/search", itemData);
 }
+
+export function findAllAGroup() {
+	return api.get("/api/agroup");
+}
+
+// export function registerAGroup(aGroupName: string) {
+// 	return api.post("/api/agroup", {agroupName: aGroupName});
+// }

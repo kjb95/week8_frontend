@@ -20,7 +20,7 @@ function createItems(roleAdv: string | null, roleAdmin: string | null) {
 
 function handleLogout() {
 	sessionStorage.clear();
-	window.location.href = "/home";
+	window.location.href = "/";
 }
 
 const movePage: MenuProps['onClick'] = (e) => {

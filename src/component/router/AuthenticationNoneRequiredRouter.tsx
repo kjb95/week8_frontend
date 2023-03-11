@@ -5,7 +5,7 @@ import {Navigate, Outlet} from "react-router-dom";
 function AuthenticationNoneRequiredRouter() {
     const isAuthenticated = sessionStorage.getItem(JWT_TOKEN);
 
-    return isAuthenticated ? <Navigate replace to="/home"/> : <Outlet/>;
+    return isAuthenticated ? <Navigate replace to="/"/> : <Outlet/>;
 }
 
 export default AuthenticationNoneRequiredRouter;
