@@ -4,9 +4,9 @@ import {AGroupSelectContext} from "./AGroupSelect";
 
 function AGroupSelectBody() {
 	const context = useContext(AGroupSelectContext);
-	const aGroups = context.aGroupNames.map(aGroupName => {
-		return {value: aGroupName, label: aGroupName}
-	})
+	const aGroups = context.aGroupNames.map((aGroupName) =>
+		({value: aGroupName, label: aGroupName})
+	)
 
 	return (
 		<div className="box-body">

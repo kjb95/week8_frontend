@@ -2,6 +2,7 @@ import React, {createContext, useMemo, useState} from 'react';
 import AdKeywordListHeader from "./AdKeywordListHeader";
 import AddKeywordModal from "../../../../../modal/AddKeywordModal";
 import AdKeywordListBody from "./AdKeywordListBody";
+import SetKeywordBidModal from "../../../../../modal/SetKeywordBidModal";
 
 export interface Keyword {
 	key: number,
@@ -10,15 +11,20 @@ export interface Keyword {
 }
 
 interface AdKeyword {
-	isModalOpen: boolean,
-	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	isAddKeywordModalOpen: boolean,
+	setIsAddKeywordModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	isSetBidModalOpen: boolean
+	setIsSetBidModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
 	keywordList: Keyword[],
 	setKeywordList: React.Dispatch<React.SetStateAction<Keyword[]>>,
 }
 
 const AdKeywordContextDefaultValue: AdKeyword = {
-	isModalOpen: false,
-	setIsModalOpen: () => {
+	isAddKeywordModalOpen: false,
+	setIsAddKeywordModalOpen: () => {
+	},
+	isSetBidModalOpen: false,
+	setIsSetBidModalOpen: () => {
 	},
 	keywordList: [],
 	setKeywordList: () => {
@@ -34,16 +40,19 @@ export const KeywordDefaultValue: Keyword = {
 export const AdKeywordContext = createContext(AdKeywordContextDefaultValue);
 
 function AdKeywordList() {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [isAddKeywordModalOpen, setIsAddKeywordModalOpen] = useState<boolean>(false);
+	const [isSetBidModalOpen, setIsSetBidModalOpen] = useState<boolean>(false);
 	const [keywordList, setKeywordList] = useState<Keyword[]>([]);
 	const value = useMemo(
 		() => ({
-			isModalOpen: isModalOpen,
-			setIsModalOpen: setIsModalOpen,
+			isAddKeywordModalOpen: isAddKeywordModalOpen,
+			setIsAddKeywordModalOpen: setIsAddKeywordModalOpen,
+			isSetBidModalOpen: isSetBidModalOpen,
+			setIsSetBidModalOpen: setIsSetBidModalOpen,
 			keywordList: keywordList,
 			setKeywordList: setKeywordList
 		}),
-		[isModalOpen, keywordList]
+		[isAddKeywordModalOpen, isSetBidModalOpen, keywordList]
 	);
 
 	return (
@@ -52,6 +61,7 @@ function AdKeywordList() {
 				<AdKeywordListHeader/>
 				<AdKeywordListBody/>
 				<AddKeywordModal/>
+				<SetKeywordBidModal/>
 			</AdKeywordContext.Provider>
 		</section>
 	);

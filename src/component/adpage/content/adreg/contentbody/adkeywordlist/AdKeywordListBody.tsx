@@ -17,7 +17,7 @@ function AdKeywordListBody() {
 				<Column title="키워드명" dataIndex="keywordName" align="center"/>
 				<Column title="입찰가" dataIndex="bid" align="center"/>
 				<Column title="키워드 삭제" dataIndex="keywordDelete" align="center"
-				        render={(_, record: Keyword) => (<Button type="default" size="small" className="pink" onClick={() => handleItemDelete(record)}><span>삭제</span></Button>)}
+				        render={(_, record: Keyword) => (<Button type="default" size="small" className="pink" onClick={() => handleItemDelete(record)}>삭제</Button>)}
 				/>
 			</Table>
 		</div>

@@ -7,25 +7,21 @@ function AddKeywordModal() {
 	const [keyword, setKeyword] = useState<Keyword>(KeywordDefaultValue);
 
 	function handleCancel() {
-		context.setIsModalOpen(false);
+		context.setIsAddKeywordModalOpen(false);
 		setKeyword(KeywordDefaultValue);
 	}
 
 	function handleRegister(keyword: Keyword) {
 		context.setKeywordList([...context.keywordList, keyword]);
-		context.setIsModalOpen(false);
+		context.setIsAddKeywordModalOpen(false);
 		setKeyword(KeywordDefaultValue);
 	}
 
 	return (
-		<Modal title="키워드 추가" width={800} open={context.isModalOpen} onCancel={handleCancel}
+		<Modal title="키워드 추가" width={800} open={context.isAddKeywordModalOpen} onCancel={handleCancel}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>
-				       <span>취소</span>
-			       </Button>,
-			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>
-				       <span>등록</span>
-			       </Button>
+			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>취소</Button>,
+			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
 		       ]}
 		>
 			<section className="wrap-section wrap-tbl">

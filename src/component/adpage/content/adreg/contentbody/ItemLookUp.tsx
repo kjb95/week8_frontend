@@ -59,9 +59,7 @@ function ItemLookUp() {
 			</div>
 			<div className="box-footer">
 				<div className="box-center">
-					<Button type="primary" size="large" className="pink" onClick={() => handleClick(itemData)}>
-						<span>조회</span>
-					</Button>
+					<Button type="primary" size="large" className="pink" onClick={() => handleClick(itemData)}>조회</Button>
 				</div>
 			</div>
 		</section>
