@@ -4,19 +4,24 @@ import AGroupSelectBody from "./AGroupSelectBody";
 import {findAllAGroup} from "../../../../../../api/customApi";
 import AddAGroupModal from "../../../../../modal/AddAGroupModal";
 
+interface AGroup {
+	agroupId: number,
+	agroupName: string
+}
+
 interface IAGroupSelect {
 	isModalOpen: boolean,
 	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	aGroupNames: string[],
-	setAGroupNames: React.Dispatch<React.SetStateAction<string[]>>
+	aGroups: AGroup[],
+	setAGroups: React.Dispatch<React.SetStateAction<AGroup[]>>
 }
 
 const AGroupSelectContextDefaultValue: IAGroupSelect = {
 	isModalOpen: false,
 	setIsModalOpen: () => {
 	},
-	aGroupNames: [],
-	setAGroupNames: () => {
+	aGroups: [],
+	setAGroups: () => {
 	},
 }
 
@@ -25,21 +30,21 @@ export const AGroupSelectContext = createContext(AGroupSelectContextDefaultValue
 
 function AGroupSelect() {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const [aGroupNames, setAGroupNames] = useState<string[]>([]);
+	const [aGroups, setAGroups] = useState<AGroup[]>([]);
 	const value = useMemo(
 		() => ({
 			isModalOpen: isModalOpen,
 			setIsModalOpen: setIsModalOpen,
-			aGroupNames: aGroupNames,
-			setAGroupNames: setAGroupNames,
+			aGroups: aGroups,
+			setAGroups: setAGroups,
 		}),
-		[isModalOpen, aGroupNames]
+		[isModalOpen, aGroups]
 	);
 
 	useEffect(() => {
 		findAllAGroup()
-			.then((res) => setAGroupNames(res.data.names))
-			.catch()
+			.then((res) => setAGroups(res.data.agroups))
+			.catch((e) => console.log(e))
 	}, [])
 
 	return (
