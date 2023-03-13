@@ -1,7 +1,6 @@
 import {Button, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {registerAd} from "../../../../../api/Api";
-import RegisterAdSuccessModal from "../../../../modal/RegisterAdSuccessModal";
 import {AdRegisterContext} from "../AdRegContent";
 
 export interface AdRegisterData {
@@ -38,7 +37,7 @@ function AdRegister() {
 		<div className="box-footer">
 			<div className="box-center">
 				<Button type="primary" size="large" className="pink" block={true} onClick={() => handleOnClick(adRegisterData)}>광고 등록</Button>
-				<RegisterAdSuccessModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+				<Modal title="광고 등록 성공" open={isModalOpen} onCancel={() => setIsModalOpen(false)}></Modal>
 			</div>
 		</div>
 	);

@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
 import {Button, Input, Modal} from "antd";
+import React, {useContext, useState} from 'react';
 import {AGroupSelectContext} from "../adpage/content/adreg/contentbody/agroupselect/AGroupSelect";
 
 function AddAGroupModal() {
@@ -11,7 +11,14 @@ function AddAGroupModal() {
 		setAGroupName("");
 	}
 
-	function handleRegister(aGroupName: string) {
+	function isExistAGroup() {
+		return context.aGroups.filter(aGroup => aGroup.agroupName === aGroupName).length != 0;
+	}
+
+	function handleRegister() {
+		if (isExistAGroup()) {
+			return Modal.error({title: "이미 등록된 광고그룹 입니다."});
+		}
 		context.setAGroups([...context.aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
 		closeModal();
 	}
@@ -20,7 +27,7 @@ function AddAGroupModal() {
 		<Modal title="신규 광고 그룹 생성" width={800} open={context.isModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(aGroupName)}>등록</Button>
+			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
 		       ]}
 		>
 			<section className="wrap-section wrap-tbl">

@@ -1,6 +1,6 @@
 import {Button, Input, Modal} from "antd";
 import React, {useContext, useState} from 'react';
-import {DUPLICATED_KEYWORD, INVALID_BID, MAX_BID, MIN_BID} from "../../utils/Const";
+import {MAX_BID, MIN_BID} from "../../utils/Const";
 import {isInvalidRageNumber} from "../../utils/Utils";
 import {AdRegisterContext, Keyword, KeywordDefaultValue} from "../adpage/content/adreg/AdRegContent";
 import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
@@ -10,12 +10,10 @@ function AddKeywordModal() {
 	const adKeywordContext = useContext(AdKeywordContext);
 	const adRegisterContext = useContext(AdRegisterContext);
 	const [keyword, setKeyword] = useState<Keyword>(KeywordDefaultValue);
-	const [addKeywordFailWord, setAddKeywordFailWord] = useState<String>("");
 
 	function closeModal() {
 		adKeywordContext.setIsAddKeywordModalOpen(false);
 		setKeyword(KeywordDefaultValue);
-		setAddKeywordFailWord("");
 	}
 
 	function isDuplicated() {
@@ -24,18 +22,17 @@ function AddKeywordModal() {
 
 	function findFailAddKeyWord() {
 		if (isDuplicated()) {
-			return DUPLICATED_KEYWORD;
+			return "중복된 키워드명 입니다";
 		}
 		if (isInvalidRageNumber(Number(keyword.bid), MIN_BID, MAX_BID)) {
-			return INVALID_BID;
+			return "입찰가는 90원이상, 99000원 이하";
 		}
 		return "";
 	}
 
 	function handleRegister(keyword: Keyword) {
 		if (findFailAddKeyWord() !== "") {
-			setAddKeywordFailWord(findFailAddKeyWord());
-			return;
+			return Modal.error({title: findFailAddKeyWord()});
 		}
 		adRegisterContext.setKeywordList([...adRegisterContext.keywordList, keyword]);
 		closeModal();
@@ -48,7 +45,6 @@ function AddKeywordModal() {
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
 		       ]}
 		>
-			<p style={{color: "red"}}>{addKeywordFailWord}</p>
 			<section className="wrap-section wrap-tbl">
 				<div className="box-body">
 					<div className="tbl">
