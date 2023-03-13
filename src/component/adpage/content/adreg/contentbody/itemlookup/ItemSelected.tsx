@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
-import { ItemContext } from './ItemLookUp';
+import {ADULT_ITEM, ADULT_YES, GENERAL_ITEM} from "../../../../../../utils/Const";
+import {ItemContext} from './ItemLookUp';
 
 function ItemSelected() {
 	const context = useContext(ItemContext);
-	const adultYn = context.selectedItem.adultYn === 'YES' ? '성인상품' : '일반상품';
+	const adultYn = context.selectedItem.adultYn === ADULT_YES ? ADULT_ITEM : GENERAL_ITEM;
 
 	return (
 		<section className="wrap-section wrap-tbl">

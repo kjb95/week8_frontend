@@ -1,5 +1,5 @@
 import React from "react";
-import {JWT_TOKEN} from "../../const/Const";
+import {JWT_TOKEN} from "../../utils/Const";
 import {Navigate, Outlet} from "react-router-dom";
 
 function AuthenticationNoneRequiredRouter() {

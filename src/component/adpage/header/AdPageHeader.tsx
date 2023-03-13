@@ -1,5 +1,6 @@
+import {Header} from "antd/es/layout/layout";
 import React from 'react';
-import {AUTHENTICATED_MEMBER_ID, ROLE_ADMIN, ROLE_ADV} from '../../../const/Const';
+import {AUTHENTICATED_MEMBER_ID, ROLE_ADMIN, ROLE_ADV} from '../../../utils/Const';
 import {Button, Divider, Layout, Menu, MenuProps, Space} from 'antd';
 import {useLocation} from 'react-router';
 
@@ -18,7 +19,7 @@ function createItems(roleAdv: string | null, roleAdmin: string | null) {
 	return items;
 }
 
-function handleLogout() {
+export function logout() {
 	sessionStorage.clear();
 	window.location.href = "/";
 }
@@ -33,7 +34,6 @@ function AdPageHeader() {
 	const location = useLocation()
 		.pathname
 		.substring(1);
-	const {Header} = Layout;
 	const menuItems: MenuProps['items'] = createItems(roleAdv, roleAdmin);
 
 	return (
@@ -46,7 +46,7 @@ function AdPageHeader() {
 						<i className="ico ico-user-info"/>
 						<span className="fz-16 fc-gray-300">{sessionStorage.getItem(AUTHENTICATED_MEMBER_ID)}</span>
 					</Space>
-					<Button className="gray" size="small" onClick={handleLogout}>로그아웃</Button>
+					<Button className="gray" size="small" onClick={logout}>로그아웃</Button>
 				</Space>
 			</div>
 		</Header>);

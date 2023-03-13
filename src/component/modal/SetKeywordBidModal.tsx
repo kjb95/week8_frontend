@@ -1,5 +1,7 @@
 import {Button, Input, Modal} from "antd";
 import React, {useContext, useState} from 'react';
+import {INVALID_BID, MAX_BID, MIN_BID} from "../../utils/Const";
+import {isInvalidRageNumber} from "../../utils/Utils";
 import {AdRegisterContext, Keyword} from "../adpage/content/adreg/AdRegContent";
 import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
 
@@ -7,17 +9,22 @@ function SetKeywordBidModal() {
 	const adKeywordContext = useContext(AdKeywordContext);
 	const adRegisterContext = useContext(AdRegisterContext);
 	const [bid, setBid] = useState<string>("0");
+	const [failWord, setFailWord] = useState<String>("");
 
-	function handleCancel() {
+	function closeModal() {
 		adKeywordContext.setIsSetBidModalOpen(false);
 		setBid("");
+		setFailWord("");
 	}
 
 	function handleRegister(bid: string) {
+		if (isInvalidRageNumber(Number(bid), MIN_BID, MAX_BID)) {
+			setFailWord(INVALID_BID);
+			return;
+		}
 		const keywordList = adRegisterContext.keywordList.map(changeBid);
 		adRegisterContext.setKeywordList(keywordList);
-		adKeywordContext.setIsSetBidModalOpen(false);
-		setBid("");
+		closeModal();
 	}
 
 	function changeBid(keyword: Keyword) {
@@ -26,12 +33,13 @@ function SetKeywordBidModal() {
 	}
 
 	return (
-		<Modal title="키워드 입찰가 일괄 설정" width={800} open={adKeywordContext.isSetBidModalOpen} onCancel={handleCancel}
+		<Modal title="키워드 입찰가 일괄 설정" width={800} open={adKeywordContext.isSetBidModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>취소</Button>,
+			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(bid)}>등록</Button>
 		       ]}
 		>
+			<p style={{color: "red"}}>{failWord}</p>
 			<section className="wrap-section wrap-tbl">
 				<div className="box-body">
 					<div className="tbl">
@@ -41,7 +49,7 @@ function SetKeywordBidModal() {
 							</dt>
 							<dd>
 								<div className="form-group">
-									<Input style={{width: 300}} type="text" value={bid} onChange={(e) => setBid(e.target.value)}/>
+									<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)}/>
 								</div>
 							</dd>
 						</dl>

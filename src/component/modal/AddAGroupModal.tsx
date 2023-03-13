@@ -6,21 +6,20 @@ function AddAGroupModal() {
 	const context = useContext(AGroupSelectContext);
 	const [aGroupName, setAGroupName] = useState<string>("");
 
-	function handleCancel() {
+	function closeModal() {
 		context.setIsModalOpen(false);
 		setAGroupName("");
 	}
 
 	function handleRegister(aGroupName: string) {
 		context.setAGroups([...context.aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
-		context.setIsModalOpen(false);
-		setAGroupName("");
+		closeModal();
 	}
 
 	return (
-		<Modal title="신규 광고 그룹 생성" width={800} open={context.isModalOpen} onCancel={handleCancel}
+		<Modal title="신규 광고 그룹 생성" width={800} open={context.isModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>취소</Button>,
+			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(aGroupName)}>등록</Button>
 		       ]}
 		>

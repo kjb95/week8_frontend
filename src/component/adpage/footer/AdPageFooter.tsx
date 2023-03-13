@@ -1,8 +1,7 @@
+import {Footer} from "antd/es/layout/layout";
 import React from 'react';
-import {Layout} from 'antd';
 
 function AdPageFooter() {
-	const {Footer} = Layout;
 	return (
 		<Footer>
 			<div className="box-left">

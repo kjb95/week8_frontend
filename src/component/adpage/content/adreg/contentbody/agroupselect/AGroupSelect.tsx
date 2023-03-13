@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useMemo, useState} from 'react';
-import {findAllAGroup} from "../../../../../../api/customApi";
+import {findAllAGroup} from "../../../../../../api/Api";
 import AddAGroupModal from "../../../../../modal/AddAGroupModal";
 import AGroupSelectBody from "./AGroupSelectBody";
 import AGroupSelectHeader from "./AGroupSelectHeader";
@@ -26,7 +26,6 @@ const AGroupSelectContextDefaultValue: IAGroupSelect = {
 }
 
 export const AGroupSelectContext = createContext(AGroupSelectContextDefaultValue);
-
 
 function AGroupSelect() {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

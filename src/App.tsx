@@ -7,7 +7,7 @@ import "./css/fonts/NanumSquareNeo/fonts.css";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import SimplePageForm from "./page/SimplePageForm";
 import AuthenticationNoneRequiredRouter from "./component/router/AuthenticationNoneRequiredRouter";
-import {JWT_TOKEN, ROLE_ADMIN, ROLE_ADV} from "./const/Const";
+import {JWT_TOKEN, ROLE_ADMIN, ROLE_ADV} from "./utils/Const";
 import AuthenticationRequiredRouter from "./component/router/AuthenticationRequiredRouter";
 import RoleRequiredRouter from "./component/router/RoleRequiredRouter";
 import Login from "./page/Login";

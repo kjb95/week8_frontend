@@ -1,6 +1,6 @@
 import {Button, Modal} from "antd";
 import React, {useContext, useState} from 'react';
-import {registerAd} from "../../../../../api/customApi";
+import {registerAd} from "../../../../../api/Api";
 import RegisterAdSuccessModal from "../../../../modal/RegisterAdSuccessModal";
 import {AdRegisterContext} from "../AdRegContent";
 

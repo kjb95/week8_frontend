@@ -1,31 +1,54 @@
 import {Button, Input, Modal} from "antd";
 import React, {useContext, useState} from 'react';
+import {DUPLICATED_KEYWORD, INVALID_BID, MAX_BID, MIN_BID} from "../../utils/Const";
+import {isInvalidRageNumber} from "../../utils/Utils";
 import {AdRegisterContext, Keyword, KeywordDefaultValue} from "../adpage/content/adreg/AdRegContent";
 import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
+
 
 function AddKeywordModal() {
 	const adKeywordContext = useContext(AdKeywordContext);
 	const adRegisterContext = useContext(AdRegisterContext);
 	const [keyword, setKeyword] = useState<Keyword>(KeywordDefaultValue);
+	const [addKeywordFailWord, setAddKeywordFailWord] = useState<String>("");
 
-	function handleCancel() {
+	function closeModal() {
 		adKeywordContext.setIsAddKeywordModalOpen(false);
 		setKeyword(KeywordDefaultValue);
+		setAddKeywordFailWord("");
+	}
+
+	function isDuplicated() {
+		return adRegisterContext.keywordList.filter(kwd => kwd.keywordName == keyword.keywordName).length != 0;
+	}
+
+	function findFailAddKeyWord() {
+		if (isDuplicated()) {
+			return DUPLICATED_KEYWORD;
+		}
+		if (isInvalidRageNumber(Number(keyword.bid), MIN_BID, MAX_BID)) {
+			return INVALID_BID;
+		}
+		return "";
 	}
 
 	function handleRegister(keyword: Keyword) {
+		if (findFailAddKeyWord() !== "") {
+			setAddKeywordFailWord(findFailAddKeyWord());
+			return;
+		}
 		adRegisterContext.setKeywordList([...adRegisterContext.keywordList, keyword]);
-		adKeywordContext.setIsAddKeywordModalOpen(false);
-		setKeyword(KeywordDefaultValue);
+		closeModal();
 	}
 
 	return (
-		<Modal title="키워드 추가" width={800} open={adKeywordContext.isAddKeywordModalOpen} onCancel={handleCancel}
+		<Modal title="키워드 추가" width={800} open={adKeywordContext.isAddKeywordModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>취소</Button>,
+			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
 		       ]}
 		>
+			<p style={{color: "red"}}>{addKeywordFailWord}</p>
 			<section className="wrap-section wrap-tbl">
 				<div className="box-body">
 					<div className="tbl">

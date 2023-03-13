@@ -1,6 +1,6 @@
 import {Content} from 'antd/es/layout/layout';
 import React, {createContext, useMemo, useState} from 'react';
-import {AUTHENTICATED_MEMBER_ID} from "../../../../const/Const";
+import {AUTHENTICATED_MEMBER_ID} from "../../../../utils/Const";
 import AdKeyword from "./contentbody/adkeywordlist/AdKeywordList";
 import AdRegister from "./contentbody/AdRegister";
 import AGroupSelect from "./contentbody/agroupselect/AGroupSelect";

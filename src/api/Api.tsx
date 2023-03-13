@@ -1,7 +1,7 @@
 import axios from "axios";
 import {AdRegisterData} from "../component/adpage/content/adreg/contentbody/AdRegister";
 import {ItemData} from "../component/adpage/content/adreg/contentbody/itemlookup/ItemLookUpByCondition";
-import {JWT_TOKEN} from "../const/Const";
+import {JWT_TOKEN} from "../utils/Const";
 import {LoginForm} from "../page/Login";
 
 export const api = axios.create({

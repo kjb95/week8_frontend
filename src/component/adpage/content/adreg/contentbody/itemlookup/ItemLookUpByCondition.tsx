@@ -1,6 +1,6 @@
 import {Button, Input} from "antd";
 import React, {useContext, useState} from 'react';
-import {itemLookUp} from "../../../../../../api/customApi";
+import {itemLookUp} from "../../../../../../api/Api";
 import {ItemContext} from "./ItemLookUp";
 
 export interface ItemData {
