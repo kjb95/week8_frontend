@@ -1,4 +1,4 @@
-import {Button, Input, Modal} from "antd";
+import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../utils/Const";
 import {isInvalidRageNumber} from "../../utils/Utils";
@@ -9,6 +9,7 @@ function SetKeywordBidModal() {
 	const adKeywordContext = useContext(AdKeywordContext);
 	const adRegisterContext = useContext(AdRegisterContext);
 	const [bid, setBid] = useState<string>("0");
+	const [messageApi, contextHolder] = message.useMessage();
 
 	function closeModal() {
 		adKeywordContext.setIsSetBidModalOpen(false);
@@ -17,7 +18,7 @@ function SetKeywordBidModal() {
 
 	function handleRegister(bid: string) {
 		if (isInvalidRageNumber(Number(bid), MIN_BID, MAX_BID)) {
-			return Modal.error({title: "입찰가는 90원이상, 99000원 이하"});
+			return messageApi.error("입찰가는 90원이상, 99000원 이하");
 		}
 		const keywordList = adRegisterContext.keywordList.map(changeBid);
 		adRegisterContext.setKeywordList(keywordList);
@@ -36,6 +37,7 @@ function SetKeywordBidModal() {
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(bid)}>등록</Button>
 		       ]}
 		>
+			{contextHolder}
 			<section className="wrap-section wrap-tbl">
 				<div className="box-body">
 					<div className="tbl">
