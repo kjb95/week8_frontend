@@ -35,7 +35,7 @@ function AdRegister() {
 			return messageApi.error("키워드 등록이 필요합니다");
 		}
 		registerAd(adRegisterData)
-			.then(() => Modal.success({title: "광고 등록 성공"}))
+			.then(() => Modal.success({title: "광고 등록 성공", onOk: () => window.location.reload()}))
 			.catch(() => Modal.error({title: "광고 등록 실패"}))
 	}
 

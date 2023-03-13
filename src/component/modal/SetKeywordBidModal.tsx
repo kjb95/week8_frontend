@@ -1,6 +1,6 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
-import {MAX_BID, MIN_BID} from "../../utils/Const";
+import {MAX_BID, MIN_BID} from "../../constants/Constant";
 import {isInvalidRageNumber} from "../../utils/Utils";
 import {AdRegisterContext, Keyword} from "../adpage/content/adreg/AdRegContent";
 import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";

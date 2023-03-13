@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Input} from "antd";
 import {findAuthorities, jwtAuthenticate} from "../api/Api";
-import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE_ADV} from "../utils/Const";
+import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE_ADV} from "../constants/Constant";
 
 export interface LoginForm {
 	username: string;

@@ -1,5 +1,5 @@
 import {Outlet} from "react-router-dom";
-import SimplePageForm from "../../page/SimplePageForm";
+import SimplePageForm from "../../pages/SimplePageForm";
 
 interface RoleRequiredRouterProps {
     role: string | null;

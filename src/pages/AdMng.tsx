@@ -1,5 +1,5 @@
 import React from 'react';
-import AdPage from "./AdPage";
+import AdPage from "../component/adpage/AdPage";
 
 function AdMng() {
 	return (<AdPage>
