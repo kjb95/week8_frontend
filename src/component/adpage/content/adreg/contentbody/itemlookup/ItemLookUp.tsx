@@ -1,7 +1,8 @@
-import React, {createContext, useEffect, useMemo, useState} from 'react';
-import ItemSelected from "./ItemSelected";
+import React, {createContext, useContext, useMemo, useState} from 'react';
+import {AdRegisterContext} from "../../AdRegContent";
 import ItemLookUpByCondition from "./ItemLookUpByCondition";
 import ItemLookUpResult from "./ItemLookUpResult";
+import ItemSelected from "./ItemSelected";
 
 export interface Item {
 	key: string,
@@ -12,7 +13,7 @@ export interface Item {
 	itemActYn: string
 }
 
-const ItemDefaultValue: Item = {
+export const ItemDefaultValue: Item = {
 	key: "",
 	itemNo: "",
 	itemName: "",
@@ -21,14 +22,14 @@ const ItemDefaultValue: Item = {
 	itemActYn: "",
 }
 
-interface ItemLookUp {
+interface IItemContext {
 	items: Item[],
 	setItems: React.Dispatch<React.SetStateAction<Item[]>>
 	selectedItem: Item,
 	setSelectedItem: React.Dispatch<React.SetStateAction<Item>>
 }
 
-const ItemContextDefaultValue: ItemLookUp = {
+const ItemContextDefaultValue: IItemContext = {
 	items: [],
 	setItems: () => {
 	},
@@ -39,11 +40,7 @@ const ItemContextDefaultValue: ItemLookUp = {
 
 export const ItemContext = createContext(ItemContextDefaultValue);
 
-interface Props {
-	setIsSelectedItem: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-function Items({setIsSelectedItem}: Props) {
+function ItemLookUp() {
 	const [items, setItems] = useState<Item[]>([]);
 	const [selectedItem, setSelectedItem] = useState<Item>(ItemDefaultValue);
 	const value = useMemo(
@@ -55,21 +52,16 @@ function Items({setIsSelectedItem}: Props) {
 		}),
 		[items, selectedItem]
 	);
+	const adRegisterContext = useContext(AdRegisterContext);
 	const isLookUp = items.length !== 0;
-
-	useEffect(() => {
-		if (selectedItem.key !== "") {
-			setIsSelectedItem(true)
-		}
-	}, [selectedItem, setIsSelectedItem])
 
 	return (
 		<ItemContext.Provider value={value}>
 			<ItemLookUpByCondition/>
 			{isLookUp && <ItemLookUpResult/>}
-			{selectedItem.key !== "" && <ItemSelected/>}
+			{adRegisterContext.isSelectedItem && <ItemSelected/>}
 		</ItemContext.Provider>
 	);
 }
 
-export default Items;
+export default ItemLookUp;
