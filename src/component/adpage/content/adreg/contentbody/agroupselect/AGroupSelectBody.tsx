@@ -1,10 +1,12 @@
-import React, {useContext} from 'react';
 import {Select} from "antd";
+import React, {useContext} from 'react';
+import {AdRegisterContext} from "../../AdRegContent";
 import {AGroupSelectContext} from "./AGroupSelect";
 
 function AGroupSelectBody() {
-	const context = useContext(AGroupSelectContext);
-	const aGroups = context.aGroups.map((aGroup) => ({value: aGroup.agroupId, label: aGroup.agroupName}))
+	const aGroupSelectContext = useContext(AGroupSelectContext);
+	const adRegisterContext = useContext(AdRegisterContext);
+	const aGroups = aGroupSelectContext.aGroups.map((aGroup) => ({value: aGroup.agroupId, label: aGroup.agroupName}))
 
 	return (
 		<div className="box-body">
@@ -21,6 +23,7 @@ function AGroupSelectBody() {
 								style={{width: 250}}
 								options={aGroups}
 								placeholder="광고그룹을 선택해주세요"
+								onChange={(value) => adRegisterContext.setAGroupId(value)}
 							/>
 						</div>
 					</dd>

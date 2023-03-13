@@ -1,20 +1,22 @@
-import React, {useContext, useState} from 'react';
 import {Button, Input, Modal} from "antd";
-import {AdKeywordContext, Keyword} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
+import React, {useContext, useState} from 'react';
+import {AdRegisterContext, Keyword} from "../adpage/content/adreg/AdRegContent";
+import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
 
 function SetKeywordBidModal() {
-	const context = useContext(AdKeywordContext);
+	const adKeywordContext = useContext(AdKeywordContext);
+	const adRegisterContext = useContext(AdRegisterContext);
 	const [bid, setBid] = useState<string>("0");
 
 	function handleCancel() {
-		context.setIsSetBidModalOpen(false);
+		adKeywordContext.setIsSetBidModalOpen(false);
 		setBid("");
 	}
 
 	function handleRegister(bid: string) {
-		const keywordList = context.keywordList.map(changeBid);
-		context.setKeywordList(keywordList);
-		context.setIsSetBidModalOpen(false);
+		const keywordList = adRegisterContext.keywordList.map(changeBid);
+		adRegisterContext.setKeywordList(keywordList);
+		adKeywordContext.setIsSetBidModalOpen(false);
 		setBid("");
 	}
 
@@ -24,7 +26,7 @@ function SetKeywordBidModal() {
 	}
 
 	return (
-		<Modal title="키워드 입찰가 일괄 설정" width={800} open={context.isSetBidModalOpen} onCancel={handleCancel}
+		<Modal title="키워드 입찰가 일괄 설정" width={800} open={adKeywordContext.isSetBidModalOpen} onCancel={handleCancel}
 		       footer={[
 			       <Button type="primary" size="large" className="gray" onClick={handleCancel}>취소</Button>,
 			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(bid)}>등록</Button>

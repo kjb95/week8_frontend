@@ -1,11 +1,11 @@
 import React, {createContext, useEffect, useMemo, useState} from 'react';
-import AGroupSelectHeader from "./AGroupSelectHeader";
-import AGroupSelectBody from "./AGroupSelectBody";
 import {findAllAGroup} from "../../../../../../api/customApi";
 import AddAGroupModal from "../../../../../modal/AddAGroupModal";
+import AGroupSelectBody from "./AGroupSelectBody";
+import AGroupSelectHeader from "./AGroupSelectHeader";
 
 interface AGroup {
-	agroupId: number,
+	agroupId: string,
 	agroupName: string
 }
 

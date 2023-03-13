@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Input} from "antd";
 import {findAuthorities, jwtAuthenticate} from "../api/customApi";
-import {AUTHENTICATED_USERNAME_SESSION_KEY, JWT_TOKEN, ROLE_ADV} from "../const/Const";
+import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE_ADV} from "../const/Const";
 
 export interface LoginForm {
 	username: string;
@@ -20,7 +20,7 @@ function findAuthoritiesSuccess(roles: string[]) {
 
 function loginSuccess(data: LoginForm, token: string) {
 	sessionStorage.setItem(JWT_TOKEN, token);
-	sessionStorage.setItem(AUTHENTICATED_USERNAME_SESSION_KEY, data.username);
+	sessionStorage.setItem(AUTHENTICATED_MEMBER_ID, data.username);
 	findAuthorities(data.username)
 		.then((res) => findAuthoritiesSuccess(res.data.roles))
 		.catch((e) => console.log(e));

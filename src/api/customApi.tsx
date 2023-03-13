@@ -1,6 +1,7 @@
 import axios from "axios";
+import {AdRegisterData} from "../component/adpage/content/adreg/contentbody/AdRegister";
+import {ItemData} from "../component/adpage/content/adreg/contentbody/itemlookup/ItemLookUpByCondition";
 import {JWT_TOKEN} from "../const/Const";
-import {ItemData} from "../component/adpage/content/adreg/contentbody/ItemLookUp";
 import {LoginForm} from "../page/Login";
 
 export const api = axios.create({
@@ -29,6 +30,6 @@ export function findAllAGroup() {
 	return api.get("/api/agroup");
 }
 
-// export function registerAGroup(aGroupName: string) {
-// 	return api.post("/api/agroup", {agroupName: aGroupName});
-// }
+export function registerAd(adRegisterData: AdRegisterData) {
+	return api.post("/api/ad", adRegisterData)
+}

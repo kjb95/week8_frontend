@@ -12,7 +12,7 @@ function AddAGroupModal() {
 	}
 
 	function handleRegister(aGroupName: string) {
-		context.setAGroups([...context.aGroups, {agroupId: -1, agroupName: aGroupName}]);
+		context.setAGroups([...context.aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
 		context.setIsModalOpen(false);
 		setAGroupName("");
 	}

@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {ItemContext} from "../AdRegContent";
+import { ItemContext } from './ItemLookUp';
 
 function ItemSelected() {
 	const context = useContext(ItemContext);

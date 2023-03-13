@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
 import {Button, Table} from "antd";
-import {AdKeywordContext, Keyword} from "./AdKeywordList";
 import Column from 'antd/es/table/Column';
+import React, {useContext} from 'react';
+import {AdRegisterContext, Keyword} from "../../AdRegContent";
 
 function AdKeywordListBody() {
-	const context = useContext(AdKeywordContext);
+	const context = useContext(AdRegisterContext);
 
 	function handleItemDelete(record: Keyword) {
 		const keywordList = context.keywordList.filter(item => item.key !== record.key);

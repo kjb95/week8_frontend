@@ -1,78 +1,79 @@
+import {Content} from 'antd/es/layout/layout';
 import React, {createContext, useMemo, useState} from 'react';
-import {Layout} from 'antd';
-import ItemLookUp from "./contentbody/ItemLookUp";
-import ItemLookUpResult from "./contentbody/ItemLookUpResult";
-import ItemSelected from "./contentbody/ItemSelected";
-import AGroupSelect from "./contentbody/agroupselect/AGroupSelect";
+import {AUTHENTICATED_MEMBER_ID} from "../../../../const/Const";
 import AdKeyword from "./contentbody/adkeywordlist/AdKeywordList";
 import AdRegister from "./contentbody/AdRegister";
+import AGroupSelect from "./contentbody/agroupselect/AGroupSelect";
+import Items from './contentbody/itemlookup/ItemLookUp';
 
-export interface Item {
+export interface Keyword {
 	key: string,
-	itemNo: string,
-	itemName: string,
-	adultYn: string,
-	itemOrgCost: number,
-	itemActYn: string
+	keywordName: string,
+	bid: string
 }
 
-const ItemDefaultValue: Item = {
+export const KeywordDefaultValue: Keyword = {
 	key: "",
-	itemNo: "",
-	itemName: "",
-	adultYn: "",
-	itemOrgCost: 0,
-	itemActYn: "",
+	keywordName: "",
+	bid: "0"
 }
 
-interface Items {
-	items: Item[],
-	setItems: React.Dispatch<React.SetStateAction<Item[]>>
-	selectedItem: Item,
-	setSelectedItem: React.Dispatch<React.SetStateAction<Item>>
+export interface AdRegisterContextData {
+	agroupId: string,
+	setAGroupId: React.Dispatch<React.SetStateAction<string>>
+	itemId: string,
+	setItemId: React.Dispatch<React.SetStateAction<string>>
+	advId: string | null,
+	keywordList: Keyword[],
+	setKeywordList: React.Dispatch<React.SetStateAction<Keyword[]>>
 }
 
-const ItemContextDefaultValue: Items = {
-	items: [],
-	setItems: () => {
+const AdRegisterContextDefaultValue: AdRegisterContextData = {
+	agroupId: "",
+	setAGroupId: () => {
 	},
-	selectedItem: ItemDefaultValue,
-	setSelectedItem: () => {
+	itemId: "",
+	setItemId: () => {
+	},
+	advId: "",
+	keywordList: [],
+	setKeywordList: () => {
 	},
 }
 
-export const ItemContext = createContext(ItemContextDefaultValue);
+export const AdRegisterContext = createContext(AdRegisterContextDefaultValue);
 
 function AdRegContent() {
-	const {Content} = Layout;
-	const [items, setItems] = useState<Item[]>([]);
-	const [selectedItem, setSelectedItem] = useState<Item>(ItemDefaultValue);
+	const [agroupId, setAGroupId] = useState<string>("");
+	const [isSelectedItem, setIsSelectedItem] = useState<boolean>(false);
+	const [itemId, setItemId] = useState<string>("");
+	const [keywordList, setKeywordList] = useState<Keyword[]>([]);
+	const advId = sessionStorage.getItem(AUTHENTICATED_MEMBER_ID);
+
 	const value = useMemo(
 		() => ({
-			items: items,
-			setItems: setItems,
-			selectedItem: selectedItem,
-			setSelectedItem: setSelectedItem
+			agroupId: agroupId,
+			setAGroupId: setAGroupId,
+			itemId: itemId,
+			setItemId: setItemId,
+			advId: advId,
+			keywordList: keywordList,
+			setKeywordList: setKeywordList
 		}),
-		[items, selectedItem]
+		[agroupId, itemId, advId, keywordList]
 	);
-	const isLookUp = items.length !== 0;
-	const isSelectedItem = selectedItem.key !== "";
-
 	return (
 		<Content>
 			<div className="site-layout-content">
 				<div className="inner-content">
 					<div className="content-header"><h1 className="fz-32 fc-gray-900">광고 등록</h1></div>
 					<div className="content-body">
-						<ItemContext.Provider value={value}>
-							<ItemLookUp/>
-							{isLookUp && <ItemLookUpResult/>}
-							{isSelectedItem && <ItemSelected/>}
+						<AdRegisterContext.Provider value={value}>
+							<Items setIsSelectedItem={setIsSelectedItem}/>
 							{isSelectedItem && <AGroupSelect/>}
 							{isSelectedItem && <AdKeyword/>}
 							{isSelectedItem && <AdRegister/>}
-						</ItemContext.Provider>
+						</AdRegisterContext.Provider>
 					</div>
 				</div>
 			</div>

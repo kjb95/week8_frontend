@@ -1,7 +1,7 @@
-import React, {useContext, useState} from 'react';
 import {Button, Input} from "antd";
-import {itemLookUp} from "../../../../../api/customApi";
-import {ItemContext} from "../AdRegContent";
+import React, {useContext, useState} from 'react';
+import {itemLookUp} from "../../../../../../api/customApi";
+import {ItemContext} from "./ItemLookUp";
 
 export interface ItemData {
 	itemName: string,
@@ -12,13 +12,13 @@ const ItemDataDefault: ItemData = {
 	itemName: "", itemNo: ""
 }
 
-function ItemLookUp() {
-	const context = useContext(ItemContext);
+function ItemLookUpByCondition() {
+	const itemContext = useContext(ItemContext);
 	const [itemData, setItemData] = useState<ItemData>(ItemDataDefault);
 
 	function handleClick(itemData: ItemData) {
 		itemLookUp(itemData)
-			.then((res) => context.setItems(res.data.items))
+			.then((res) => itemContext.setItems(res.data.items))
 			.catch((e) => console.log(e))
 	}
 
@@ -66,4 +66,4 @@ function ItemLookUp() {
 	);
 }
 
-export default ItemLookUp;
+export default ItemLookUpByCondition;

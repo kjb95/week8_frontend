@@ -1,5 +1,5 @@
 import React from 'react';
-import {AUTHENTICATED_USERNAME_SESSION_KEY, ROLE_ADMIN, ROLE_ADV} from '../../../const/Const';
+import {AUTHENTICATED_MEMBER_ID, ROLE_ADMIN, ROLE_ADV} from '../../../const/Const';
 import {Button, Divider, Layout, Menu, MenuProps, Space} from 'antd';
 import {useLocation} from 'react-router';
 
@@ -44,7 +44,7 @@ function AdPageHeader() {
 				<Space split={<Divider type="vertical"/>}>
 					<Space>
 						<i className="ico ico-user-info"/>
-						<span className="fz-16 fc-gray-300">{sessionStorage.getItem(AUTHENTICATED_USERNAME_SESSION_KEY)}</span>
+						<span className="fz-16 fc-gray-300">{sessionStorage.getItem(AUTHENTICATED_MEMBER_ID)}</span>
 					</Space>
 					<Button className="gray" size="small" onClick={handleLogout}>로그아웃</Button>
 				</Space>
