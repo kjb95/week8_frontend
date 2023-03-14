@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
 import {Button, Input} from "antd";
+import React, {useState} from 'react';
 import {findAuthorities, jwtAuthenticate} from "../api/Api";
 import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE_ADV} from "../constants/Constant";
 
@@ -54,22 +54,12 @@ function Login() {
 							<i className="ico ico-check"/>
 							<span className="txt-company">DB손해보험</span>
 						</div>
-						<Input
-							name="email"
-							placeholder="아이디를 입력해주세요."
-							size="large"
-							prefix={<i className="ico ico-id"/>}
-							onChange={(e) => setLoginForm({username: e.target.value, password: loginForm.password})}
-							value={loginForm.username}
+						<Input name="email" placeholder="아이디를 입력해주세요." size="large" prefix={<i className="ico ico-id"/>} value={loginForm.username}
+						       onChange={(e) => setLoginForm({username: e.target.value, password: loginForm.password})}
 						/>
-						<Input.Password
-							name={"password"}
-							placeholder="비밀번호를 입력해주세요."
-							size="large"
-							prefix={<i className="ico ico-pw"/>}
-							onChange={(e) => setLoginForm({username: loginForm.username, password: e.target.value})}
-							value={loginForm.password}
-							onPressEnter={() => login(loginForm, setIsLoginFail)}
+						<Input.Password name={"password"} placeholder="비밀번호를 입력해주세요." size="large" prefix={<i className="ico ico-pw"/>} value={loginForm.password}
+						                onChange={(e) => setLoginForm({username: loginForm.username, password: e.target.value})}
+						                onPressEnter={() => login(loginForm, setIsLoginFail)}
 						/>
 						{isLoginFail && <p className="txt-error show">아이디 또는 비밀번호가 일치하지 않습니다.</p>}
 					</div>

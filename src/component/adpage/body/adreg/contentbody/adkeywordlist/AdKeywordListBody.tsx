@@ -1,7 +1,8 @@
 import {Button, Table} from "antd";
 import Column from 'antd/es/table/Column';
 import React, {useContext} from 'react';
-import {AdRegisterContext, Keyword} from "../../AdRegContent";
+import {AdRegisterContext, Keyword} from "../../../../../../contexts/AdRegisterContext";
+import SectionBody from "../../../../../section/SectionBody";
 
 function AdKeywordListBody() {
 	const context = useContext(AdRegisterContext);
@@ -12,7 +13,7 @@ function AdKeywordListBody() {
 	}
 
 	return (
-		<div className="box-body">
+		<SectionBody>
 			<Table dataSource={context.keywordList} bordered pagination={{showSizeChanger: true, showTotal: ((total) => <p>Total {total} items</p>)}}>
 				<Column title="키워드명" dataIndex="keywordName" align="center"/>
 				<Column title="입찰가" dataIndex="bid" align="center"/>
@@ -20,7 +21,7 @@ function AdKeywordListBody() {
 				        render={(_, record: Keyword) => (<Button type="default" size="small" className="pink" onClick={() => handleItemDelete(record)}>삭제</Button>)}
 				/>
 			</Table>
-		</div>
+		</SectionBody>
 	);
 }
 

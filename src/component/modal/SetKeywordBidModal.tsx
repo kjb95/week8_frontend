@@ -1,9 +1,12 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../constants/Constant";
+import {AdKeywordContext} from "../../contexts/AdKeywordContext";
+import {AdRegisterContext, Keyword} from "../../contexts/AdRegisterContext";
 import {isInvalidRageNumber} from "../../utils/Utils";
-import {AdRegisterContext, Keyword} from "../adpage/content/adreg/AdRegContent";
-import {AdKeywordContext} from "../adpage/content/adreg/contentbody/adkeywordlist/AdKeywordList";
+import SectionBody from "../section/SectionBody";
+import Dd from "../table/Dd";
+import DtModal from "../table/DtModal";
 
 function SetKeywordBidModal() {
 	const adKeywordContext = useContext(AdKeywordContext);
@@ -39,20 +42,14 @@ function SetKeywordBidModal() {
 		>
 			{contextHolder}
 			<section className="wrap-section wrap-tbl">
-				<div className="box-body">
-					<div className="tbl">
-						<dl>
-							<dt>
-								<div className="dt-inner"><span className="fz-16 fw-med fc-7">입찰가 입력<i className="txt-essential"></i></span></div>
-							</dt>
-							<dd>
-								<div className="form-group">
-									<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)}/>
-								</div>
-							</dd>
-						</dl>
-					</div>
-				</div>
+				<SectionBody>
+					<dl>
+						<DtModal title="입찰가 입력"/>
+						<Dd>
+							<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)}/>
+						</Dd>
+					</dl>
+				</SectionBody>
 			</section>
 		</Modal>
 	);

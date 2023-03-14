@@ -1,10 +1,10 @@
-import React, {ReactNode} from 'react';
-import AdPageFooter from "./footer/AdPageFooter";
 import {Layout} from "antd";
-import AdPageHeader from "./header/AdPageHeader";
+import React, {ReactNode} from 'react';
+import AdPageFooter from "./AdPageFooter";
+import AdPageHeader from "./AdPageHeader";
 
 interface Props {
-	children: ReactNode
+	children: ReactNode  // AdPageContent
 }
 
 function AdPage({children}: Props) {

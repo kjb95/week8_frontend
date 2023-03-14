@@ -1,7 +1,8 @@
 import {Button, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {registerAd} from "../../../../../api/Api";
-import {AdRegisterContext} from "../AdRegContent";
+import {AdRegisterContext} from "../../../../../contexts/AdRegisterContext";
+import SectionFooter from "../../../../section/SectionFooter";
 
 export interface AdRegisterData {
 	agroupId: string,
@@ -31,7 +32,7 @@ function AdRegister() {
 		if (adRegisterData.agroupId === "") {
 			return messageApi.error("광고 그룹 등록이 필요합니다");
 		}
-		if (adRegisterData.keywordList.length == 0) {
+		if (adRegisterData.keywordList.length === 0) {
 			return messageApi.error("키워드 등록이 필요합니다");
 		}
 		registerAd(adRegisterData)
@@ -40,13 +41,11 @@ function AdRegister() {
 	}
 
 	return (
-		<div className="box-footer">
-			<div className="box-center">
-				{contextHolder}
-				<Button type="primary" size="large" className="pink" block={true} onClick={() => handleOnClick(adRegisterData)}>광고 등록</Button>
-				<Modal title="광고 등록 성공" open={isModalOpen} onCancel={() => setIsModalOpen(false)}></Modal>
-			</div>
-		</div>
+		<SectionFooter>
+			{contextHolder}
+			<Button type="primary" size="large" className="pink" block={true} onClick={() => handleOnClick(adRegisterData)}>광고 등록</Button>
+			<Modal title="광고 등록 성공" open={isModalOpen} onCancel={() => setIsModalOpen(false)}></Modal>
+		</SectionFooter>
 	);
 }
 

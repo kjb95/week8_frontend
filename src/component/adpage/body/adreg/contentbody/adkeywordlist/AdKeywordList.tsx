@@ -1,26 +1,9 @@
-import React, {createContext, useMemo, useState} from 'react';
+import React, {useMemo, useState} from 'react';
+import {AdKeywordContext} from '../../../../../../contexts/AdKeywordContext';
 import AddKeywordModal from "../../../../../modal/AddKeywordModal";
 import SetKeywordBidModal from "../../../../../modal/SetKeywordBidModal";
 import AdKeywordListBody from "./AdKeywordListBody";
 import AdKeywordListHeader from "./AdKeywordListHeader";
-
-interface AdKeyword {
-	isAddKeywordModalOpen: boolean,
-	setIsAddKeywordModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	isSetBidModalOpen: boolean
-	setIsSetBidModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-}
-
-const AdKeywordContextDefaultValue: AdKeyword = {
-	isAddKeywordModalOpen: false,
-	setIsAddKeywordModalOpen: () => {
-	},
-	isSetBidModalOpen: false,
-	setIsSetBidModalOpen: () => {
-	},
-}
-
-export const AdKeywordContext = createContext(AdKeywordContextDefaultValue);
 
 function AdKeywordList() {
 	const [isAddKeywordModalOpen, setIsAddKeywordModalOpen] = useState<boolean>(false);

@@ -1,31 +1,9 @@
-import React, {createContext, useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {findAllAGroup} from "../../../../../../api/Api";
+import {AGroup, AGroupSelectContext} from '../../../../../../contexts/AGroupSelectContext';
 import AddAGroupModal from "../../../../../modal/AddAGroupModal";
 import AGroupSelectBody from "./AGroupSelectBody";
 import AGroupSelectHeader from "./AGroupSelectHeader";
-
-interface AGroup {
-	agroupId: string,
-	agroupName: string
-}
-
-interface IAGroupSelect {
-	isModalOpen: boolean,
-	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	aGroups: AGroup[],
-	setAGroups: React.Dispatch<React.SetStateAction<AGroup[]>>
-}
-
-const AGroupSelectContextDefaultValue: IAGroupSelect = {
-	isModalOpen: false,
-	setIsModalOpen: () => {
-	},
-	aGroups: [],
-	setAGroups: () => {
-	},
-}
-
-export const AGroupSelectContext = createContext(AGroupSelectContextDefaultValue);
 
 function AGroupSelect() {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

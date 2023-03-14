@@ -1,6 +1,6 @@
 import React from 'react';
-import AdRegContent from '../component/adpage/content/adreg/AdRegContent';
 import AdPage from "../component/adpage/AdPage";
+import AdRegContent from '../component/adpage/body/adreg/AdRegContent';
 
 function AdReg() {
 	return (
