@@ -4,7 +4,7 @@ import './App.css';
 import AuthenticationNoneRequiredRouter from "./component/router/AuthenticationNoneRequiredRouter";
 import AuthenticationRequiredRouter from "./component/router/AuthenticationRequiredRouter";
 import RoleRequiredRouter from "./component/router/RoleRequiredRouter";
-import {JWT_TOKEN, ROLE_ADMIN, ROLE_ADV} from "./constants/Constant";
+import {JWT_TOKEN, ROLE, ROLE_ADMIN, ROLE_ADV} from "./constants/Constant";
 import "./css/common.css";
 import "./css/fonts/NanumSquareNeo/fonts.css";
 import "./css/layout.css";
@@ -15,9 +15,11 @@ import Login from "./pages/Login";
 import SimplePageForm from "./pages/SimplePageForm";
 
 function App() {
-	const roleAdv = sessionStorage.getItem(ROLE_ADV);
-	const roleAdmin = sessionStorage.getItem(ROLE_ADMIN);
 	const jwtToken = sessionStorage.getItem(JWT_TOKEN);
+	const roles = sessionStorage.getItem(ROLE)
+		?.split(",");
+	const roleAdv = roles?.includes(ROLE_ADV);
+	const roleAdmin = roles?.includes(ROLE_ADMIN);
 	if (!jwtToken) {
 		sessionStorage.clear();
 	}

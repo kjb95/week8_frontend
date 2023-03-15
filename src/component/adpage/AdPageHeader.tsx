@@ -2,13 +2,13 @@ import {Button, Divider, Menu, MenuProps, Space} from 'antd';
 import {Header} from "antd/es/layout/layout";
 import React from 'react';
 import {useLocation} from 'react-router';
-import {AUTHENTICATED_MEMBER_ID, ROLE_ADMIN, ROLE_ADV} from '../../constants/Constant';
+import {AUTHENTICATED_MEMBER_ID, ROLE, ROLE_ADV} from '../../constants/Constant';
 
 function createItem(label: string, key: string, icon: JSX.Element) {
 	return {label: label, key: key, icon: icon};
 }
 
-function createItems(roleAdv: string | null, roleAdmin: string | null) {
+function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefined) {
 	const items = []
 	if (roleAdv) {
 		items.push(createItem('광고 등록', 'adReg', <i className="ico ico-menu-01"/>));
@@ -29,8 +29,10 @@ const movePage: MenuProps['onClick'] = (e) => {
 }
 
 function AdPageHeader() {
-	const roleAdv = sessionStorage.getItem(ROLE_ADV);
-	const roleAdmin = sessionStorage.getItem(ROLE_ADMIN);
+	const roles = sessionStorage.getItem(ROLE)
+		?.split(",");
+	const roleAdv = roles?.includes(ROLE_ADV);
+	const roleAdmin = roles?.includes(ROLE_ADV);
 	const location = useLocation()
 		.pathname
 		.substring(1);

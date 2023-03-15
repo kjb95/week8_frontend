@@ -2,7 +2,7 @@ import {Outlet} from "react-router-dom";
 import SimplePageForm from "../../pages/SimplePageForm";
 
 interface RoleRequiredRouterProps {
-    role: string | null;
+    role: boolean | undefined;
 }
 
 function RoleRequiredRouter({role}: RoleRequiredRouterProps) {

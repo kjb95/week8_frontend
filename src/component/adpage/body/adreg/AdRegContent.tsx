@@ -39,10 +39,12 @@ function AdRegContent() {
 					<div className="content-body">
 						<AdRegisterContext.Provider value={value}>
 							<ItemLookUp/>
-							{isSelectedItem && <ItemSelected/>}
-							{isSelectedItem && <AGroupSelect/>}
-							{isSelectedItem && <AdKeyword/>}
-							{isSelectedItem && <AdRegister/>}
+							{isSelectedItem && <>
+								<ItemSelected/>
+								<AGroupSelect/>
+								<AdKeyword/>
+								<AdRegister/>
+							</>}
 						</AdRegisterContext.Provider>
 					</div>
 				</div>

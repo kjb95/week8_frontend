@@ -1,7 +1,7 @@
 import {Button, Input} from "antd";
 import React, {useState} from 'react';
 import {findAuthorities, jwtAuthenticate} from "../api/Api";
-import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE_ADV} from "../constants/Constant";
+import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE, ROLE_ADV} from "../constants/Constant";
 
 export interface LoginForm {
 	username: string;
@@ -13,7 +13,7 @@ const LoginFormDefault: LoginForm = {
 }
 
 function findAuthoritiesSuccess(roles: string[]) {
-	roles.forEach((role: string) => sessionStorage.setItem(role, role));
+	sessionStorage.setItem(ROLE, roles.join(','));
 	const nextHref = roles.includes(ROLE_ADV) ? "/adReg" : "/adMng";
 	window.location.href = nextHref;
 }
