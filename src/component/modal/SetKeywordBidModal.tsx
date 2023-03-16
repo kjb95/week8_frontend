@@ -36,8 +36,8 @@ function SetKeywordBidModal() {
 	return (
 		<Modal title="키워드 입찰가 일괄 설정" width={800} open={adKeywordContext.isSetBidModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(bid)}>등록</Button>
+			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
+			       <Button key="reegister" type="primary" size="large" className="pink" onClick={() => handleRegister(bid)}>등록</Button>
 		       ]}
 		>
 			{contextHolder}

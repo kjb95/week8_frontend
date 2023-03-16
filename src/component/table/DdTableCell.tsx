@@ -1,17 +1,16 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 interface Props {
-	data: string
+	children: ReactNode
 }
-
-function DdTableCell({data}: Props) {
+function DdTableCell({children}: Props) {
 	return (
 		<dd>
 			<div className="form-group">
 				<span className="comp-txt">
 					<span className="table">
 						<span className="table-cell">
-							<b className="fz-14 fc-gray-400">{data}</b>
+							<b className="fz-14 fc-gray-400">{children}</b>
 						</span>
 					</span>
 				</span>

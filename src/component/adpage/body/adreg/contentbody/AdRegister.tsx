@@ -44,7 +44,6 @@ function AdRegister() {
 		<SectionFooter>
 			{contextHolder}
 			<Button type="primary" size="large" className="pink" block={true} onClick={() => handleOnClick(adRegisterData)}>광고 등록</Button>
-			<Modal title="광고 등록 성공" open={isModalOpen} onCancel={() => setIsModalOpen(false)}></Modal>
 		</SectionFooter>
 	);
 }

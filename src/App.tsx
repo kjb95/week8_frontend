@@ -12,7 +12,7 @@ import "./css/plugin.css";
 import AdMng from './pages/AdMng';
 import AdReg from './pages/AdReg';
 import Login from "./pages/Login";
-import SimplePageForm from "./pages/SimplePageForm";
+import SimplePage from "./pages/SimplePage";
 
 function App() {
 	const jwtToken = sessionStorage.getItem(JWT_TOKEN);
@@ -29,20 +29,20 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route element={<AuthenticationRequiredRouter/>}>
-						<Route path="/" element={<SimplePageForm title="Home"/>}></Route>
+						<Route path="/" element={<SimplePage title="Home"/>}></Route>
 						<Route element={<RoleRequiredRouter role={roleAdv}/>}>
 							<Route path="/adReg" element={<AdReg/>}/>
+							<Route path="/adMng" element={<AdMng/>}/>
 						</Route>
 						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
-							<Route path="/adMng" element={<AdMng/>}/>
+
 						</Route>
 					</Route>
 					<Route element={<AuthenticationNoneRequiredRouter/>}>
 						<Route path="/login" element={<Login/>}/>
 					</Route>
-					<Route path="*" element={<SimplePageForm title="404 Not Found"/>}></Route>
+					<Route path="*" element={<SimplePage title="404 Not Found"/>}></Route>
 				</Routes>
-
 			</BrowserRouter>
 		</>
 	);

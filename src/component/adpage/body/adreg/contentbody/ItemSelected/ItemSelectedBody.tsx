@@ -1,27 +1,26 @@
 import React, {useContext} from 'react';
-import {ADULT_ITEM, ADULT_YES, GENERAL_ITEM} from "../../../../../../constants/Constant";
 import {AdRegisterContext} from "../../../../../../contexts/AdRegisterContext";
+import SectionBody from "../../../../../section/SectionBody";
 import DdTableCell from "../../../../../table/DdTableCell";
 import Dt from "../../../../../table/Dt";
-import SectionBody from "../../../../../section/SectionBody";
 
 function ItemSelectedBody() {
 	const adRegisterContext = useContext(AdRegisterContext);
-	const adultYn = adRegisterContext.selectedItem.adultYn === ADULT_YES ? ADULT_ITEM : GENERAL_ITEM;
+	const adultYn = adRegisterContext.selectedItem.adultYn === "YES" ? "성인상품" : "일반상품";
 
 	return (
 		<SectionBody>
 			<dl>
 				<Dt title="상품번호"/>
-				<DdTableCell data={adRegisterContext.selectedItem.itemNo}/>
+				<DdTableCell>{adRegisterContext.selectedItem.itemNo}</DdTableCell>
 			</dl>
 			<dl>
 				<Dt title="상품명"/>
-				<DdTableCell data={adRegisterContext.selectedItem.itemName}/>
+				<DdTableCell>{adRegisterContext.selectedItem.itemName}</DdTableCell>
 			</dl>
 			<dl>
 				<Dt title="성인여부"/>
-				<DdTableCell data={adultYn}/>
+				<DdTableCell>{adultYn}</DdTableCell>
 			</dl>
 		</SectionBody>
 	);

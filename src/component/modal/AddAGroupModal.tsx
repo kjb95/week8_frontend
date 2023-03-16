@@ -33,8 +33,8 @@ function AddAGroupModal() {
 	return (
 		<Modal title="신규 광고 그룹 생성" width={800} open={aGroupSelectContext.isModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
+			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
+			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
 		       ]}
 		>
 			{contextHolder}

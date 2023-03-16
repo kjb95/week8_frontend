@@ -1,7 +1,6 @@
 import {Button, message, Table} from "antd";
 import Column from "antd/es/table/Column";
 import React, {useContext} from 'react';
-import {INACTIVE_ITEM} from "../../../../../../../constants/Constant";
 import {AdRegisterContext} from "../../../../../../../contexts/AdRegisterContext";
 import {Item, ItemDefaultValue, ItemLookUpContext} from "../../../../../../../contexts/ItemLookUpContext";
 import SectionBody from "../../../../../../section/SectionBody";
@@ -9,11 +8,10 @@ import SectionBody from "../../../../../../section/SectionBody";
 function ItemLookUpResultBody() {
 	const itemLookUpContext = useContext(ItemLookUpContext);
 	const adRegisterContext = useContext(AdRegisterContext);
-	const actN = INACTIVE_ITEM;
 	const [messageApi, contextHolder] = message.useMessage();
 
 	function handleItemSelect(record: Item) {
-		if (record.itemActYn === actN) {
+		if (record.itemActYn === "비활성화") {
 			adRegisterContext.setSelectedItem(ItemDefaultValue);
 			return messageApi.error("비활성화된 상품은 광고 등록을 진행 X");
 		}

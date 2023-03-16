@@ -2,7 +2,7 @@ import {Button, Divider, Menu, MenuProps, Space} from 'antd';
 import {Header} from "antd/es/layout/layout";
 import React from 'react';
 import {useLocation} from 'react-router';
-import {AUTHENTICATED_MEMBER_ID, ROLE, ROLE_ADV} from '../../constants/Constant';
+import {AUTHENTICATED_MEMBER_ID, ROLE, ROLE_ADMIN, ROLE_ADV} from '../../constants/Constant';
 
 function createItem(label: string, key: string, icon: JSX.Element) {
 	return {label: label, key: key, icon: icon};
@@ -12,9 +12,9 @@ function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefine
 	const items = []
 	if (roleAdv) {
 		items.push(createItem('광고 등록', 'adReg', <i className="ico ico-menu-01"/>));
+		items.push(createItem('광고 관리', 'adMng', <i className="ico ico-menu-02"/>));
 	}
 	if (roleAdmin) {
-		items.push(createItem('광고 관리', 'adMng', <i className="ico ico-menu-02"/>));
 	}
 	return items;
 }
@@ -32,7 +32,7 @@ function AdPageHeader() {
 	const roles = sessionStorage.getItem(ROLE)
 		?.split(",");
 	const roleAdv = roles?.includes(ROLE_ADV);
-	const roleAdmin = roles?.includes(ROLE_ADV);
+	const roleAdmin = roles?.includes(ROLE_ADMIN);
 	const location = useLocation()
 		.pathname
 		.substring(1);

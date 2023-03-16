@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import SectionHeader from "../../../../../../section/SectionHeader";
 import ItemLookUpByConditionBody from "./ItemLookUpByConditionBody";
 import ItemLookUpByConditionFooter from "./ItemLookUpByConditionFooter";
+import ItemLookUpByConditionHeader from "./ItemLookUpByConditionHeader";
 
 export interface ItemData {
 	itemName: string,
@@ -17,9 +17,7 @@ function ItemLookUpByCondition() {
 
 	return (
 		<section className="wrap-section wrap-tbl">
-			<SectionHeader>
-				<h2 className="fz-24 fc-gray-700">상품 조회</h2>
-			</SectionHeader>
+			<ItemLookUpByConditionHeader/>
 			<ItemLookUpByConditionBody itemData={itemData} setItemData={setItemData}/>
 			<ItemLookUpByConditionFooter itemData={itemData}/>
 		</section>

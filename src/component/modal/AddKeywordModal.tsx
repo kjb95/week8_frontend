@@ -38,8 +38,8 @@ function AddKeywordModal() {
 	return (
 		<Modal title="키워드 추가" width={800} open={adKeywordContext.isAddKeywordModalOpen} onCancel={closeModal}
 		       footer={[
-			       <Button type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
+			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
+			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
 		       ]}
 		>
 			{contextHolder}
