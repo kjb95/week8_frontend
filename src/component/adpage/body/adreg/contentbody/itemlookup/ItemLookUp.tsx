@@ -1,24 +1,16 @@
-import React, {useMemo, useState} from 'react';
-import {Item, ItemLookUpContext} from "../../../../../../contexts/ItemLookUpContext";
+import React, {useContext} from 'react';
+import {ItemLookUpContext} from "../../../../../../contexts/adreg/ItemLookUpContextProvider";
 import ItemLookUpByCondition from "./itemlookupcondition/ItemLookUpByCondition";
 import ItemLookUpResult from "./itemlookupresult/ItemLookUpResult";
 
 function ItemLookUp() {
-	const [items, setItems] = useState<Item[]>([]);
-	const value = useMemo(
-		() => ({
-			items: items,
-			setItems: setItems,
-		}),
-		[items]
-	);
-	const isLookUp = items.length !== 0;
-
+	const itemLookUpContext = useContext(ItemLookUpContext);
+	const isLookUp = itemLookUpContext.items.length !== 0;
 	return (
-		<ItemLookUpContext.Provider value={value}>
+		<>
 			<ItemLookUpByCondition/>
 			{isLookUp && <ItemLookUpResult/>}
-		</ItemLookUpContext.Provider>
+		</>
 	);
 }
 

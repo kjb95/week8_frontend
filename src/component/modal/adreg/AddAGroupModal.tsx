@@ -1,7 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
-import {AdRegisterContext} from "../../contexts/AdRegisterContext";
-import {AGroupSelectContext} from "../../contexts/AGroupSelectContext";
+import {AdRegisterContext} from "../../contexts/adreg/AdRegisterContextProvider";
+import {AGroupSelectContext} from "../../contexts/adreg/AGroupSelectContextProvider";
 import SectionBody from "../section/SectionBody";
 import Dd from "../table/Dd";
 import DtModal from "../table/DtModal";

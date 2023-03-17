@@ -1,8 +1,8 @@
 import {Button, message, Table} from "antd";
 import Column from "antd/es/table/Column";
 import React, {useContext} from 'react';
-import {AdRegisterContext} from "../../../../../../../contexts/AdRegisterContext";
-import {Item, ItemDefaultValue, ItemLookUpContext} from "../../../../../../../contexts/ItemLookUpContext";
+import {AdRegisterContext} from "../../../../../../../contexts/adreg/AdRegisterContextProvider";
+import {Item, ItemDefaultValue, ItemLookUpContext} from "../../../../../../../contexts/adreg/ItemLookUpContextProvider";
 import SectionBody from "../../../../../../section/SectionBody";
 
 function ItemLookUpResultBody() {

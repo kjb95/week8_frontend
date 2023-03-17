@@ -1,7 +1,7 @@
 import {Button} from "antd";
 import React, {useContext} from 'react';
 import {itemLookUp} from "../../../../../../../api/Api";
-import {ItemLookUpContext} from "../../../../../../../contexts/ItemLookUpContext";
+import {ItemLookUpContext} from "../../../../../../../contexts/adreg/ItemLookUpContextProvider";
 import SectionFooter from "../../../../../../section/SectionFooter";
 import {ItemData} from "./ItemLookUpByCondition";
 

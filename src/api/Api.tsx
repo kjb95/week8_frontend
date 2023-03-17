@@ -39,7 +39,7 @@ export function itemLookUp(itemData: ItemData) {
  * 모든 광고 그룹의 아이디와 이름만 조회
  */
 export function findAllAGroup() {
-	return api.get("/api/agroup");
+	return api.get("/api/agroup/all");
 }
 
 /**
@@ -74,4 +74,11 @@ export function updateAdIngActYn(advId: string | null, isOn: boolean) {
 		advId: advId,
 		on: isOn
 	})
+}
+
+/**
+ * 조건에 따른 그룹 검색
+ */
+export function findGroup(groupNameCondition: string) {
+	return api.get("/api/agroup?groupName=" + groupNameCondition);
 }

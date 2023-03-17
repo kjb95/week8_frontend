@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {AdRegisterContext} from "../../../../../../contexts/AdRegisterContext";
+import {AdRegisterContext} from "../../../../../../contexts/adreg/AdRegisterContextProvider";
 import SectionBody from "../../../../../section/SectionBody";
 import DdTableCell from "../../../../../table/DdTableCell";
 import Dt from "../../../../../table/Dt";

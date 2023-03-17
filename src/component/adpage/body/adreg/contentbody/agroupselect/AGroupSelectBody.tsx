@@ -1,7 +1,7 @@
 import {Select} from "antd";
 import React, {useContext} from 'react';
-import {AdRegisterContext} from "../../../../../../contexts/AdRegisterContext";
-import {AGroupSelectContext} from "../../../../../../contexts/AGroupSelectContext";
+import {AdRegisterContext} from "../../../../../../contexts/adreg/AdRegisterContextProvider";
+import {AGroupSelectContext} from "../../../../../../contexts/adreg/AGroupSelectContextProvider";
 import Dd from "../../../../../table/Dd";
 import Dt from "../../../../../table/Dt";
 import SectionBody from "../../../../../section/SectionBody";

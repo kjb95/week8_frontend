@@ -1,7 +1,7 @@
 import {Button, message, Modal} from "antd";
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import {registerAd} from "../../../../../api/Api";
-import {AdRegisterContext} from "../../../../../contexts/AdRegisterContext";
+import {AdRegisterContext} from "../../../../../contexts/adreg/AdRegisterContextProvider";
 import SectionFooter from "../../../../section/SectionFooter";
 
 export interface AdRegisterData {
@@ -17,7 +17,6 @@ interface Kwd {
 }
 
 function AdRegister() {
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const context = useContext(AdRegisterContext);
 	const kwds: Kwd[] = context.keywordList.map(keyword => ({keywordName: keyword.keywordName, bid: keyword.bid}));
 	const adRegisterData: AdRegisterData = {

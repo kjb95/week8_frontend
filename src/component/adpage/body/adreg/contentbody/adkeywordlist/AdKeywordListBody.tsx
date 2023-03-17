@@ -1,7 +1,7 @@
 import {Button, Table} from "antd";
 import Column from 'antd/es/table/Column';
 import React, {useContext} from 'react';
-import {AdRegisterContext, Keyword} from "../../../../../../contexts/AdRegisterContext";
+import {AdRegisterContext, Keyword} from "../../../../../../contexts/adreg/AdRegisterContextProvider";
 import SectionBody from "../../../../../section/SectionBody";
 
 function AdKeywordListBody() {

@@ -1,6 +1,6 @@
 import {Button} from "antd";
 import React, {useContext} from 'react';
-import {AGroupSelectContext} from "../../../../../../contexts/AGroupSelectContext";
+import {AGroupSelectContext} from "../../../../../../contexts/adreg/AGroupSelectContextProvider";
 import SectionHeader from "../../../../../section/SectionHeader";
 
 function AGroupSelectHeader() {

@@ -1,6 +1,6 @@
 import {Button} from "antd";
 import React, {useContext} from 'react';
-import {AdKeywordContext} from "../../../../../../contexts/AdKeywordContext";
+import {AdKeywordContext} from "../../../../../../contexts/adreg/AdKeywordContextProvider";
 import SectionHeader from "../../../../../section/SectionHeader";
 
 function AdKeywordListHeader() {
