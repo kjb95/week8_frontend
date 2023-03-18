@@ -2,7 +2,7 @@ import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {registerAdGroup} from "../../../api/Api";
 import {AdGroupContext} from "../../../contexts/admng/AdGroupContextProvider";
-import {updateGroupSearch} from "../../adpage/body/admng/contentbody/groupsearchlist/grouplist/GroupListBody";
+import {updateGroupSearch} from "../../adpage/body/admnggroups/contentbody/groupsearchlist/grouplist/GroupListBody";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";

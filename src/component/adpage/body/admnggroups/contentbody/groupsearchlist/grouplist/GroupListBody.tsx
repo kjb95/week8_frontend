@@ -40,7 +40,7 @@ function GroupListBody() {
 			<Table dataSource={adGroupContext.adGroups} bordered rowSelection={rowSelection}
 			       pagination={{showTotal: ((total) => <p>총 {total}건</p>)}}>
 				<Column title="번호" dataIndex="key" align="center"/>
-				<Column title="그룹명" dataIndex="agroupName" align="center" render={(value, record: AdGroup) => <Link to={"/adMng/adGroup/" + record.key}>{value}</Link>}/>
+				<Column title="그룹명" dataIndex="agroupName" align="center" render={(value, record: AdGroup) => <Link to={"/adMng/items/" + record.key}>{value}</Link>}/>
 				<Column title="그룹 ON/OFF" dataIndex="agroupUseConfigYn" align="center" render={(value, record: AdGroup) =>
 					<Button onClick={() => handleAgroupUseConfigYnClick(record)}>{value}</Button>}/>
 				<Column title="상품 수(LIVE/전체)" dataIndex="itemCountLiveAndAll" align="center"/>

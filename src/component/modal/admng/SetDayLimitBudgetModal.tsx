@@ -2,7 +2,7 @@ import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {updateDayLimitBudget} from "../../../api/Api";
 import {AUTHENTICATED_MEMBER_ID} from "../../../constants/Constant";
-import {Adv} from "../../adpage/body/admng/contentbody/advaccountset/AdvAccountSetBody";
+import {Adv} from "../../adpage/body/admnggroups/contentbody/advaccountset/AdvAccountSetBody";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
