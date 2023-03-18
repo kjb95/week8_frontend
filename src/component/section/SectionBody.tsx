@@ -1,10 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
+import {ChildProps} from "../../constants/Interface";
 
-interface Props {
-	children: ReactNode
-}
-
-function SectionBody({children}: Props) {
+function SectionBody({children}: ChildProps) {
 	return (
 		<div className="box-body">
 			<div className="tbl">
@@ -13,4 +10,5 @@ function SectionBody({children}: Props) {
 		</div>
 	);
 }
+
 export default SectionBody;

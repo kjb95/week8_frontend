@@ -1,7 +1,7 @@
 import React from 'react';
 import AdKeywordContextProvider from '../../../../../../contexts/adreg/AdKeywordContextProvider';
-import AddKeywordModal from "../../../../../modal/AddKeywordModal";
-import SetKeywordBidModal from "../../../../../modal/SetKeywordBidModal";
+import AddKeywordModal from "../../../../../modal/adreg/AddKeywordModal";
+import SetKeywordBidModal from "../../../../../modal/adreg/SetKeywordBidModal";
 import AdKeywordListBody from "./AdKeywordListBody";
 import AdKeywordListHeader from "./AdKeywordListHeader";
 

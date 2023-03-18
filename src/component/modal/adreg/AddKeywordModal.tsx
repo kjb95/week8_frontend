@@ -1,12 +1,12 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
-import {MAX_BID, MIN_BID} from "../../constants/Constant";
-import {AdKeywordContext} from "../../contexts/adreg/AdKeywordContextProvider";
-import {AdRegisterContext, Keyword, KeywordDefaultValue} from "../../contexts/adreg/AdRegisterContextProvider";
-import {isInvalidRageNumber} from "../../utils/Utils";
-import SectionBody from "../section/SectionBody";
-import Dd from "../table/Dd";
-import DtModal from "../table/DtModal";
+import {MAX_BID, MIN_BID} from "../../../constants/Constant";
+import {AdKeywordContext} from "../../../contexts/adreg/AdKeywordContextProvider";
+import {AdRegisterContext, Keyword, KeywordDefaultValue} from "../../../contexts/adreg/AdRegisterContextProvider";
+import {isInvalidRageNumber} from "../../../utils/Utils";
+import SectionBody from "../../section/SectionBody";
+import Dd from "../../table/Dd";
+import DtModal from "../../table/DtModal";
 
 
 function AddKeywordModal() {

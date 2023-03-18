@@ -1,4 +1,5 @@
-import React, {createContext, ReactNode, useMemo, useState} from "react";
+import React, {createContext, useMemo, useState} from "react";
+import {ChildProps} from "../../constants/Interface";
 
 export interface Item {
 	key: string,
@@ -31,11 +32,7 @@ const ItemLookUpContextDefaultValue: ItemLookUpContextInterface = {
 
 export const ItemLookUpContext = createContext(ItemLookUpContextDefaultValue);
 
-interface Props {
-	children: ReactNode
-}
-
-function ItemLookUpContextProvider({children}: Props) {
+function ItemLookUpContextProvider({children}: ChildProps) {
 	const [items, setItems] = useState<Item[]>([]);
 	const value = useMemo(
 		() => ({

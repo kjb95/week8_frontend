@@ -1,13 +1,10 @@
 import {Layout} from "antd";
-import React, {ReactNode} from 'react';
+import React from 'react';
+import {ChildProps} from "../../constants/Interface";
 import AdPageFooter from "./AdPageFooter";
 import AdPageHeader from "./AdPageHeader";
 
-interface Props {
-	children: ReactNode  // AdPageContent
-}
-
-function AdPage({children}: Props) {
+function AdPage({children}: ChildProps) {
 	return (
 		<Layout>
 			<AdPageHeader/>

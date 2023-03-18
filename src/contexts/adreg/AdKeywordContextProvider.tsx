@@ -1,4 +1,5 @@
-import React, {createContext, ReactNode, useMemo, useState} from "react";
+import React, {createContext, useMemo, useState} from "react";
+import {ChildProps} from "../../constants/Interface";
 
 interface AdKeyword {
 	isAddKeywordModalOpen: boolean,
@@ -18,11 +19,7 @@ const AdKeywordContextDefaultValue: AdKeyword = {
 
 export const AdKeywordContext = createContext(AdKeywordContextDefaultValue);
 
-interface Props {
-	children: ReactNode
-}
-
-function AdKeywordContextProvider({children}: Props) {
+function AdKeywordContextProvider({children}: ChildProps) {
 	const [isAddKeywordModalOpen, setIsAddKeywordModalOpen] = useState<boolean>(false);
 	const [isSetBidModalOpen, setIsSetBidModalOpen] = useState<boolean>(false);
 	const value = useMemo(

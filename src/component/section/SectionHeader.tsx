@@ -1,10 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
+import {ChildProps} from "../../constants/Interface";
 
-interface Props {
-	children: ReactNode  // AdPageContent
-}
-
-function SectionHeader({children}: Props) {
+function SectionHeader({children}: ChildProps) {
 	const childrenArr = React.Children.toArray(children);
 
 	return (

@@ -2,7 +2,8 @@ import {Content} from "antd/es/layout/layout";
 import React from 'react';
 import AdGroupContextProvider from "../../../../contexts/admng/AdGroupContextProvider";
 import AdvAccountSet from "./contentbody/advaccountset/AdvAccountSet";
-import GroupSearchList from "./contentbody/groupsearchlist/GroupSearchList";
+import GroupList from "./contentbody/groupsearchlist/grouplist/GroupList";
+import GroupSearch from "./contentbody/groupsearchlist/groupsearch/GroupSearch";
 
 function AdMngContent() {
 	return (
@@ -13,7 +14,8 @@ function AdMngContent() {
 					<div className="content-body">
 						<AdvAccountSet/>
 						<AdGroupContextProvider>
-							<GroupSearchList/>
+							<GroupSearch/>
+							<GroupList/>
 						</AdGroupContextProvider>
 					</div>
 				</div>

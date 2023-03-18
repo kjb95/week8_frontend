@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {findAdv, updateAdIngActYn} from "../../../../../../api/Api";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../../constants/Constant";
 import {toWon} from "../../../../../../utils/Utils";
-import SetDayLimitBudgetModal from "../../../../../modal/SetDayLimitBudgetModal";
+import SetDayLimitBudgetModal from "../../../../../modal/admng/SetDayLimitBudgetModal";
 import SectionBody from "../../../../../section/SectionBody";
 import Dd from "../../../../../table/Dd";
 import DdTableCell from "../../../../../table/DdTableCell";
@@ -32,14 +32,14 @@ function AdvAccountSetBody() {
 		findAdv(advId)
 			.then(res => setAdv(res.data))
 			.catch(e => console.log(e))
-	}, []);
+	}, [advId]);
 
 	function computeBalanceStatus() {
 		return adv.balance + adv.eventMoney > 0 ? "정상" : "잔액 없음";
 	}
 
 	function computeDayLimitBudget() {
-		return adv.dayLimitBudget == 0 ? "무제한" : adv.dayLimitBudget;
+		return adv.dayLimitBudget === 0 ? "무제한" : adv.dayLimitBudget;
 	}
 
 	function handleAdSet(checked: boolean) {
@@ -70,7 +70,7 @@ function AdvAccountSetBody() {
 				<Dt title="일일 허용 예산"/>
 				<DdTableCell>
 					<span style={{marginRight: "20px"}}>{computeDayLimitBudget()}</span>
-					<Button type="primary" onClick={() => setIsModalOpen(true)}>일일 허용 예산 설정</Button>
+					<Button type="primary" className="pink" onClick={() => setIsModalOpen(true)}>일일 허용 예산 설정</Button>
 					<SetDayLimitBudgetModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} adv={adv} setAdv={setAdv}/>
 				</DdTableCell>
 			</dl>

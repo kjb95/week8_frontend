@@ -1,10 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
+import {ChildProps} from "../../constants/Interface";
 
-interface Props {
-	children: ReactNode
-}
-
-function SectionFooter({children}: Props) {
+function SectionFooter({children}: ChildProps) {
 	return (
 		<div className="box-footer">
 			<div className="box-center">

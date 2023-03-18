@@ -1,5 +1,6 @@
-import React, {createContext, ReactNode, useMemo, useState} from "react";
+import React, {createContext, useMemo, useState} from "react";
 import {AUTHENTICATED_MEMBER_ID} from "../../constants/Constant";
+import {ChildProps} from "../../constants/Interface";
 import {Item, ItemDefaultValue} from "./ItemLookUpContextProvider";
 
 export interface Keyword {
@@ -43,11 +44,7 @@ const AdRegisterContextDefaultValue: AdRegisterContextData = {
 }
 export const AdRegisterContext = createContext(AdRegisterContextDefaultValue);
 
-interface Props {
-	children: ReactNode
-}
-
-function AdRegisterContextProvider({children}: Props) {
+function AdRegisterContextProvider({children}: ChildProps) {
 	const [agroupId, setAGroupId] = useState<string>("");
 	const [itemId, setItemId] = useState<string>("");
 	const [keywordList, setKeywordList] = useState<Keyword[]>([]);

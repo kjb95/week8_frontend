@@ -1,5 +1,6 @@
-import React, {createContext, ReactNode, useEffect, useMemo, useState} from "react";
+import React, {createContext, useEffect, useMemo, useState} from "react";
 import {findAllAGroup} from "../../api/Api";
+import {ChildProps} from "../../constants/Interface";
 
 export interface AGroup {
 	agroupId: string,
@@ -24,11 +25,7 @@ const AGroupSelectContextDefaultValue: AGroupSelectContextInterface = {
 
 export const AGroupSelectContext = createContext(AGroupSelectContextDefaultValue);
 
-interface Props {
-	children: ReactNode
-}
-
-function AGroupSelectContextProvider({children}: Props) {
+function AGroupSelectContextProvider({children}: ChildProps) {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const [aGroups, setAGroups] = useState<AGroup[]>([]);
 	const value = useMemo(

@@ -1,10 +1,7 @@
-import React, {ReactNode} from 'react';
+import React from 'react';
+import {ChildProps} from "../../constants/Interface";
 
-interface Props {
-	children: ReactNode
-}
-
-function Dd({children}: Props) {
+function Dd({children}: ChildProps) {
 	return (
 		<dd>
 			<div className="form-group">
