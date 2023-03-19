@@ -36,7 +36,7 @@ function AdRegister() {
 		}
 		registerAd(adRegisterData)
 			.then(() => Modal.success({title: "광고 등록 성공", onOk: () => window.location.reload()}))
-			.catch(() => Modal.error({title: "광고 등록 실패"}))
+			.catch((e) => messageApi.error(e.response.data.message))
 	}
 
 	return (

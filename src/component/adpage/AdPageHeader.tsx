@@ -25,7 +25,7 @@ export function logout() {
 }
 
 const movePage: MenuProps['onClick'] = (e) => {
-	window.location.href = e.key;
+	window.location.href = "/" + e.key;
 }
 
 function AdPageHeader() {
@@ -35,7 +35,7 @@ function AdPageHeader() {
 	const roleAdmin = roles?.includes(ROLE_ADMIN);
 	const location = useLocation()
 		.pathname
-		.substring(1);
+		.substring(1, 6);
 	const menuItems: MenuProps['items'] = createItems(roleAdv, roleAdmin);
 
 	return (

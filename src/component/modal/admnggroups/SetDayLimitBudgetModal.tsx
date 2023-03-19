@@ -27,12 +27,14 @@ function SetDayLimitBudgetModal({isModalOpen, setIsModalOpen, adv, setAdv}: Prop
 		}
 
 		updateDayLimitBudget(sessionStorage.getItem(AUTHENTICATED_MEMBER_ID), budget)
-			.then(res => {
-				setAdv({adIngActYn: adv.adIngActYn, balance: adv.balance, eventMoney: adv.eventMoney, dayLimitBudget: Number(budget)});
-				modalClose();
-				return messageApi.success("일일 허용 예산 변경 성공");
-			})
+			.then(updateDayLimitBudgetSuccess)
 			.catch(e => console.log(e));
+	}
+
+	function updateDayLimitBudgetSuccess() {
+		setAdv({adIngActYn: adv.adIngActYn, balance: adv.balance, eventMoney: adv.eventMoney, dayLimitBudget: Number(budget)});
+		modalClose();
+		return messageApi.success("일일 허용 예산 변경 성공");
 	}
 
 	function modalClose() {
@@ -41,7 +43,7 @@ function SetDayLimitBudgetModal({isModalOpen, setIsModalOpen, adv, setAdv}: Prop
 	}
 
 	return (
-		<Modal title=" 설정" width={800} open={isModalOpen} onCancel={modalClose}
+		<Modal title="일일 허용 예산 설정" width={800} open={isModalOpen} onCancel={modalClose}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={modalClose}>취소</Button>,
 			       <Button key="update" type="primary" size="large" className="pink" onClick={handleOnClick}>변경</Button>

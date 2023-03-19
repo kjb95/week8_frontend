@@ -1,7 +1,7 @@
 import {Input} from "antd";
 import {Button} from "antd/lib";
 import React, {useContext} from 'react';
-import {AdGroupContext} from "../../../../../../../contexts/admng/AdGroupContextProvider";
+import {AdGroupContext} from "../../../../../../../contexts/admnggroups/AdGroupContextProvider";
 import SectionBody from "../../../../../../section/SectionBody";
 import Dd from "../../../../../../table/Dd";
 import Dt from "../../../../../../table/Dt";

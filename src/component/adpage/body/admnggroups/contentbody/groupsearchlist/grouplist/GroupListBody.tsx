@@ -2,12 +2,12 @@ import {Button, message, Table} from "antd";
 import Column from "antd/es/table/Column";
 import React, {Key, useContext, useEffect} from 'react';
 import {Link} from "react-router-dom";
-import {findGroup, updateAdGroupUseConfig} from "../../../../../../../api/Api";
-import {AdGroup, AdGroupContext, AdGroupSearch} from "../../../../../../../contexts/admng/AdGroupContextProvider";
+import {findAdGroups, updateAdGroupUseConfig} from "../../../../../../../api/Api";
+import {AdGroup, AdGroupContext, AdGroupSearch} from "../../../../../../../contexts/admnggroups/AdGroupContextProvider";
 import SectionBody from "../../../../../../section/SectionBody";
 
 export function updateGroupSearch(adGroupContext: AdGroupSearch) {
-	findGroup(adGroupContext.adGroupNameSearchKeyword)
+	findAdGroups(adGroupContext.adGroupNameSearchKeyword)
 		.then(res => adGroupContext.setAdGroups(res.data.agroups))
 		.catch(e => console.log(e))
 }

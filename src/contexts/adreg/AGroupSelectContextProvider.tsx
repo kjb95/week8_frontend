@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useMemo, useState} from "react";
-import {findAllAGroup} from "../../api/Api";
+import {findAllAdGroupIdAndName} from "../../api/Api";
 import {ChildProps} from "../../constants/Interface";
 
 export interface AGroup {
@@ -38,7 +38,7 @@ function AGroupSelectContextProvider({children}: ChildProps) {
 		[isModalOpen, aGroups]
 	);
 	useEffect(() => {
-		findAllAGroup()
+		findAllAdGroupIdAndName()
 			.then((res) => setAGroups(res.data.agroups))
 			.catch((e) => console.log(e))
 	}, [])

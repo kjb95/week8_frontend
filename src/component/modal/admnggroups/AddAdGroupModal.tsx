@@ -1,7 +1,8 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useContext, useState} from 'react';
 import {registerAdGroup} from "../../../api/Api";
-import {AdGroupContext} from "../../../contexts/admng/AdGroupContextProvider";
+import {AdGroupContext} from "../../../contexts/admnggroups/AdGroupContextProvider";
+import {hasBlank} from "../../../utils/Utils";
 import {updateGroupSearch} from "../../adpage/body/admnggroups/contentbody/groupsearchlist/grouplist/GroupListBody";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
@@ -13,7 +14,6 @@ interface Props {
 }
 
 function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
-	const BLANK_REGEX = /\s/g;
 	const adGroupContext = useContext(AdGroupContext);
 	const [messageApi, contextHolder] = message.useMessage();
 	const [aGroupName, setAGroupName] = useState<string>("");
@@ -26,16 +26,16 @@ function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
 	function registerAdGroupSuccess() {
 		updateGroupSearch(adGroupContext);
 		closeModal();
-		return messageApi.success("광고 등록 성공")
+		return messageApi.success("광고 등록 성공");
 	}
 
 	function handleRegister() {
-		if (aGroupName.match(BLANK_REGEX) || aGroupName === "") {
-			return messageApi.error("공백은 입력할 수 없습니다")
+		if (hasBlank(aGroupName)) {
+			return messageApi.error("공백은 입력할 수 없습니다");
 		}
 		registerAdGroup(aGroupName)
 			.then(registerAdGroupSuccess)
-			.catch(() => messageApi.error("동일한 광고그룹명이 존재합니다"));
+			.catch((e) => messageApi.error(e.response.data.message));
 	}
 
 	return (

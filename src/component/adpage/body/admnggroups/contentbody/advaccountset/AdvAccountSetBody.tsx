@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import {findAdv, updateAdIngActYn} from "../../../../../../api/Api";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../../constants/Constant";
 import {toWon} from "../../../../../../utils/Utils";
-import SetDayLimitBudgetModal from "../../../../../modal/admng/SetDayLimitBudgetModal";
+import SetDayLimitBudgetModal from "../../../../../modal/admnggroups/SetDayLimitBudgetModal";
 import SectionBody from "../../../../../section/SectionBody";
 import Dd from "../../../../../table/Dd";
 import DdTableCell from "../../../../../table/DdTableCell";
@@ -69,8 +69,8 @@ function AdvAccountSetBody() {
 			<dl>
 				<Dt title="일일 허용 예산"/>
 				<DdTableCell>
-					<span style={{marginRight: "20px"}}>{computeDayLimitBudget()}</span>
-					<Button type="primary" className="pink" onClick={() => setIsModalOpen(true)}>일일 허용 예산 설정</Button>
+					<span>{computeDayLimitBudget()}</span>
+					<Button type="primary" className="pink" style={{marginLeft:"20px"}}onClick={() => setIsModalOpen(true)}>일일 허용 예산 설정</Button>
 					<SetDayLimitBudgetModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} adv={adv} setAdv={setAdv}/>
 				</DdTableCell>
 			</dl>

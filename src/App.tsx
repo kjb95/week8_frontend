@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import './App.css';
 import AuthenticationNoneRequiredRouter from "./component/router/AuthenticationNoneRequiredRouter";
 import AuthenticationRequiredRouter from "./component/router/AuthenticationRequiredRouter";
@@ -9,7 +9,8 @@ import "./css/common.css";
 import "./css/fonts/NanumSquareNeo/fonts.css";
 import "./css/layout.css";
 import "./css/plugin.css";
-import AdMng from './pages/AdMng';
+import AdMngGroups from './pages/AdMngGroups';
+import AdMngItems from "./pages/AdMngItems";
 import AdReg from './pages/AdReg';
 import Login from "./pages/Login";
 import SimplePage from "./pages/SimplePage";
@@ -32,7 +33,9 @@ function App() {
 						<Route path="/" element={<SimplePage title="Home"/>}></Route>
 						<Route element={<RoleRequiredRouter role={roleAdv}/>}>
 							<Route path="/adReg" element={<AdReg/>}/>
-							<Route path="/adMng" element={<AdMng/>}/>
+							<Route path="/adMng" element={<Navigate to="/adMng/groups"/>}/>
+							<Route path="/adMng/groups" element={<AdMngGroups/>}/>
+							<Route path="/adMng/items/:id" element={<AdMngItems/>}/>
 						</Route>
 						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
 

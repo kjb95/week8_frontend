@@ -1,5 +1,5 @@
 import React from 'react';
-import AdGroupContextProvider from "../../../../contexts/admng/AdGroupContextProvider";
+import AdGroupContextProvider from "../../../../contexts/admnggroups/AdGroupContextProvider";
 import AdPageBody from "../../AdPageBody";
 import AdvAccountSet from "./contentbody/advaccountset/AdvAccountSet";
 import GroupList from "./contentbody/groupsearchlist/grouplist/GroupList";

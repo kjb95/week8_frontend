@@ -2,8 +2,8 @@ import {Button, message} from "antd";
 import React, {useContext, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../../../api/Api";
-import {AdGroupContext} from "../../../../../../../contexts/admng/AdGroupContextProvider";
-import AddAdGroupModal from "../../../../../../modal/admng/AddAdGroupModal";
+import {AdGroupContext} from "../../../../../../../contexts/admnggroups/AdGroupContextProvider";
+import AddAdGroupModal from "../../../../../../modal/admnggroups/AddAdGroupModal";
 import SectionHeader from "../../../../../../section/SectionHeader";
 import {updateGroupSearch} from "./GroupListBody";
 

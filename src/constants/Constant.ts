@@ -6,3 +6,5 @@ export const ROLE = "ROLE";
 
 export const MIN_BID = 90;
 export const MAX_BID = 99000;
+
+export const BLANK_REGEX = /\s/g;
