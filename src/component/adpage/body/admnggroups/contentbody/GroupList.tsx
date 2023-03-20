@@ -1,6 +1,6 @@
 import {Button, message, Table} from "antd";
 import Column from "antd/es/table/Column";
-import React, {Key, useEffect, useState} from 'react';
+import React, {Key, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {Link} from "react-router-dom";
 import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../api/Api";
@@ -29,10 +29,6 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 	const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState<boolean>(false);
 	const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 	const rowSelection = {onChange: (keys: React.Key[]) => setSelectedRowKeys(keys), selectedRowKeys: selectedRowKeys};
-
-	useEffect(() => {
-		updateGroupSearch("", setAdGroups);
-	}, [setAdGroups]);
 
 	function updateGroupSearchAndInitRowKeys(message: string) {
 		updateGroupSearch(adGroupNameSearchKeyword, setAdGroups)
@@ -94,10 +90,9 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 			</SectionHeader>
 			<SectionBody>
 				{contextHolder}
-				<Table dataSource={adGroups} bordered rowSelection={rowSelection}
-				       pagination={{showTotal: ((total) => <p>총 {total}건</p>)}}>
+				<Table dataSource={adGroups} bordered rowSelection={rowSelection} pagination={{showTotal: ((total) => <p>총 {total}건</p>)}}>
 					<Column title="번호" dataIndex="key" align="center"/>
-					<Column title="그룹명" dataIndex="agroupName" align="center" render={(value, record: AdMngAdGroupListAdGroup) => <Link to={"/adMng/items/" + record.key}>{value}</Link>}/>
+					<Column title="그룹명" dataIndex="agroupName" align="center" render={(value, record: AdMngAdGroupListAdGroup) => <Link to={"/adMng/group/" + record.key}>{value}</Link>}/>
 					<Column title="그룹 ON/OFF" dataIndex="agroupUseConfigYn" align="center" render={(value, record: AdMngAdGroupListAdGroup) =>
 						<Button onClick={() => handleAdgroupUseConfigYnClick(record)}>{value}</Button>}/>
 					<Column title="상품 수(LIVE/전체)" dataIndex="itemCountLiveAndAll" align="center"/>

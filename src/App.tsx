@@ -35,7 +35,7 @@ function App() {
 							<Route path="/adReg" element={<AdReg/>}/>
 							<Route path="/adMng" element={<Navigate to="/adMng/groups"/>}/>
 							<Route path="/adMng/groups" element={<AdMngGroups/>}/>
-							<Route path="/adMng/items/:id" element={<AdMngItems/>}/>
+							<Route path="/adMng/group/:id" element={<AdMngItems/>}/>
 						</Route>
 						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
 

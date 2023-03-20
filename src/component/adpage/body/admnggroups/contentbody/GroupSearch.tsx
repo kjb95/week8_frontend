@@ -22,7 +22,7 @@ function GroupSearch({adGroupNameSearchKeyword, setAdGroupNameSearchKeyword, set
 			</SectionHeader>
 			<SectionBody>
 				<dl>
-					<Dt title="광고 설정"/>
+					<Dt title="그룹 명 검색"/>
 					<Dd><Input style={{width: 300}} type="text" placeholder="그룹명을 입력해주세요" value={adGroupNameSearchKeyword} onChange={(e) => setAdGroupNameSearchKeyword(e.target.value)} onPressEnter={() => updateGroupSearch(adGroupNameSearchKeyword, setAdGroups)}/></Dd>
 					<div className="box-right"><Dd><Button type="primary" className="gray" onClick={() => updateGroupSearch(adGroupNameSearchKeyword, setAdGroups)}>그룹 조회</Button></Dd></div>
 				</dl>

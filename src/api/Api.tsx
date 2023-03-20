@@ -138,3 +138,15 @@ export function updateAdGroupName(adGroupId: string | undefined, adGroupName: st
 		adGroupName: adGroupName
 	})
 }
+
+/**
+ * 조건(상품 명, 상품 번호)에 따라 한 광고 그룹에 속한 상품들 조회
+ */
+export function findItemsInAdGroup(adGroupId: string | undefined, advId: string | null, itemName: string, itemNo: string) {
+	return api.post("/api/ad/items/search", {
+		adGroupId: adGroupId,
+		advId: advId,
+		itemName: itemName,
+		itemNo: itemNo
+	})
+}
