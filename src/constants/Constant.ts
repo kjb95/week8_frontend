@@ -1,3 +1,5 @@
+import {AdRegItem} from "./Interface";
+
 export const JWT_TOKEN = "jwtToken";
 export const AUTHENTICATED_MEMBER_ID = "authenticatedMemberId";
 export const ROLE_ADV = "ROLE_ADV";
@@ -8,3 +10,12 @@ export const MIN_BID = 90;
 export const MAX_BID = 99000;
 
 export const BLANK_REGEX = /\s/g;
+
+export const ItemDefaultValue: AdRegItem = {
+	key: "",
+	itemNo: "",
+	itemName: "",
+	adultYn: "",
+	itemOrgCost: 0,
+	itemActYn: "",
+}

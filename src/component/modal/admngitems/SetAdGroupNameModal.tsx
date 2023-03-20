@@ -1,11 +1,10 @@
 import {Button, Input, message, Modal} from "antd";
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {useParams} from "react-router";
 import {updateAdGroupName} from "../../../api/Api";
-import {AUTHENTICATED_MEMBER_ID} from "../../../constants/Constant";
-import {AdItemsContext} from "../../../contexts/admngitems/AdItemsContextProvider";
+import {updateAdGroup} from "../../../constants/Function";
+import {AdMngSetAdGroup} from "../../../constants/Interface";
 import {hasBlank} from "../../../utils/Utils";
-import {updateAdMngItems} from "../../adpage/body/admngitems/AdMngItemsContent";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
@@ -13,12 +12,12 @@ import DtModal from "../../table/DtModal";
 interface Props {
 	isModalOpen: boolean,
 	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	setAdGroup: React.Dispatch<React.SetStateAction<AdMngSetAdGroup>>,
 }
 
-function SetAdGroupNameModal({isModalOpen, setIsModalOpen}: Props) {
+function SetAdGroupNameModal({isModalOpen, setIsModalOpen, setAdGroup}: Props) {
 	const [adGroupName, setAdGroupName] = useState<string>("");
 	const [messageApi, contextHolder] = message.useMessage();
-	const adItemsContext = useContext(AdItemsContext);
 	const params = useParams();
 
 	function modalClose() {
@@ -27,7 +26,7 @@ function SetAdGroupNameModal({isModalOpen, setIsModalOpen}: Props) {
 	}
 
 	function updateAdGroupNameSuccess() {
-		updateAdMngItems(adItemsContext, params.id, sessionStorage.getItem(AUTHENTICATED_MEMBER_ID));
+		updateAdGroup(params.id, setAdGroup);
 		modalClose();
 		return messageApi.success("그룹명 변경 성공");
 	}
@@ -53,7 +52,7 @@ function SetAdGroupNameModal({isModalOpen, setIsModalOpen}: Props) {
 				<SectionBody>
 					<dl>
 						<DtModal title="광고그룹 명"/>
-						<Dd><Input style={{width: 300}} type="string" placeholder="변경할 광고그룹 명을 입력하세요" value={adGroupName} onChange={(e) => setAdGroupName(e.target.value)}/></Dd>
+						<Dd><Input style={{width: 300}} type="string" placeholder="변경할 광고그룹 명을 입력하세요" value={adGroupName} onChange={(e) => setAdGroupName(e.target.value)} onPressEnter={handleOnClick}/></Dd>
 					</dl>
 				</SectionBody>
 			</section>

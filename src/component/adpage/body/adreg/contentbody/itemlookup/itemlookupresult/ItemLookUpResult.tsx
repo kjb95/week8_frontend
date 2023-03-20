@@ -1,1 +1,0 @@
-import React from 'react';import ItemLookUpResultBody from "./ItemLookUpResultBody";import ItemLookUpResultHeader from "./ItemLookUpResultHeader";function ItemLookUpResult() {	return (		<section className="wrap-section wrap-datagrid">			<ItemLookUpResultHeader/>			<ItemLookUpResultBody/>		</section>	);}export default ItemLookUpResult;

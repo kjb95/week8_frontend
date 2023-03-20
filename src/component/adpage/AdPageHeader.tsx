@@ -19,7 +19,7 @@ function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefine
 	return items;
 }
 
-export function logout() {
+function logout() {
 	sessionStorage.clear();
 	window.location.href = "/";
 }

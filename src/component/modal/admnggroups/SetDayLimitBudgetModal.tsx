@@ -2,7 +2,7 @@ import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {updateDayLimitBudget} from "../../../api/Api";
 import {AUTHENTICATED_MEMBER_ID} from "../../../constants/Constant";
-import {Adv} from "../../adpage/body/admnggroups/contentbody/advaccountset/AdvAccountSetBody";
+import {Adv} from "../../../constants/Interface";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
@@ -54,7 +54,7 @@ function SetDayLimitBudgetModal({isModalOpen, setIsModalOpen, adv, setAdv}: Prop
 				<SectionBody>
 					<dl>
 						<DtModal title="일일 허용 예산"/>
-						<Dd><Input style={{width: 300}} type="number" value={budget} onChange={(e) => setBudget(e.target.value)}/>원</Dd>
+						<Dd><Input style={{width: 300}} type="number" value={budget} onChange={(e) => setBudget(e.target.value)} onPressEnter={handleOnClick}/>원</Dd>
 					</dl>
 				</SectionBody>
 			</section>

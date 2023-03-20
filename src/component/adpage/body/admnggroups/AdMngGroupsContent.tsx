@@ -1,18 +1,19 @@
-import React from 'react';
-import AdGroupContextProvider from "../../../../contexts/admnggroups/AdGroupContextProvider";
+import React, {useState} from 'react';
+import {AdMngAdGroupListAdGroup} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
-import AdvAccountSet from "./contentbody/advaccountset/AdvAccountSet";
-import GroupList from "./contentbody/groupsearchlist/grouplist/GroupList";
-import GroupSearch from "./contentbody/groupsearchlist/groupsearch/GroupSearch";
+import AdvAccountSet from "./contentbody/AdvAccountSet";
+import GroupList from "./contentbody/GroupList";
+import GroupSearch from "./contentbody/GroupSearch";
 
 function AdMngGroupsContent() {
+	const [adGroups, setAdGroups] = useState<AdMngAdGroupListAdGroup[]>([]);
+	const [adGroupNameSearchKeyword, setAdGroupNameSearchKeyword] = useState<string>("");
+
 	return (
 		<AdPageBody>
 			<AdvAccountSet/>
-			<AdGroupContextProvider>
-				<GroupSearch/>
-				<GroupList/>
-			</AdGroupContextProvider>
+			<GroupSearch adGroupNameSearchKeyword={adGroupNameSearchKeyword} setAdGroupNameSearchKeyword={setAdGroupNameSearchKeyword} setAdGroups={setAdGroups}/>
+			<GroupList adGroupNameSearchKeyword={adGroupNameSearchKeyword} adGroups={adGroups} setAdGroups={setAdGroups}/>
 		</AdPageBody>
 	);
 }

@@ -1,9 +1,7 @@
 import axios from "axios";
 import React, {Key} from "react";
-import {AdRegisterData} from "../component/adpage/body/adreg/contentbody/AdRegister";
-import {ItemData} from "../component/adpage/body/adreg/contentbody/itemlookup/itemlookupcondition/ItemLookUpByCondition";
 import {JWT_TOKEN} from "../constants/Constant";
-import {LoginForm} from "../pages/Login";
+import {AdRegKwdWithoutKey} from "../constants/Interface";
 
 export const api = axios.create({
 	headers: {"Content-Type": "application/json"},
@@ -18,8 +16,11 @@ api.interceptors.request.use(function (config) {
 /**
  * 로그인 성공시 jwt 토큰 반환
  */
-export function jwtAuthenticate(data: LoginForm) {
-	return api.post("/api/jwt", data);
+export function jwtAuthenticate(username: string, password: string) {
+	return api.post("/api/jwt", {
+		username: username,
+		password: password
+	});
 }
 
 /**
@@ -32,8 +33,11 @@ export function findAuthorities(username: string) {
 /**
  * 조건에 따른 상품 조회
  */
-export function itemLookUp(itemData: ItemData) {
-	return api.post("/api/item/search", itemData);
+export function itemLookUp(itemName: string, itemNo: string) {
+	return api.post("/api/item/search", {
+		itemName: itemName,
+		itemNo: itemNo
+	});
 }
 
 /**
@@ -46,8 +50,13 @@ export function findAllAdGroupIdAndName() {
 /**
  * 광고 등록
  */
-export function registerAd(adRegisterData: AdRegisterData) {
-	return api.post("/api/ad", adRegisterData)
+export function registerAd(agroupId: string, itemId: string, advId: string | null, keywordList: AdRegKwdWithoutKey[]) {
+	return api.post("/api/ad", {
+		agroupId: agroupId,
+		itemId: itemId,
+		advId: advId,
+		keywordList: keywordList
+	})
 }
 
 /**

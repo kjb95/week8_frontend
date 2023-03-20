@@ -1,37 +1,42 @@
 import {Button, Input, message, Modal} from "antd";
-import React, {useContext, useState} from 'react';
-import {AdRegisterContext} from "../../../contexts/adreg/AdRegisterContextProvider";
-import {AGroupSelectContext} from "../../../contexts/adreg/AGroupSelectContextProvider";
+import React, {useState} from 'react';
+import {AdRegAdGroup} from "../../../constants/Interface";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
 
-function AddAGroupModal() {
-	const aGroupSelectContext = useContext(AGroupSelectContext);
-	const adRegisterContext = useContext(AdRegisterContext);
+interface Props {
+	isModalOpen: boolean,
+	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	aGroups: AdRegAdGroup[],
+	setAGroups: React.Dispatch<React.SetStateAction<AdRegAdGroup[]>>,
+	setAGroupId: React.Dispatch<React.SetStateAction<string>>,
+}
+
+function AdRegAddAdGroupModal({isModalOpen, setIsModalOpen, aGroups, setAGroups, setAGroupId}: Props) {
 	const [aGroupName, setAGroupName] = useState<string>("");
 	const [messageApi, contextHolder] = message.useMessage();
 
 	function closeModal() {
-		aGroupSelectContext.setIsModalOpen(false);
+		setIsModalOpen(false);
 		setAGroupName("");
 	}
 
 	function isExistAGroup() {
-		return aGroupSelectContext.aGroups.filter(aGroup => aGroup.agroupName === aGroupName).length !== 0;
+		return aGroups.filter(aGroup => aGroup.agroupName === aGroupName).length !== 0;
 	}
 
 	function handleRegister() {
 		if (isExistAGroup()) {
 			return messageApi.error("동일한 광고그룹명이 존재합니다 !!");
 		}
-		adRegisterContext.setAGroupId(aGroupName);
-		aGroupSelectContext.setAGroups([...aGroupSelectContext.aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
+		setAGroupId(aGroupName);
+		setAGroups([...aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
 		closeModal();
 	}
 
 	return (
-		<Modal title="신규 광고 그룹 생성" width={800} open={aGroupSelectContext.isModalOpen} onCancel={closeModal}
+		<Modal title="신규 광고 그룹 생성" width={800} open={isModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
 			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
@@ -43,7 +48,7 @@ function AddAGroupModal() {
 					<dl>
 						<DtModal title="신규 광고그룹 명"/>
 						<Dd>
-							<Input style={{width: 300}} type="text" value={aGroupName} onChange={(e) => setAGroupName(e.target.value)}/>
+							<Input style={{width: 300}} type="text" value={aGroupName} onChange={(e) => setAGroupName(e.target.value)} onPressEnter={() => handleRegister()}/>
 						</Dd>
 					</dl>
 				</SectionBody>
@@ -52,4 +57,4 @@ function AddAGroupModal() {
 	);
 }
 
-export default AddAGroupModal;
+export default AdRegAddAdGroupModal;

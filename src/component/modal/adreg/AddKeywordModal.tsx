@@ -1,42 +1,46 @@
 import {Button, Input, message, Modal} from "antd";
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../../constants/Constant";
-import {AdKeywordContext} from "../../../contexts/adreg/AdKeywordContextProvider";
-import {AdRegisterContext, Keyword, KeywordDefaultValue} from "../../../contexts/adreg/AdRegisterContextProvider";
+import {AdRegKwd} from "../../../constants/Interface";
 import {isInvalidRageNumber} from "../../../utils/Utils";
+import {KeywordDefaultValue} from "../../adpage/body/adreg/AdRegContent";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
 
+interface Props {
+	isAddKeywordModalOpen: boolean
+	setIsAddKeywordModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	keywordList: AdRegKwd[],
+	setKeywordList: React.Dispatch<React.SetStateAction<AdRegKwd[]>>,
+}
 
-function AddKeywordModal() {
-	const adKeywordContext = useContext(AdKeywordContext);
-	const adRegisterContext = useContext(AdRegisterContext);
-	const [keyword, setKeyword] = useState<Keyword>(KeywordDefaultValue);
+function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywordList, setKeywordList}: Props) {
+	const [keyword, setKeyword] = useState<AdRegKwd>(KeywordDefaultValue);
 	const [messageApi, contextHolder] = message.useMessage();
 
 	function closeModal() {
-		adKeywordContext.setIsAddKeywordModalOpen(false);
+		setIsAddKeywordModalOpen(false);
 		setKeyword(KeywordDefaultValue);
 	}
 
 	function isDuplicated() {
-		return adRegisterContext.keywordList.filter(kwd => kwd.keywordName === keyword.keywordName).length !== 0;
+		return keywordList.filter(kwd => kwd.keywordName === keyword.keywordName).length !== 0;
 	}
 
-	function handleRegister(keyword: Keyword) {
+	function handleRegister(keyword: AdRegKwd) {
 		if (isDuplicated()) {
 			return messageApi.error("동일한 키워드명이 존재합니다 !!");
 		}
 		if (isInvalidRageNumber(Number(keyword.bid), MIN_BID, MAX_BID)) {
 			return messageApi.error("입찰가는 90원이상, 99000원 이하");
 		}
-		adRegisterContext.setKeywordList([...adRegisterContext.keywordList, keyword]);
+		setKeywordList([...keywordList, keyword]);
 		closeModal();
 	}
 
 	return (
-		<Modal title="키워드 추가" width={800} open={adKeywordContext.isAddKeywordModalOpen} onCancel={closeModal}
+		<Modal title="키워드 추가" width={800} open={isAddKeywordModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
 			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
@@ -48,7 +52,7 @@ function AddKeywordModal() {
 					<dl>
 						<DtModal title="키워드명 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="text" value={keyword.keywordName}
+							<Input style={{width: 300}} type="text" value={keyword.keywordName} onPressEnter={() => handleRegister(keyword)}
 							       onChange={(e) => setKeyword({key: e.target.value, keywordName: e.target.value, bid: keyword.bid})}
 							/>
 						</Dd>
@@ -56,7 +60,7 @@ function AddKeywordModal() {
 					<dl>
 						<DtModal title="입찰가 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="number" value={keyword.bid}
+							<Input style={{width: 300}} type="number" value={keyword.bid} onPressEnter={() => handleRegister(keyword)}
 							       onChange={(e) => setKeyword({key: e.target.value, keywordName: keyword.keywordName, bid: e.target.value})}
 							/>
 						</Dd>

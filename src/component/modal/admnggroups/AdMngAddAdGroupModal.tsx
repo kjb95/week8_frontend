@@ -1,20 +1,21 @@
 import {Button, Input, message, Modal} from "antd";
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import {registerAdGroup} from "../../../api/Api";
-import {AdGroupContext} from "../../../contexts/admnggroups/AdGroupContextProvider";
+import {updateGroupSearch} from "../../../constants/Function";
+import {AdMngAdGroupListAdGroup} from "../../../constants/Interface";
 import {hasBlank} from "../../../utils/Utils";
-import {updateGroupSearch} from "../../adpage/body/admnggroups/contentbody/groupsearchlist/grouplist/GroupListBody";
 import SectionBody from "../../section/SectionBody";
 import Dd from "../../table/Dd";
 import DtModal from "../../table/DtModal";
 
 interface Props {
 	isAddGroupModalOpen: boolean,
-	setIsAddGroupModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+	setIsAddGroupModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
+	adGroupNameSearchKeyword: string,
+	setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>,
 }
 
-function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
-	const adGroupContext = useContext(AdGroupContext);
+function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGroupNameSearchKeyword, setAdGroups}: Props) {
 	const [messageApi, contextHolder] = message.useMessage();
 	const [aGroupName, setAGroupName] = useState<string>("");
 
@@ -24,9 +25,9 @@ function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
 	}
 
 	function registerAdGroupSuccess() {
-		updateGroupSearch(adGroupContext);
+		updateGroupSearch(adGroupNameSearchKeyword, setAdGroups);
 		closeModal();
-		return messageApi.success("광고 등록 성공");
+		return messageApi.success("광고 그룹 등록 성공");
 	}
 
 	function handleRegister() {
@@ -34,7 +35,7 @@ function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
 			return messageApi.error("공백은 입력할 수 없습니다");
 		}
 		registerAdGroup(aGroupName)
-			.then(registerAdGroupSuccess)
+			.then(() => registerAdGroupSuccess())
 			.catch((e) => messageApi.error(e.response.data.message));
 	}
 
@@ -50,7 +51,7 @@ function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
 				<SectionBody>
 					<dl>
 						<DtModal title="광고그룹 명"/>
-						<Dd><Input style={{width: 300}} type="text" value={aGroupName} placeholder="등록할 광고그룹 명을 입력하세요" onChange={(e) => setAGroupName(e.target.value)}/></Dd>
+						<Dd><Input style={{width: 300}} type="text" value={aGroupName} placeholder="등록할 광고그룹 명을 입력하세요" onChange={(e) => setAGroupName(e.target.value)} onPressEnter={() => handleRegister()}/></Dd>
 					</dl>
 				</SectionBody>
 			</section>
@@ -58,4 +59,4 @@ function AddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen}: Props) {
 	);
 }
 
-export default AddAdGroupModal;
+export default AdMngAddAdGroupModal;
