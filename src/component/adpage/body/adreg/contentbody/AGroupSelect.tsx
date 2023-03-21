@@ -1,6 +1,6 @@
 import {Button, Select} from "antd";
 import React, {useEffect, useState} from 'react';
-import {findAllAdGroupIdAndName} from "../../../../../api/Api";
+import {findAllAdGroupIdAndName} from "../../../../../api/agroup/AgroupApi";
 import {AdRegAdGroup} from "../../../../../constants/Interface";
 import AdRegAddAdGroupModal from "../../../../modal/adreg/AdRegAddAdGroupModal";
 import SectionBody from "../../../../section/SectionBody";

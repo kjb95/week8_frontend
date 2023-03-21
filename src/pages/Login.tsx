@@ -1,6 +1,7 @@
 import {Button, Input} from "antd";
 import React, {useState} from 'react';
-import {findAuthorities, jwtAuthenticate} from "../api/Api";
+import {jwtAuthenticate} from "../api/jwt/JwtApi";
+import {findAuthorities} from "../api/member/MemberApi";
 import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE, ROLE_ADV} from "../constants/Constant";
 
 function findAuthoritiesSuccess(roles: string[]) {

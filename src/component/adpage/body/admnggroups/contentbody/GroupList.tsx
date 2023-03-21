@@ -3,7 +3,7 @@ import Column from "antd/es/table/Column";
 import React, {Key, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {Link} from "react-router-dom";
-import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../api/Api";
+import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../api/agroup/AgroupApi";
 import {updateGroupSearch} from "../../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
 import AdMngAddAdGroupModal from "../../../../modal/admnggroups/AdMngAddAdGroupModal";
@@ -36,7 +36,7 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 		return messageApi.success(message);
 	}
 
-	function handleAdgroupUseConfigYnClick(record: AdMngAdGroupListAdGroup) {
+	function handleOnOffClick(record: AdMngAdGroupListAdGroup) {
 		const adGroupIds: Key[] = [record.key];
 		const isOn = record.agroupUseConfigYn === 'ON';
 
@@ -45,25 +45,16 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 			.catch(e => console.log(e));
 	}
 
-	function handleGroupOn() {
+	function handleOnOffGroupClick(checked: boolean) {
 		if (selectedRowKeys.length === 0) {
 			return messageApi.error("체크한 그룹이 없습니다");
 		}
-		updateAdGroupUseConfig(selectedRowKeys, true)
+		updateAdGroupUseConfig(selectedRowKeys, checked)
 			.then(() => updateGroupSearchAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
 			.catch(e => console.log(e));
 	}
 
-	function handleGroupOff() {
-		if (selectedRowKeys.length === 0) {
-			return messageApi.error("체크한 그룹이 없습니다");
-		}
-		updateAdGroupUseConfig(selectedRowKeys, false)
-			.then(() => updateGroupSearchAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
-			.catch(e => console.log(e));
-	}
-
-	function handleGroupDelete() {
+	function handleDeleteClick() {
 		if (selectedRowKeys.length === 0) {
 			return messageApi.error("체크한 그룹이 없습니다");
 		}
@@ -79,11 +70,11 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 				<>
 					{contextHolder}
 					<AdMngAddAdGroupModal isAddGroupModalOpen={isAddGroupModalOpen} setIsAddGroupModalOpen={setIsAddGroupModalOpen} adGroupNameSearchKeyword={adGroupNameSearchKeyword} setAdGroups={setAdGroups}/>
-					<Button type="primary" className="pink" onClick={handleGroupOn}>ON</Button>
-					<Button type="primary" className="gray" onClick={handleGroupOff}>OFF</Button>
+					<Button type="primary" className="pink" onClick={() => handleOnOffGroupClick(true)}>ON</Button>
+					<Button type="primary" className="gray" onClick={() => handleOnOffGroupClick(false)}>OFF</Button>
 					<Button type="primary" className="pink" onClick={() => setIsAddGroupModalOpen(true)}>그룹 추가</Button>
-					<Button type="primary" className="gray" onClick={handleGroupDelete}>그룹 삭제</Button>
-					<CSVLink data={adGroups} headers={csvHeaders}>
+					<Button type="primary" className="gray" onClick={handleDeleteClick}>그룹 삭제</Button>
+					<CSVLink data={adGroups} headers={csvHeaders} style={{marginLeft: "8px"}}>
 						<Button type="primary" className="pink">그룹 다운로드</Button>
 					</CSVLink>
 				</>
@@ -94,7 +85,8 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 					<Column title="번호" dataIndex="key" align="center"/>
 					<Column title="그룹명" dataIndex="agroupName" align="center" render={(value, record: AdMngAdGroupListAdGroup) => <Link to={"/adMng/group/" + record.key}>{value}</Link>}/>
 					<Column title="그룹 ON/OFF" dataIndex="agroupUseConfigYn" align="center" render={(value, record: AdMngAdGroupListAdGroup) =>
-						<Button onClick={() => handleAdgroupUseConfigYnClick(record)}>{value}</Button>}/>
+						<Button type="primary" size="small" className={value === "ON" ? "pink" : "gray"} onClick={() => handleOnOffClick(record)}>{value}</Button>
+					}/>
 					<Column title="상품 수(LIVE/전체)" dataIndex="itemCountLiveAndAll" align="center"/>
 				</Table>
 			</SectionBody>

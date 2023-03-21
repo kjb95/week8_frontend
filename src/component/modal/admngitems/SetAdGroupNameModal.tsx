@@ -1,7 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {useParams} from "react-router";
-import {updateAdGroupName} from "../../../api/Api";
+import {updateAdGroupName} from "../../../api/agroup/AgroupApi";
 import {updateAdGroup} from "../../../constants/Function";
 import {AdMngSetAdGroup} from "../../../constants/Interface";
 import {hasBlank} from "../../../utils/Utils";

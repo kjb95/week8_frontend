@@ -1,5 +1,6 @@
 import React from "react";
-import {findAdGroup, findAdGroups, findItemsInAdGroup} from "../api/Api";
+import {findAdGroup, findAdGroups} from "../api/agroup/AgroupApi";
+import {findItemsInAdGroup} from "../api/item/ItemApi";
 import {AUTHENTICATED_MEMBER_ID} from "./Constant";
 import {AdMngAdGroupListAdGroup, AdMngItem, AdMngSetAdGroup} from "./Interface";
 
@@ -16,7 +17,7 @@ export function updateAdGroup(adGroupId: string | undefined, setAdGroup: React.D
 }
 
 export function updateItemsInAdgroup(adGroupId: string | undefined, itemName: string, itemNo: string, setItems: React.Dispatch<React.SetStateAction<AdMngItem[]>>) {
-	findItemsInAdGroup(adGroupId, sessionStorage.getItem(AUTHENTICATED_MEMBER_ID), itemName, itemNo)
+	findItemsInAdGroup(adGroupId, itemName, itemNo)
 		.then((res) => setItems(res.data.items))
 		.catch(e => console.log(e));
 }

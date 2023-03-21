@@ -2,7 +2,7 @@ import {Switch} from "antd";
 import {Button} from "antd/lib";
 import React, {Key, useEffect, useState} from 'react';
 import {useParams} from "react-router";
-import {updateAdGroupUseConfig} from "../../../../../../api/Api";
+import {updateAdGroupUseConfig} from "../../../../../../api/agroup/AgroupApi";
 import {updateAdGroup} from "../../../../../../constants/Function";
 import {AdMngItem, AdMngSetAdGroup} from "../../../../../../constants/Interface";
 import SetAdGroupNameModal from "../../../../../modal/admngitems/SetAdGroupNameModal";

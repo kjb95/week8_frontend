@@ -1,6 +1,6 @@
 import {Button, Switch} from "antd";
 import React, {useEffect, useState} from 'react';
-import {findAdv, updateAdIngActYn} from "../../../../../api/Api";
+import {findAdv, updateAdIngActYn} from "../../../../../api/adv/AdvApi";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
 import {Adv} from "../../../../../constants/Interface";
 import {toWon} from "../../../../../utils/Utils";

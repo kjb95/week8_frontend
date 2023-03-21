@@ -1,8 +1,8 @@
 import {Button, message, Modal} from "antd";
 import React from 'react';
-import {registerAd} from "../../../../../api/Api";
+import {registerAd} from "../../../../../api/ad/AdApi";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
-import {AdRegKwdWithoutKey, AdRegKwd} from "../../../../../constants/Interface";
+import {AdRegKwd, AdRegKwdWithoutKey} from "../../../../../constants/Interface";
 import SectionFooter from "../../../../section/SectionFooter";
 
 interface Props {

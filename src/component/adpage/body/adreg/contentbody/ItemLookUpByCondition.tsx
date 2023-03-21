@@ -1,6 +1,6 @@
 import {Button, Input} from "antd";
 import React, {useState} from 'react';
-import {itemLookUp} from "../../../../../api/Api";
+import {findItems} from "../../../../../api/item/ItemApi";
 import {AdRegItem} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionFooter from "../../../../section/SectionFooter";
@@ -17,7 +17,7 @@ function ItemLookUpByCondition({setItems}: Props) {
 	const [itemNo, setItemNo] = useState<string>("");
 
 	function handleClick() {
-		itemLookUp(itemName, itemNo)
+		findItems(itemName, itemNo)
 			.then((res) => setItems(res.data.items))
 			.catch((e) => console.log(e))
 	}

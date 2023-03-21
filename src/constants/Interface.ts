@@ -12,10 +12,10 @@ export interface Adv {
 }
 
 export interface AdMngItem {
-	itemId: string,
+	key: string,
 	itemNo: string,
 	itemName: string,
-	adUseConfigYn: boolean
+	adUseConfigYn: string
 }
 
 export interface AdRegItem {

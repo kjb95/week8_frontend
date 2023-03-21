@@ -21,7 +21,7 @@ function AdMngItemsContent() {
 		<AdPageBody>
 			<AdGroupSet items={items} setItems={setItems}/>
 			<ItemSearch itemName={itemName} setItemName={setItemName} itemNo={itemNo} setItemNo={setItemNo} setItems={setItems}/>
-			<ItemList items={items}/>
+			<ItemList items={items} itemName={itemName} itemNo={itemNo} setItems={setItems}/>
 		</AdPageBody>
 	);
 }
