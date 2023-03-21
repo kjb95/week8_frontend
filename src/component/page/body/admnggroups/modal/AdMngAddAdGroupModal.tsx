@@ -1,12 +1,12 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
-import {registerAdGroup} from "../../../api/agroup/AgroupApi";
-import {updateGroupSearch} from "../../../constants/Function";
-import {AdMngAdGroupListAdGroup} from "../../../constants/Interface";
-import {hasBlank} from "../../../utils/Utils";
-import SectionBody from "../../section/SectionBody";
-import Dd from "../../table/Dd";
-import DtModal from "../../table/DtModal";
+import {registerAdGroup} from "../../../../../api/agroup/AgroupApi";
+import {updateGroupSearch} from "../../../../../constants/Function";
+import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
+import {hasBlank} from "../../../../../utils/Utils";
+import SectionBody from "../../../../section/SectionBody";
+import Dd from "../../../../table/Dd";
+import DtModal from "../../../../table/DtModal";
 
 interface Props {
 	isAddGroupModalOpen: boolean,

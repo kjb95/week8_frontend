@@ -1,5 +1,5 @@
 import React from "react";
-import AdPage from "../component/adpage/AdPage";
+import AdPage from "../component/page/AdPage";
 
 interface Props {
 	title: string;

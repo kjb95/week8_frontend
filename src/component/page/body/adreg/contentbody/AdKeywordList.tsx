@@ -2,8 +2,8 @@ import {Button, Table} from "antd";
 import Column from "antd/es/table/Column";
 import React, {useState} from 'react';
 import {AdRegKwd} from "../../../../../constants/Interface";
-import AddKeywordModal from "../../../../modal/adreg/AddKeywordModal";
-import SetKeywordBidModal from "../../../../modal/adreg/SetKeywordBidModal";
+import AddKeywordModal from "../modal/AddKeywordModal";
+import SetKeywordBidModal from "../modal/SetKeywordBidModal";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 

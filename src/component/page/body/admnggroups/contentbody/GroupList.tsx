@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../api/agroup/AgroupApi";
 import {updateGroupSearch} from "../../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
-import AdMngAddAdGroupModal from "../../../../modal/admnggroups/AdMngAddAdGroupModal";
+import AdMngAddAdGroupModal from "../modal/AdMngAddAdGroupModal";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 

@@ -4,7 +4,7 @@ import {findAdv, updateAdIngActYn} from "../../../../../api/adv/AdvApi";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
 import {Adv} from "../../../../../constants/Interface";
 import {toWon} from "../../../../../utils/Utils";
-import SetDayLimitBudgetModal from "../../../../modal/admnggroups/SetDayLimitBudgetModal";
+import SetDayLimitBudgetModal from "../modal/SetDayLimitBudgetModal";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 import Dd from "../../../../table/Dd";

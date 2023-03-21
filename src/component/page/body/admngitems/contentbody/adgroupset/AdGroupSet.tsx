@@ -5,7 +5,7 @@ import {useParams} from "react-router";
 import {updateAdGroupUseConfig} from "../../../../../../api/agroup/AgroupApi";
 import {updateAdGroup} from "../../../../../../constants/Function";
 import {AdMngItem, AdMngSetAdGroup} from "../../../../../../constants/Interface";
-import SetAdGroupNameModal from "../../../../../modal/admngitems/SetAdGroupNameModal";
+import SetAdGroupNameModal from "../../modal/SetAdGroupNameModal";
 import SectionBody from "../../../../../section/SectionBody";
 import SectionHeader from "../../../../../section/SectionHeader";
 import Dd from "../../../../../table/Dd";

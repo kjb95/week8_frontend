@@ -1,12 +1,12 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
-import {MAX_BID, MIN_BID} from "../../../constants/Constant";
-import {AdRegKwd} from "../../../constants/Interface";
-import {isInvalidRageNumber} from "../../../utils/Utils";
-import {KeywordDefaultValue} from "../../adpage/body/adreg/AdRegContent";
-import SectionBody from "../../section/SectionBody";
-import Dd from "../../table/Dd";
-import DtModal from "../../table/DtModal";
+import {MAX_BID, MIN_BID} from "../../../../../constants/Constant";
+import {AdRegKwd} from "../../../../../constants/Interface";
+import {isInvalidRageNumber} from "../../../../../utils/Utils";
+import {KeywordDefaultValue} from "../AdRegContent";
+import SectionBody from "../../../../section/SectionBody";
+import Dd from "../../../../table/Dd";
+import DtModal from "../../../../table/DtModal";
 
 interface Props {
 	isAddKeywordModalOpen: boolean

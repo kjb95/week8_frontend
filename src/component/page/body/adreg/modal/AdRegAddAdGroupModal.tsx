@@ -1,9 +1,9 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
-import {AdRegAdGroup} from "../../../constants/Interface";
-import SectionBody from "../../section/SectionBody";
-import Dd from "../../table/Dd";
-import DtModal from "../../table/DtModal";
+import {AdRegAdGroup} from "../../../../../constants/Interface";
+import SectionBody from "../../../../section/SectionBody";
+import Dd from "../../../../table/Dd";
+import DtModal from "../../../../table/DtModal";
 
 interface Props {
 	isModalOpen: boolean,

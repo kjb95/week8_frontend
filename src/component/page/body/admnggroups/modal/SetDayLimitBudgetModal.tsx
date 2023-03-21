@@ -1,11 +1,11 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
-import {updateDayLimitBudget} from "../../../api/adv/AdvApi";
-import {AUTHENTICATED_MEMBER_ID} from "../../../constants/Constant";
-import {Adv} from "../../../constants/Interface";
-import SectionBody from "../../section/SectionBody";
-import Dd from "../../table/Dd";
-import DtModal from "../../table/DtModal";
+import {updateDayLimitBudget} from "../../../../../api/adv/AdvApi";
+import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
+import {Adv} from "../../../../../constants/Interface";
+import SectionBody from "../../../../section/SectionBody";
+import Dd from "../../../../table/Dd";
+import DtModal from "../../../../table/DtModal";
 
 interface Props {
 	isModalOpen: boolean,
