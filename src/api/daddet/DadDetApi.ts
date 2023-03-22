@@ -1,4 +1,4 @@
-import {Key} from "react";
+import React, {Key} from "react";
 import {api} from "../Api";
 
 /**
@@ -18,5 +18,14 @@ export function findKeywordsInItem(itemId: string | undefined, keywordNameSearch
 	return api.post("/api/daddet/kwd/search", {
 		itemId: itemId,
 		keywordNameSearch: keywordNameSearch
+	})
+}
+
+/**
+ * 직접광고 활성 여부 끄기
+ */
+export function updateDadDetActOff(kwdIds: React.Key[]) {
+	return api.put("/api/daddet/act-off", {
+		kwdIds: kwdIds
 	})
 }
