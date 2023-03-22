@@ -38,7 +38,7 @@ function ItemList({items, setItems, itemName, itemNo}: Props) {
 
 	function handleOnOffGroupClick(checked: boolean) {
 		if (selectedRowKeys.length === 0) {
-			return messageApi.error("체크한 그룹이 없습니다");
+			return messageApi.error("체크된 체크박스가 없습니다");
 		}
 		updateAdUseConfigAndDadUseConfig(selectedRowKeys, checked)
 			.then(() => updateItemsInAdgroupAndInitRowKeys("광고, 직접광고 사용 설정 여부가 변경되었습니다"))
@@ -47,7 +47,7 @@ function ItemList({items, setItems, itemName, itemNo}: Props) {
 
 	function handleDeleteClick() {
 		if (selectedRowKeys.length === 0) {
-			return messageApi.error("체크한 그룹이 없습니다");
+			return messageApi.error("체크된 체크박스가 없습니다");
 		}
 		updateAdActOff(selectedRowKeys)
 			.then(() => updateItemsInAdgroupAndInitRowKeys("광고상품 삭제가 완료되었습니다"))

@@ -25,7 +25,7 @@ function AdRegContent() {
 	const isLookUp = items.length !== 0;
 
 	return (
-		<AdPageBody>
+		<AdPageBody title="광고 등록">
 			<ItemLookUpByCondition setItems={setItems}/>
 			{isLookUp && <ItemLookUpResult setSelectedItem={setSelectedItem} setItemId={setItemId} items={items}/>}
 			{isSelectedItem && <>

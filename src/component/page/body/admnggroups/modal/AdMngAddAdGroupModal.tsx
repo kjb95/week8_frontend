@@ -1,7 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {registerAdGroup} from "../../../../../api/agroup/AgroupApi";
-import {updateGroupSearch} from "../../../../../constants/Function";
+import {updateAdGroups} from "../../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
 import {hasBlank} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
@@ -25,7 +25,7 @@ function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGr
 	}
 
 	function registerAdGroupSuccess() {
-		updateGroupSearch(adGroupNameSearchKeyword, setAdGroups);
+		updateAdGroups(adGroupNameSearchKeyword, setAdGroups);
 		closeModal();
 		return messageApi.success("광고 그룹 등록 성공");
 	}

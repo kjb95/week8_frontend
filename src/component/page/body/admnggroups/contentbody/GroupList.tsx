@@ -4,7 +4,7 @@ import React, {Key, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {Link} from "react-router-dom";
 import {updateAdGroupActOff, updateAdGroupUseConfig} from "../../../../../api/agroup/AgroupApi";
-import {updateGroupSearch} from "../../../../../constants/Function";
+import {updateAdGroups} from "../../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
 import AdMngAddAdGroupModal from "../modal/AdMngAddAdGroupModal";
 import SectionBody from "../../../../section/SectionBody";
@@ -30,8 +30,8 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 	const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 	const rowSelection = {onChange: (keys: React.Key[]) => setSelectedRowKeys(keys), selectedRowKeys: selectedRowKeys};
 
-	function updateGroupSearchAndInitRowKeys(message: string) {
-		updateGroupSearch(adGroupNameSearchKeyword, setAdGroups)
+	function updateAdGroupsAndInitRowKeys(message: string) {
+		updateAdGroups(adGroupNameSearchKeyword, setAdGroups)
 		setSelectedRowKeys([]);
 		return messageApi.success(message);
 	}
@@ -41,25 +41,25 @@ function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 		const isOn = record.agroupUseConfigYn === 'ON';
 
 		updateAdGroupUseConfig(adGroupIds, !isOn)
-			.then(() => updateGroupSearchAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
+			.then(() => updateAdGroupsAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
 			.catch(e => console.log(e));
 	}
 
 	function handleOnOffGroupClick(checked: boolean) {
 		if (selectedRowKeys.length === 0) {
-			return messageApi.error("체크한 그룹이 없습니다");
+			return messageApi.error("체크된 체크박스가 없습니다");
 		}
 		updateAdGroupUseConfig(selectedRowKeys, checked)
-			.then(() => updateGroupSearchAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
+			.then(() => updateAdGroupsAndInitRowKeys("광고그룹 사용 설정 여부가 변경되었습니다"))
 			.catch(e => console.log(e));
 	}
 
 	function handleDeleteClick() {
 		if (selectedRowKeys.length === 0) {
-			return messageApi.error("체크한 그룹이 없습니다");
+			return messageApi.error("체크된 체크박스가 없습니다");
 		}
 		updateAdGroupActOff(selectedRowKeys)
-			.then(() => updateGroupSearchAndInitRowKeys("광고그룹 삭제가 완료되었습니다"))
+			.then(() => updateAdGroupsAndInitRowKeys("광고그룹 삭제가 완료되었습니다"))
 			.catch(e => console.log(e));
 	}
 

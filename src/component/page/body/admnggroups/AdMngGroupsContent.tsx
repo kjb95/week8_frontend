@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {updateGroupSearch} from "../../../../constants/Function";
+import {updateAdGroups} from "../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
 import AdvAccountSet from "./contentbody/AdvAccountSet";
@@ -11,11 +11,11 @@ function AdMngGroupsContent() {
 	const [adGroupNameSearchKeyword, setAdGroupNameSearchKeyword] = useState<string>("");
 
 	useEffect(() => {
-		updateGroupSearch("", setAdGroups);
+		updateAdGroups("", setAdGroups);
 	}, [setAdGroups]);
 
 	return (
-		<AdPageBody>
+		<AdPageBody title="광고 관리 / 광고그룹">
 			<AdvAccountSet/>
 			<GroupSearch adGroupNameSearchKeyword={adGroupNameSearchKeyword} setAdGroupNameSearchKeyword={setAdGroupNameSearchKeyword} setAdGroups={setAdGroups}/>
 			<GroupList adGroupNameSearchKeyword={adGroupNameSearchKeyword} adGroups={adGroups} setAdGroups={setAdGroups}/>

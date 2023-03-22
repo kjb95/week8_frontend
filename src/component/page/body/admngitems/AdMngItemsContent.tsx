@@ -18,7 +18,7 @@ function AdMngItemsContent() {
 	}, [params.id, setItems]);
 
 	return (
-		<AdPageBody>
+		<AdPageBody title="광고관리 / 상품">
 			<AdGroupSet items={items} setItems={setItems}/>
 			<ItemSearch itemName={itemName} setItemName={setItemName} itemNo={itemNo} setItemNo={setItemNo} setItems={setItems}/>
 			<ItemList items={items} itemName={itemName} itemNo={itemNo} setItems={setItems}/>

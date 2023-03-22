@@ -39,7 +39,7 @@ export interface AdRegKwdWithoutKey {
 }
 
 export interface AdMngAdGroupListAdGroup {
-	key: Key,
+	key: string,
 	agroupName: string,
 	agroupUseConfigYn: string,
 	itemCountLiveAndAll: string,
@@ -54,4 +54,10 @@ export interface AdMngSetAdGroup {
 	agroupName: string,
 	agroupUseConfigYn: boolean,
 	regTime: string
+}
+
+export interface AdMngKwd {
+	key: string,
+	kwdName: string,
+	dadUseConfigYn: string
 }

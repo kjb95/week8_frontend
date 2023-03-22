@@ -11,6 +11,7 @@ import "./css/layout.css";
 import "./css/plugin.css";
 import AdMngGroups from './pages/AdMngGroups';
 import AdMngItems from "./pages/AdMngItems";
+import AdMngKeywords from "./pages/AdMngKeywords";
 import AdReg from './pages/AdReg';
 import Login from "./pages/Login";
 import SimplePage from "./pages/SimplePage";
@@ -36,6 +37,7 @@ function App() {
 							<Route path="/adMng" element={<Navigate to="/adMng/groups"/>}/>
 							<Route path="/adMng/groups" element={<AdMngGroups/>}/>
 							<Route path="/adMng/group/:id" element={<AdMngItems/>}/>
+							<Route path="/adMng/item/:id" element={<AdMngKeywords/>}/>
 						</Route>
 						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
 
