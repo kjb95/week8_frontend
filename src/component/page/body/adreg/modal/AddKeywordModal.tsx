@@ -1,6 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../../../../constants/Constant";
+import {onPressEnter} from "../../../../../constants/Function";
 import {AdRegKwd} from "../../../../../constants/Interface";
 import {isInvalidRageNumber} from "../../../../../utils/Utils";
 import {KeywordDefaultValue} from "../AdRegContent";
@@ -28,7 +29,7 @@ function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywo
 		return keywordList.filter(kwd => kwd.keywordName === keyword.keywordName).length !== 0;
 	}
 
-	function handleRegister(keyword: AdRegKwd) {
+	function handleRegister() {
 		if (isDuplicated()) {
 			return messageApi.error("동일한 키워드명이 존재합니다 !!");
 		}
@@ -43,7 +44,7 @@ function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywo
 		<Modal title="키워드 추가" width={800} open={isAddKeywordModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister(keyword)}>등록</Button>
+			       <Button key="register" type="primary" size="large" className="pink" onClick={handleRegister}>등록</Button>
 		       ]}
 		>
 			{contextHolder}
@@ -52,7 +53,7 @@ function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywo
 					<dl>
 						<DtModal title="키워드명 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="text" value={keyword.keywordName} onPressEnter={() => handleRegister(keyword)}
+							<Input style={{width: 300}} type="text" value={keyword.keywordName} onPressEnter={(e) => onPressEnter(e, handleRegister)}
 							       onChange={(e) => setKeyword({key: e.target.value, keywordName: e.target.value, bid: keyword.bid})}
 							/>
 						</Dd>
@@ -60,7 +61,7 @@ function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywo
 					<dl>
 						<DtModal title="입찰가 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="number" value={keyword.bid} onPressEnter={() => handleRegister(keyword)}
+							<Input style={{width: 300}} type="number" value={keyword.bid} onPressEnter={(e) => onPressEnter(e, handleRegister)}
 							       onChange={(e) => setKeyword({key: e.target.value, keywordName: keyword.keywordName, bid: e.target.value})}
 							/>
 						</Dd>

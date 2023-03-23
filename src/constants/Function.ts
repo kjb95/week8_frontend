@@ -2,6 +2,7 @@ import React from "react";
 import {findAdGroup, findAdGroups} from "../api/agroup/AgroupApi";
 import {findKeywordsInItem} from "../api/daddet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
+import {hasBlank, hasForbiddenStr, isEndStr, isValidStrLen} from "../utils/Utils";
 import {AUTHENTICATED_MEMBER_ID} from "./Constant";
 import {AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup} from "./Interface";
 
@@ -27,4 +28,30 @@ export function updateKeywords(itemId: string | undefined, keywordNameSearch: st
 	findKeywordsInItem(itemId, keywordNameSearch)
 		.then(res => setKeywords(res.data.keywords))
 		.catch(e => console.log(e));
+}
+
+export function validAdGroupName(adGroupName: string) {
+	if (hasBlank(adGroupName)) {
+		return "공백은 입력할 수 없습니다";
+	}
+	if (!isEndStr(adGroupName, '그룹')) {
+		return "광고그룹 명은 ~~~ 그룹 으로 끝나야 합니다";
+	}
+	if (!isValidStrLen(adGroupName, 3, 10)) {
+		return "광고그룹 명은 3글자 이상, 10글자 이하 이어야 합니다";
+	}
+	if (hasForbiddenStr(adGroupName, '!')) {
+		return "!는 금칙어 입니다";
+	}
+	return '';
+}
+
+interface HandleOnCLick {
+	(): void;
+}
+
+export function onPressEnter(e: React.KeyboardEvent<HTMLInputElement>, handleOnClick:HandleOnCLick) {
+	if (!e.nativeEvent.isComposing) {
+		return handleOnClick();
+	}
 }

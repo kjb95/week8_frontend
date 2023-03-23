@@ -1,6 +1,7 @@
 import {Button, Input} from "antd";
 import React, {useState} from 'react';
 import {findItems} from "../../../../../api/item/ItemApi";
+import {onPressEnter} from "../../../../../constants/Function";
 import {AdRegItem} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionFooter from "../../../../section/SectionFooter";
@@ -31,13 +32,13 @@ function ItemLookUpByCondition({setItems}: Props) {
 				<dl>
 					<Dt title="상품명"/>
 					<Dd>
-						<Input value={itemName} placeholder="상품명을 입력하세요." style={{width: 500}} onChange={(e) => setItemName(e.target.value)} onPressEnter={() => handleClick()}/>
+						<Input value={itemName} placeholder="상품명을 입력하세요." style={{width: 500}} onChange={(e) => setItemName(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleClick)}/>
 					</Dd>
 				</dl>
 				<dl>
 					<Dt title="상품번호"/>
 					<Dd>
-						<Input value={itemNo} placeholder="상품번호를 입력하세요." style={{width: 500}} onChange={(e) => setItemNo(e.target.value)} onPressEnter={() => handleClick()}/>
+						<Input value={itemNo} placeholder="상품번호를 입력하세요." style={{width: 500}} onChange={(e) => setItemNo(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleClick)}/>
 					</Dd>
 				</dl>
 			</SectionBody>

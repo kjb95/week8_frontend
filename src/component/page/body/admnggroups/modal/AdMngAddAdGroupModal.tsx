@@ -1,9 +1,8 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {registerAdGroup} from "../../../../../api/agroup/AgroupApi";
-import {updateAdGroups} from "../../../../../constants/Function";
+import {onPressEnter, updateAdGroups, validAdGroupName} from "../../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../../constants/Interface";
-import {hasBlank} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import DtModal from "../../../../table/DtModal";
@@ -17,11 +16,11 @@ interface Props {
 
 function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGroupNameSearchKeyword, setAdGroups}: Props) {
 	const [messageApi, contextHolder] = message.useMessage();
-	const [aGroupName, setAGroupName] = useState<string>("");
+	const [adGroupName, setAdGroupName] = useState<string>("");
 
 	function closeModal() {
 		setIsAddGroupModalOpen(false);
-		setAGroupName("");
+		setAdGroupName("");
 	}
 
 	function registerAdGroupSuccess() {
@@ -31,10 +30,11 @@ function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGr
 	}
 
 	function handleRegister() {
-		if (hasBlank(aGroupName)) {
-			return messageApi.error("공백은 입력할 수 없습니다");
+		const errMsg = validAdGroupName(adGroupName);
+		if (errMsg !== '') {
+			return messageApi.error(errMsg);
 		}
-		registerAdGroup(aGroupName)
+		registerAdGroup(adGroupName)
 			.then(() => registerAdGroupSuccess())
 			.catch((e) => messageApi.error(e.response.data.message));
 	}
@@ -43,7 +43,7 @@ function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGr
 		<Modal title="광고그룹 등록" width={800} open={isAddGroupModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
+			       <Button key="register" type="primary" size="large" className="pink" onClick={handleRegister}>등록</Button>
 		       ]}
 		>
 			{contextHolder}
@@ -51,7 +51,12 @@ function AdMngAddAdGroupModal({isAddGroupModalOpen, setIsAddGroupModalOpen, adGr
 				<SectionBody>
 					<dl>
 						<DtModal title="광고그룹 명"/>
-						<Dd><Input style={{width: 300}} type="text" value={aGroupName} placeholder="등록할 광고그룹 명을 입력하세요" onChange={(e) => setAGroupName(e.target.value)} onPressEnter={() => handleRegister()}/></Dd>
+						<Dd>
+							<Input style={{width: 300}} type="text" value={adGroupName} placeholder="등록할 광고그룹 명을 입력하세요"
+							       onChange={(e) => setAdGroupName(e.target.value)}
+							       onPressEnter={(e) => onPressEnter(e, handleRegister)}
+							/>
+						</Dd>
 					</dl>
 				</SectionBody>
 			</section>

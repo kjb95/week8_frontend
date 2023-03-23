@@ -2,7 +2,7 @@ import {Input} from "antd";
 import {Button} from "antd/lib";
 import React from 'react';
 import {useParams} from "react-router";
-import {updateKeywords} from "../../../../../constants/Function";
+import {onPressEnter, updateKeywords} from "../../../../../constants/Function";
 import {AdMngKwd} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
@@ -18,6 +18,10 @@ interface Props {
 function KeywordSearch({keywordNameSearch, setKeywordNameSearch, setKeywords}: Props) {
 	const params = useParams();
 
+	function onClick() {
+		return updateKeywords(params.id, keywordNameSearch, setKeywords);
+	}
+
 	return (
 		<section className="wrap-section wrap-tbl">
 			<SectionHeader>
@@ -26,8 +30,8 @@ function KeywordSearch({keywordNameSearch, setKeywordNameSearch, setKeywords}: P
 			<SectionBody>
 				<dl>
 					<Dt title="키워드명 검색"/>
-					<Dd><Input style={{width: 300}} type="text" placeholder="키워드명을 입력해주세요" value={keywordNameSearch} onChange={(e) => setKeywordNameSearch(e.target.value)} onPressEnter={() => updateKeywords(params.id, keywordNameSearch, setKeywords)}/></Dd>
-					<div className="box-right"><Dd><Button type="primary" className="gray" onClick={() => updateKeywords(params.id ,keywordNameSearch, setKeywords)}>키워드 조회</Button></Dd></div>
+					<Dd><Input style={{width: 300}} type="text" placeholder="키워드명을 입력해주세요" value={keywordNameSearch} onChange={(e) => setKeywordNameSearch(e.target.value)} onPressEnter={(e) => onPressEnter(e, onClick)}/></Dd>
+					<div className="box-right"><Dd><Button type="primary" className="gray" onClick={onClick}>키워드 조회</Button></Dd></div>
 				</dl>
 			</SectionBody>
 		</section>

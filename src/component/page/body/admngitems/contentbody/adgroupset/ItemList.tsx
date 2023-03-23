@@ -48,7 +48,7 @@ function ItemList({items, setItems, itemName, itemNo, setAdGroup}: Props) {
 
 	function updateAdActOffSuccess() {
 		updateAdGroup(params.id, setAdGroup);
-		return updateItemsInAdgroupAndInitRowKeys
+		return updateItemsInAdgroupAndInitRowKeys("광고 상품이 삭제되었습니다");
 	}
 
 	function handleDeleteClick() {

@@ -1,5 +1,6 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
+import {onPressEnter} from "../../../../../constants/Function";
 import {AdRegAdGroup} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
@@ -39,7 +40,7 @@ function AdRegAddAdGroupModal({isModalOpen, setIsModalOpen, aGroups, setAGroups,
 		<Modal title="신규 광고 그룹 생성" width={800} open={isModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button key="register" type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
+			       <Button key="register" type="primary" size="large" className="pink" onClick={handleRegister}>등록</Button>
 		       ]}
 		>
 			{contextHolder}
@@ -48,7 +49,9 @@ function AdRegAddAdGroupModal({isModalOpen, setIsModalOpen, aGroups, setAGroups,
 					<dl>
 						<DtModal title="신규 광고그룹 명"/>
 						<Dd>
-							<Input style={{width: 300}} type="text" value={aGroupName} onChange={(e) => setAGroupName(e.target.value)} onPressEnter={() => handleRegister()}/>
+							<Input style={{width: 300}} type="text" value={aGroupName}
+							       onChange={(e) => setAGroupName(e.target.value)}
+							       onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
 						</Dd>
 					</dl>
 				</SectionBody>

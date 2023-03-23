@@ -1,6 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../../../../constants/Constant";
+import {onPressEnter} from "../../../../../constants/Function";
 import {AdRegKwd} from "../../../../../constants/Interface";
 import {isInvalidRageNumber} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
@@ -41,7 +42,7 @@ function SetKeywordBidModal({isSetBidModalOpen, setIsSetBidModalOpen, keywordLis
 		<Modal title="키워드 입찰가 일괄 설정" width={800} open={isSetBidModalOpen} onCancel={closeModal}
 		       footer={[
 			       <Button key="cancel" type="primary" size="large" className="gray" onClick={closeModal}>취소</Button>,
-			       <Button key="reegister" type="primary" size="large" className="pink" onClick={() => handleRegister()}>등록</Button>
+			       <Button key="reegister" type="primary" size="large" className="pink" onClick={handleRegister}>등록</Button>
 		       ]}
 		>
 			{contextHolder}
@@ -50,7 +51,7 @@ function SetKeywordBidModal({isSetBidModalOpen, setIsSetBidModalOpen, keywordLis
 					<dl>
 						<DtModal title="입찰가 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)} onPressEnter={() => handleRegister()}/>
+							<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
 						</Dd>
 					</dl>
 				</SectionBody>

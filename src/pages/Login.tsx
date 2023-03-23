@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {jwtAuthenticate} from "../api/jwt/JwtApi";
 import {findAuthorities} from "../api/member/MemberApi";
 import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE, ROLE_ADV} from "../constants/Constant";
+import {onPressEnter} from "../constants/Function";
 
 function findAuthoritiesSuccess(roles: string[]) {
 	sessionStorage.setItem(ROLE, roles.join(','));
@@ -23,16 +24,16 @@ function loginFail(e: unknown, setIsLoginFail: React.Dispatch<React.SetStateActi
 	console.log(e);
 }
 
-function login(username: string, password: string, setIsLoginFail: React.Dispatch<React.SetStateAction<boolean>>) {
-	jwtAuthenticate(username, password)
-		.then((res) => loginSuccess(username, password, res.data.token))
-		.catch((e) => loginFail(e, setIsLoginFail));
-}
-
 function Login() {
 	const [isLoginFail, setIsLoginFail] = useState<boolean>(false);
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
+
+	function onClick() {
+		return jwtAuthenticate(username, password)
+			.then((res) => loginSuccess(username, password, res.data.token))
+			.catch((e) => loginFail(e, setIsLoginFail));
+	}
 
 	return (
 		<div className="wrap login">
@@ -52,12 +53,12 @@ function Login() {
 						/>
 						<Input.Password name={"password"} placeholder="비밀번호를 입력해주세요." size="large" prefix={<i className="ico ico-pw"/>} value={password}
 						                onChange={(e) => setPassword(e.target.value)}
-						                onPressEnter={() => login(username, password, setIsLoginFail)}
+						                onPressEnter={(e) => onPressEnter(e, onClick)}
 						/>
 						{isLoginFail && <p className="txt-error show">아이디 또는 비밀번호가 일치하지 않습니다.</p>}
 					</div>
 					<div className="box-bottom">
-						<Button type="primary" className="pink" size="large" block onClick={() => login(username, password, setIsLoginFail)}>로그인</Button>
+						<Button type="primary" className="pink" size="large" block onClick={onClick}>로그인</Button>
 					</div>
 				</div>
 				<div className="box-right">

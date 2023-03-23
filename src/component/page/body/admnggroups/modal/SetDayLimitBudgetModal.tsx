@@ -2,7 +2,9 @@ import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {updateDayLimitBudget} from "../../../../../api/adv/AdvApi";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
+import {onPressEnter} from "../../../../../constants/Function";
 import {Adv} from "../../../../../constants/Interface";
+import {isInvalidRageNumber} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import DtModal from "../../../../table/DtModal";
@@ -22,8 +24,8 @@ function SetDayLimitBudgetModal({isModalOpen, setIsModalOpen, adv, setAdv}: Prop
 		if (Number(budget) % 100 !== 0) {
 			return messageApi.error("입찰 금액은 100원 단위 이어야 함");
 		}
-		if (budget === "" || Number(budget) < 0) {
-			return messageApi.error("입찰 금액은 0원 이상 이어야 함");
+		if (budget === "" || isInvalidRageNumber(Number(budget), 0, 100000000)) {
+			return messageApi.error("입찰 금액은 0원 이상, 1억 이하이어야 함");
 		}
 
 		updateDayLimitBudget(sessionStorage.getItem(AUTHENTICATED_MEMBER_ID), budget)
@@ -54,7 +56,11 @@ function SetDayLimitBudgetModal({isModalOpen, setIsModalOpen, adv, setAdv}: Prop
 				<SectionBody>
 					<dl>
 						<DtModal title="일일 허용 예산"/>
-						<Dd><Input style={{width: 300}} type="number" value={budget} onChange={(e) => setBudget(e.target.value)} onPressEnter={handleOnClick}/>원</Dd>
+						<Dd>
+							<Input style={{width: 300}} type="number" value={budget}
+							       onChange={(e) => setBudget(e.target.value)}
+							       onPressEnter={(e) => onPressEnter(e, handleOnClick)}/>원
+						</Dd>
 					</dl>
 				</SectionBody>
 			</section>

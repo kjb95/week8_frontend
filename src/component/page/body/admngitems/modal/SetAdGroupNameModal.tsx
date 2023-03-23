@@ -2,9 +2,8 @@ import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {useParams} from "react-router";
 import {updateAdGroupName} from "../../../../../api/agroup/AgroupApi";
-import {updateAdGroup} from "../../../../../constants/Function";
+import {onPressEnter, updateAdGroup, validAdGroupName} from "../../../../../constants/Function";
 import {AdMngSetAdGroup} from "../../../../../constants/Interface";
-import {hasBlank} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import DtModal from "../../../../table/DtModal";
@@ -32,8 +31,9 @@ function SetAdGroupNameModal({isModalOpen, setIsModalOpen, setAdGroup}: Props) {
 	}
 
 	function handleOnClick() {
-		if (hasBlank(adGroupName)) {
-			return messageApi.error("공백은 입력할 수 없습니다")
+		const errMsg = validAdGroupName(adGroupName);
+		if (errMsg !== '') {
+			return messageApi.error(errMsg);
 		}
 		updateAdGroupName(params.id, adGroupName)
 			.then(() => updateAdGroupNameSuccess())
@@ -52,7 +52,7 @@ function SetAdGroupNameModal({isModalOpen, setIsModalOpen, setAdGroup}: Props) {
 				<SectionBody>
 					<dl>
 						<DtModal title="광고그룹 명"/>
-						<Dd><Input style={{width: 300}} type="string" placeholder="변경할 광고그룹 명을 입력하세요" value={adGroupName} onChange={(e) => setAdGroupName(e.target.value)} onPressEnter={handleOnClick}/></Dd>
+						<Dd><Input style={{width: 300}} type="string" placeholder="변경할 광고그룹 명을 입력하세요" value={adGroupName} onChange={(e) => setAdGroupName(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleOnClick)}/></Dd>
 					</dl>
 				</SectionBody>
 			</section>
