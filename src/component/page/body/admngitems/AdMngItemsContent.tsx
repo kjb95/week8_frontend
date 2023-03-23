@@ -1,16 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {updateItemsInAdgroup} from "../../../../constants/Function";
-import {AdMngItem} from "../../../../constants/Interface";
+import {AdMngItem, AdMngSetAdGroup} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
 import AdGroupSet from "./contentbody/adgroupset/AdGroupSet";
 import ItemList from './contentbody/adgroupset/ItemList';
 import ItemSearch from "./contentbody/adgroupset/ItemSearch";
 
+const AdMngAdGroupDefaultValue: AdMngSetAdGroup = {
+	agroupName: "",
+	agroupUseConfigYn: false,
+	agroupItemsCount: 0,
+	regTime: ""
+}
+
 function AdMngItemsContent() {
 	const [items, setItems] = useState<AdMngItem[]>([]);
 	const [itemName, setItemName] = useState<string>("");
 	const [itemNo, setItemNo] = useState<string>("");
+	const [adGroup, setAdGroup] = useState<AdMngSetAdGroup>(AdMngAdGroupDefaultValue);
 	const params = useParams();
 
 	useEffect(() => {
@@ -19,9 +27,9 @@ function AdMngItemsContent() {
 
 	return (
 		<AdPageBody title="광고관리 / 상품">
-			<AdGroupSet items={items} setItems={setItems}/>
+			<AdGroupSet adGroup={adGroup} setAdGroup={setAdGroup}/>
 			<ItemSearch itemName={itemName} setItemName={setItemName} itemNo={itemNo} setItemNo={setItemNo} setItems={setItems}/>
-			<ItemList items={items} itemName={itemName} itemNo={itemNo} setItems={setItems}/>
+			<ItemList items={items} itemName={itemName} itemNo={itemNo} setItems={setItems} setAdGroup={setAdGroup}/>
 		</AdPageBody>
 	);
 }

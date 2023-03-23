@@ -5,8 +5,8 @@ import {CSVLink} from "react-csv";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
 import {updateAdActOff, updateAdUseConfigAndDadUseConfig} from "../../../../../../api/ad/AdApi";
-import {updateItemsInAdgroup} from "../../../../../../constants/Function";
-import {AdMngItem} from "../../../../../../constants/Interface";
+import {updateAdGroup, updateItemsInAdgroup} from "../../../../../../constants/Function";
+import {AdMngItem, AdMngSetAdGroup} from "../../../../../../constants/Interface";
 import SectionBody from "../../../../../section/SectionBody";
 import SectionHeader from "../../../../../section/SectionHeader";
 
@@ -21,10 +21,11 @@ interface Props {
 	items: AdMngItem[],
 	setItems: React.Dispatch<React.SetStateAction<AdMngItem[]>>,
 	itemName: string,
-	itemNo: string
+	itemNo: string,
+	setAdGroup: React.Dispatch<React.SetStateAction<AdMngSetAdGroup>>,
 }
 
-function ItemList({items, setItems, itemName, itemNo}: Props) {
+function ItemList({items, setItems, itemName, itemNo, setAdGroup}: Props) {
 	const [messageApi, contextHolder] = message.useMessage();
 	const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 	const rowSelection = {onChange: (keys: React.Key[]) => setSelectedRowKeys(keys), selectedRowKeys: selectedRowKeys};
@@ -45,12 +46,17 @@ function ItemList({items, setItems, itemName, itemNo}: Props) {
 			.catch(e => console.log(e));
 	}
 
+	function updateAdActOffSuccess() {
+		updateAdGroup(params.id, setAdGroup);
+		return updateItemsInAdgroupAndInitRowKeys
+	}
+
 	function handleDeleteClick() {
 		if (selectedRowKeys.length === 0) {
 			return messageApi.error("체크된 체크박스가 없습니다");
 		}
 		updateAdActOff(selectedRowKeys)
-			.then(() => updateItemsInAdgroupAndInitRowKeys("광고상품 삭제가 완료되었습니다"))
+			.then(() => updateAdActOffSuccess())
 			.catch(e => console.log(e));
 	}
 

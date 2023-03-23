@@ -1,15 +1,15 @@
-import {Button, Switch} from "antd";
+import {Button, message, Switch} from "antd";
 import React, {useEffect, useState} from 'react';
 import {findAdv, updateAdIngActYn} from "../../../../../api/adv/AdvApi";
 import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
 import {Adv} from "../../../../../constants/Interface";
 import {toWon} from "../../../../../utils/Utils";
-import SetDayLimitBudgetModal from "../modal/SetDayLimitBudgetModal";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 import Dd from "../../../../table/Dd";
 import DdTableCell from "../../../../table/DdTableCell";
 import Dt from "../../../../table/Dt";
+import SetDayLimitBudgetModal from "../modal/SetDayLimitBudgetModal";
 
 const AdvDefaultValue: Adv = {
 	adIngActYn: false,
@@ -21,6 +21,7 @@ const AdvDefaultValue: Adv = {
 function AdvAccountSet() {
 	const [adv, setAdv] = useState<Adv>(AdvDefaultValue);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const [messageApi, contextHolder] = message.useMessage();
 	const advId = sessionStorage.getItem(AUTHENTICATED_MEMBER_ID);
 
 	useEffect(() => {
@@ -37,15 +38,21 @@ function AdvAccountSet() {
 		return adv.dayLimitBudget === 0 ? "무제한" : toWon(adv.dayLimitBudget);
 	}
 
+	function handleAdSetSuccess(checked: boolean) {
+		setAdv({adIngActYn: checked, balance: adv.balance, eventMoney: adv.eventMoney, dayLimitBudget: adv.dayLimitBudget})
+		return messageApi.success("광고 설정이 변경되었습니다");
+	}
+
 	function handleAdSet(checked: boolean) {
 		updateAdIngActYn(advId, checked)
-			.then(() => setAdv({adIngActYn: checked, balance: adv.balance, eventMoney: adv.eventMoney, dayLimitBudget: adv.dayLimitBudget}))
+			.then(() => handleAdSetSuccess(checked))
 			.catch(e => console.log(e));
 	}
 
 
 	return (
 		<section className="wrap-section wrap-tbl">
+			{contextHolder}
 			<SectionHeader>
 				<h2 className="fz-24 fc-gray-700">광고주 계정 설정 및 정보</h2>
 			</SectionHeader>

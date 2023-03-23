@@ -53,6 +53,7 @@ export interface AdRegAdGroup {
 export interface AdMngSetAdGroup {
 	agroupName: string,
 	agroupUseConfigYn: boolean,
+	agroupItemsCount: number,
 	regTime: string
 }
 

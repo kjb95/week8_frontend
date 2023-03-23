@@ -3,12 +3,14 @@ import {useParams} from "react-router";
 import {updateKeywords} from "../../../../constants/Function";
 import {AdMngKwd} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
+import ItemInfo from "./contentbody/ItemInfo";
 import KeywordList from "./contentbody/KeywordList";
 import KeywordSearch from "./contentbody/KeywordSearch";
 
 function AdMngKeywordsContent() {
 	const [keywordNameSearch, setKeywordNameSearch] = useState<string>("");
 	const [keywords, setKeywords] = useState<AdMngKwd[]>([]);
+
 	const params = useParams();
 
 	useEffect(() => {
@@ -17,6 +19,7 @@ function AdMngKeywordsContent() {
 
 	return (
 		<AdPageBody title="광고관리 / 키워드">
+			<ItemInfo/>
 			<KeywordSearch keywordNameSearch={keywordNameSearch} setKeywordNameSearch={setKeywordNameSearch} setKeywords={setKeywords}/>
 			<KeywordList keywordNameSearch={keywordNameSearch} keywords={keywords} setKeywords={setKeywords}/>
 		</AdPageBody>

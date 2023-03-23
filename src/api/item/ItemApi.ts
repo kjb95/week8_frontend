@@ -20,3 +20,10 @@ export function findItemsInAdGroup(adGroupId: string | undefined, itemName: stri
 		itemNo: itemNo
 	})
 }
+
+/**
+ * 상품 한개 조회
+ */
+export function findItem(itemId: string | undefined) {
+	return api.get("/api/item/"+itemId);
+}
