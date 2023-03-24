@@ -7,7 +7,7 @@ import {onPressEnter} from "../constants/Function";
 
 function findAuthoritiesSuccess(roles: string[]) {
 	sessionStorage.setItem(ROLE, roles.join(','));
-	const nextHref = roles.includes(ROLE_ADV) ? "/adReg" : "/adMng";
+	const nextHref = roles.includes(ROLE_ADV) ? "/adReg" : "/checkKwd";
 	window.location.href = nextHref;
 }
 

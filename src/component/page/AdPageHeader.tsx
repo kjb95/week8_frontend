@@ -3,6 +3,7 @@ import {Header} from "antd/es/layout/layout";
 import React from 'react';
 import {useLocation} from 'react-router';
 import {AUTHENTICATED_MEMBER_ID, ROLE, ROLE_ADMIN, ROLE_ADV} from '../../constants/Constant';
+import adReg from "../../pages/AdReg";
 
 function createItem(label: string, key: string, icon: JSX.Element) {
 	return {label: label, key: key, icon: icon};
@@ -15,6 +16,9 @@ function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefine
 		items.push(createItem('광고 관리', 'adMng', <i className="ico ico-menu-02"/>));
 	}
 	if (roleAdmin) {
+		items.push(createItem('키워드 검수', 'checkKwd', <i className="ico ico-menu-03"/>));
+		items.push(createItem('광고 검수', 'checkAd', <i className="ico ico-menu-04"/>));
+		items.push(createItem('광고 현황', 'adStatus', <i className="ico ico-menu-05"/>));
 	}
 	return items;
 }
@@ -35,7 +39,7 @@ function AdPageHeader() {
 	const roleAdmin = roles?.includes(ROLE_ADMIN);
 	const location = useLocation()
 		.pathname
-		.substring(1, 6);
+		.split('/')[1];
 	const menuItems: MenuProps['items'] = createItems(roleAdv, roleAdmin);
 
 	return (

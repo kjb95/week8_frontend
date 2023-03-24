@@ -62,3 +62,8 @@ export interface AdMngKwd {
 	kwdName: string,
 	dadUseConfigYn: string
 }
+
+export interface CheckKwd {
+	key: string,
+	kwdName: string
+}

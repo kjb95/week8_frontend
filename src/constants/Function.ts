@@ -1,10 +1,11 @@
 import React from "react";
 import {findAdGroup, findAdGroups} from "../api/agroup/AgroupApi";
-import {findKeywordsInItem} from "../api/daddet/DadDetApi";
+import {findKeywordsInItem} from "../api/dadDet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
+import {findAllKwd} from "../api/kwd/KwdApi";
 import {hasBlank, hasForbiddenStr, isEndStr, isValidStrLen} from "../utils/Utils";
 import {AUTHENTICATED_MEMBER_ID} from "./Constant";
-import {AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup} from "./Interface";
+import {AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd} from "./Interface";
 
 export function updateAdGroups(adGroupNameSearchKeyword: string, setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>) {
 	findAdGroups(adGroupNameSearchKeyword)
@@ -50,8 +51,14 @@ interface HandleOnCLick {
 	(): void;
 }
 
-export function onPressEnter(e: React.KeyboardEvent<HTMLInputElement>, handleOnClick:HandleOnCLick) {
+export function onPressEnter(e: React.KeyboardEvent<HTMLInputElement>, handleOnClick: HandleOnCLick) {
 	if (!e.nativeEvent.isComposing) {
 		return handleOnClick();
 	}
+}
+
+export function updateCheckKwds(kwdName: string, setCheckKwd: React.Dispatch<React.SetStateAction<CheckKwd[]>>) {
+	findAllKwd(kwdName)
+		.then(res => setCheckKwd(res.data.kwds))
+		.catch(e => console.log(e));
 }

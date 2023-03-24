@@ -23,7 +23,6 @@ interface Props {
 	setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>,
 }
 
-
 function GroupList({adGroupNameSearchKeyword, adGroups, setAdGroups}: Props) {
 	const [messageApi, contextHolder] = message.useMessage();
 	const [isAddGroupModalOpen, setIsAddGroupModalOpen] = useState<boolean>(false);

@@ -13,6 +13,7 @@ import AdMngGroups from './pages/AdMngGroups';
 import AdMngItems from "./pages/AdMngItems";
 import AdMngKeywords from "./pages/AdMngKeywords";
 import AdReg from './pages/AdReg';
+import CheckKeyword from "./pages/CheckKeyword";
 import Login from "./pages/Login";
 import SimplePage from "./pages/SimplePage";
 
@@ -40,7 +41,7 @@ function App() {
 							<Route path="/adMng/item/:id" element={<AdMngKeywords/>}/>
 						</Route>
 						<Route element={<RoleRequiredRouter role={roleAdmin}/>}>
-
+							<Route path="/checkKwd" element={<CheckKeyword/>}/>
 						</Route>
 					</Route>
 					<Route element={<AuthenticationNoneRequiredRouter/>}>

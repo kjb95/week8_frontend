@@ -3,7 +3,7 @@ import Column from "antd/es/table/Column";
 import React, {Key, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {useParams} from "react-router";
-import {updateDadDetActOff, updateDadDetUseConfig} from "../../../../../api/daddet/DadDetApi";
+import {updateDadDetActOff, updateDadDetUseConfig} from "../../../../../api/dadDet/DadDetApi";
 import {updateKeywords} from "../../../../../constants/Function";
 import {AdMngKwd} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
