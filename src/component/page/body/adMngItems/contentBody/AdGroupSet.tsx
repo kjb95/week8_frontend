@@ -2,15 +2,15 @@ import {message, Switch} from "antd";
 import {Button} from "antd/lib";
 import React, {Key, useEffect, useState} from 'react';
 import {useParams} from "react-router";
-import {updateAdGroupUseConfig} from "../../../../../../api/agroup/AgroupApi";
-import {updateAdGroup} from "../../../../../../constants/Function";
-import {AdMngSetAdGroup} from "../../../../../../constants/Interface";
-import SectionBody from "../../../../../section/SectionBody";
-import SectionHeader from "../../../../../section/SectionHeader";
-import Dd from "../../../../../table/Dd";
-import DdTableCell from "../../../../../table/DdTableCell";
-import Dt from "../../../../../table/Dt";
-import SetAdGroupNameModal from "../../modal/SetAdGroupNameModal";
+import {updateAdGroupUseConfig} from "../../../../../api/agroup/AgroupApi";
+import {updateAdGroup} from "../../../../../constants/Function";
+import {AdMngSetAdGroup} from "../../../../../constants/Interface";
+import SectionBody from "../../../../section/SectionBody";
+import SectionHeader from "../../../../section/SectionHeader";
+import Dd from "../../../../table/Dd";
+import DdTableCell from "../../../../table/DdTableCell";
+import Dt from "../../../../table/Dt";
+import SetAdGroupNameModal from "../modal/SetAdGroupNameModal";
 
 interface Props {
 	adGroup: AdMngSetAdGroup,

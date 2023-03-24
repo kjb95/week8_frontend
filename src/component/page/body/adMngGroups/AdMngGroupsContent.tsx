@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {updateAdGroups} from "../../../../constants/Function";
 import {AdMngAdGroupListAdGroup} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
-import AdvAccountSet from "./contentbody/AdvAccountSet";
-import GroupList from "./contentbody/GroupList";
-import GroupSearch from "./contentbody/GroupSearch";
+import AdvAccountSet from "./contentBody/AdvAccountSet";
+import GroupList from "./contentBody/GroupList";
+import GroupSearch from "./contentBody/GroupSearch";
 
 function AdMngGroupsContent() {
 	const [adGroups, setAdGroups] = useState<AdMngAdGroupListAdGroup[]>([]);

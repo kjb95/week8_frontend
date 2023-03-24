@@ -1,4 +1,4 @@
-import {Button, Input, message, Modal} from "antd";
+import {Button, InputNumber, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../../../../constants/Constant";
 import {onPressEnter} from "../../../../../constants/Function";
@@ -51,7 +51,9 @@ function SetKeywordBidModal({isSetBidModalOpen, setIsSetBidModalOpen, keywordLis
 					<dl>
 						<DtModal title="입찰가 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="number" value={bid} onChange={(e) => setBid(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
+							<InputNumber style={{width: 300}} type="number" value={bid} step="100"
+							             onChange={(e) => setBid(e!)}
+							             onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
 						</Dd>
 					</dl>
 				</SectionBody>

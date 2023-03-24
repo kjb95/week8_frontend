@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {ItemDefaultValue} from "../../../../constants/Constant";
 import {AdRegItem, AdRegKwd} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
-import AdKeyword from "./contentbody/AdKeywordList";
-import AdRegister from "./contentbody/AdRegister";
-import AGroupSelect from "./contentbody/AGroupSelect";
-import ItemLookUpByCondition from "./contentbody/ItemLookUpByCondition";
-import ItemLookUpResult from "./contentbody/ItemLookUpResult";
-import ItemSelected from "./contentbody/ItemSelected";
+import AdKeyword from "./contentBody/AdKeywordList";
+import AdRegister from "./contentBody/AdRegister";
+import AGroupSelect from "./contentBody/AGroupSelect";
+import ItemLookUpByCondition from "./contentBody/ItemLookUpByCondition";
+import ItemLookUpResult from "./contentBody/ItemLookUpResult";
+import ItemSelected from "./contentBody/ItemSelected";
 
 export const KeywordDefaultValue: AdRegKwd = {
 	key: "",

@@ -3,9 +3,9 @@ import {useParams} from "react-router";
 import {updateItemsInAdgroup} from "../../../../constants/Function";
 import {AdMngItem, AdMngSetAdGroup} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
-import AdGroupSet from "./contentbody/adgroupset/AdGroupSet";
-import ItemList from './contentbody/adgroupset/ItemList';
-import ItemSearch from "./contentbody/adgroupset/ItemSearch";
+import AdGroupSet from "./contentBody/AdGroupSet";
+import ItemList from './contentBody/ItemList';
+import ItemSearch from "./contentBody/ItemSearch";
 
 const AdMngAdGroupDefaultValue: AdMngSetAdGroup = {
 	agroupName: "",

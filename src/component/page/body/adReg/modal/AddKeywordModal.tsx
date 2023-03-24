@@ -1,13 +1,13 @@
-import {Button, Input, message, Modal} from "antd";
+import {Button, Input, InputNumber, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {MAX_BID, MIN_BID} from "../../../../../constants/Constant";
 import {onPressEnter} from "../../../../../constants/Function";
 import {AdRegKwd} from "../../../../../constants/Interface";
 import {isInvalidRageNumber} from "../../../../../utils/Utils";
-import {KeywordDefaultValue} from "../AdRegContent";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import DtModal from "../../../../table/DtModal";
+import {KeywordDefaultValue} from "../AdRegContent";
 
 interface Props {
 	isAddKeywordModalOpen: boolean
@@ -61,8 +61,9 @@ function AddKeywordModal({isAddKeywordModalOpen, setIsAddKeywordModalOpen, keywo
 					<dl>
 						<DtModal title="입찰가 입력"/>
 						<Dd>
-							<Input style={{width: 300}} type="number" value={keyword.bid} onPressEnter={(e) => onPressEnter(e, handleRegister)}
-							       onChange={(e) => setKeyword({key: e.target.value, keywordName: keyword.keywordName, bid: e.target.value})}
+							<InputNumber style={{width: 300}} type="number" value={keyword.bid} step="100"
+							             onPressEnter={(e) => onPressEnter(e, handleRegister)}
+							             onChange={(e) => setKeyword({key: e!, keywordName: keyword.keywordName, bid: e!})}
 							/>
 						</Dd>
 					</dl>

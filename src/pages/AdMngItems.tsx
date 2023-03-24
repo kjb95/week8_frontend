@@ -1,6 +1,6 @@
 import React from 'react';
 import AdPage from "../component/page/AdPage";
-import AdMngItemsContent from "../component/page/body/admngitems/AdMngItemsContent";
+import AdMngItemsContent from "../component/page/body/adMngItems/AdMngItemsContent";
 
 function AdMngItems() {
 	return (

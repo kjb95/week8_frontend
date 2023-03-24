@@ -3,9 +3,9 @@ import {useParams} from "react-router";
 import {updateKeywords} from "../../../../constants/Function";
 import {AdMngKwd} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
-import ItemInfo from "./contentbody/ItemInfo";
-import KeywordList from "./contentbody/KeywordList";
-import KeywordSearch from "./contentbody/KeywordSearch";
+import ItemInfo from "./contentBody/ItemInfo";
+import KeywordList from "./contentBody/KeywordList";
+import KeywordSearch from "./contentBody/KeywordSearch";
 
 function AdMngKeywordsContent() {
 	const [keywordNameSearch, setKeywordNameSearch] = useState<string>("");

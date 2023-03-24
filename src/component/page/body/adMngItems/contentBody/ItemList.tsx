@@ -4,11 +4,11 @@ import React, {Key, useState} from 'react';
 import {CSVLink} from "react-csv";
 import {useParams} from "react-router";
 import {Link} from "react-router-dom";
-import {updateAdActOff, updateAdUseConfigAndDadUseConfig} from "../../../../../../api/ad/AdApi";
-import {updateAdGroup, updateItemsInAdgroup} from "../../../../../../constants/Function";
-import {AdMngItem, AdMngSetAdGroup} from "../../../../../../constants/Interface";
-import SectionBody from "../../../../../section/SectionBody";
-import SectionHeader from "../../../../../section/SectionHeader";
+import {updateAdActOff, updateAdUseConfigAndDadUseConfig} from "../../../../../api/ad/AdApi";
+import {updateAdGroup, updateItemsInAdgroup} from "../../../../../constants/Function";
+import {AdMngItem, AdMngSetAdGroup} from "../../../../../constants/Interface";
+import SectionBody from "../../../../section/SectionBody";
+import SectionHeader from "../../../../section/SectionHeader";
 
 const csvHeaders = [
 	{label: "번호", key: "key"},

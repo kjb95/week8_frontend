@@ -10,7 +10,7 @@ export function findAdv(advId: string | null) {
 /**
  * 일일 허용 예산 설정 변경
  */
-export function updateDayLimitBudget(advId: string | null, dayLimitBudget: string) {
+export function updateDayLimitBudget(advId: string | null, dayLimitBudget: string | null) {
 	return api.post("/api/adv/day-limit-budget", {
 		advId: advId,
 		dayLimitBudget: dayLimitBudget

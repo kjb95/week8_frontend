@@ -2,11 +2,11 @@ import {Input} from "antd";
 import {Button} from "antd/lib";
 import React from 'react';
 import {useParams} from "react-router";
-import {onPressEnter, updateItemsInAdgroup} from "../../../../../../constants/Function";
-import {AdMngItem} from "../../../../../../constants/Interface";
-import SectionBody from "../../../../../section/SectionBody";
-import SectionHeader from "../../../../../section/SectionHeader";
-import Dd from "../../../../../table/Dd";
+import {onPressEnter, updateItemsInAdgroup} from "../../../../../constants/Function";
+import {AdMngItem} from "../../../../../constants/Interface";
+import SectionBody from "../../../../section/SectionBody";
+import SectionHeader from "../../../../section/SectionHeader";
+import Dd from "../../../../table/Dd";
 
 interface Props {
 	itemName: string,
