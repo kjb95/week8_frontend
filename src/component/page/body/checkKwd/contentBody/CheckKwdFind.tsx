@@ -1,7 +1,6 @@
 import {Input} from "antd";
 import {Button} from "antd/lib";
-import React, {useEffect, useState} from 'react';
-import {findAllKwd} from "../../../../../api/kwd/KwdApi";
+import React, {useEffect} from 'react';
 import {onPressEnter, updateCheckKwds} from "../../../../../constants/Function";
 import {CheckKwd} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
@@ -11,17 +10,18 @@ import Dt from "../../../../table/Dt";
 
 interface Props {
 	setCheckKwd: React.Dispatch<React.SetStateAction<CheckKwd[]>>,
+	kwdNameSearch: string,
+	setKwdNameSearch: React.Dispatch<React.SetStateAction<string>>
 }
 
-function CheckKeywordFind({setCheckKwd}: Props) {
-	const [kwdName, setKwdName] = useState<string>("");
+function CheckKwdFind({setCheckKwd, kwdNameSearch, setKwdNameSearch}: Props) {
 
 	function onClick() {
-		updateCheckKwds(kwdName, setCheckKwd);
+		updateCheckKwds(kwdNameSearch, setCheckKwd);
 	}
 
 	useEffect(() => {
-		updateCheckKwds(kwdName, setCheckKwd);
+		updateCheckKwds(kwdNameSearch, setCheckKwd);
 	}, [setCheckKwd]);
 
 	return (
@@ -33,8 +33,8 @@ function CheckKeywordFind({setCheckKwd}: Props) {
 				<dl>
 					<Dt title="키워드명"/>
 					<Dd>
-						<Input style={{width: 300}} type="text" placeholder="키워드명을 입력해주세요" value={kwdName}
-						       onChange={(e) => setKwdName(e.target.value)}
+						<Input style={{width: 300}} type="text" placeholder="키워드명을 입력해주세요" value={kwdNameSearch}
+						       onChange={(e) => setKwdNameSearch(e.target.value)}
 						       onPressEnter={(e) => onPressEnter(e, onClick)}
 						/>
 					</Dd>
@@ -45,4 +45,4 @@ function CheckKeywordFind({setCheckKwd}: Props) {
 	);
 }
 
-export default CheckKeywordFind;
+export default CheckKwdFind;

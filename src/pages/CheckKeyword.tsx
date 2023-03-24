@@ -1,11 +1,11 @@
 import React from 'react';
 import AdPage from "../component/page/AdPage";
-import CheckKeywordContent from "../component/page/body/checkKeyword/CheckKeywordContent";
+import CheckKwdContent from "../component/page/body/checkKwd/CheckKwdContent";
 
 function CheckKeyword() {
 	return (
 		<AdPage>
-			<CheckKeywordContent/>
+			<CheckKwdContent/>
 		</AdPage>
 	);
 }
