@@ -26,13 +26,13 @@ function CheckKwdRegisterModal({isCheckKwdRegisterModalOpen, setIsCheckKwdRegist
 	function registerKwdSuccess() {
 		updateCheckKwds(kwdNameSearch, setCheckKwd)
 		closeModal();
-		return Modal.success({content: "검수 키워드 등록 성공"});
+		return Modal.success({title: "검수 키워드 등록 성공"});
 	}
 
 	function handleRegister() {
 		registerKwd(kwdName)
 			.then(() => registerKwdSuccess())
-			.catch((e) => Modal.error({content: e.response.data.message}));
+			.catch((e) => Modal.error({title: e.response.data.message}));
 	}
 
 	return (

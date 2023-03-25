@@ -1,33 +1,32 @@
 import {Input} from "antd";
 import {Button} from "antd/lib";
 import React, {useEffect} from 'react';
-import {onPressEnter, updateCheckKwds} from "../../../../../constants/Function";
-import {CheckKwd} from "../../../../../constants/Interface";
+import {onPressEnter, updateAdCheckList} from "../../../../../constants/Function";
+import {AdCheckKwd} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 import Dd from "../../../../table/Dd";
 import Dt from "../../../../table/Dt";
 
 interface Props {
-	setCheckKwd: React.Dispatch<React.SetStateAction<CheckKwd[]>>,
 	kwdNameSearch: string,
-	setKwdNameSearch: React.Dispatch<React.SetStateAction<string>>
+	setKwdNameSearch: React.Dispatch<React.SetStateAction<string>>,
+	setAdCheckList: React.Dispatch<React.SetStateAction<AdCheckKwd[]>>,
 }
 
-function CheckKwdFind({setCheckKwd, kwdNameSearch, setKwdNameSearch}: Props) {
-
+function AdCheckKwdFind({kwdNameSearch, setKwdNameSearch, setAdCheckList}: Props) {
 	function onClick() {
-		updateCheckKwds(kwdNameSearch, setCheckKwd);
+		updateAdCheckList(kwdNameSearch, setAdCheckList);
 	}
 
 	useEffect(() => {
-		updateCheckKwds("", setCheckKwd);
-	}, [setCheckKwd]);
+		updateAdCheckList("", setAdCheckList);
+	}, [setAdCheckList]);
 
 	return (
 		<section className="wrap-section wrap-tbl">
 			<SectionHeader>
-				<h2 className="fz-24 fc-gray-700">검수 키워드 조회</h2>
+				<h2 className="fz-24 fc-gray-700">광고 검수 대상 키워드 조회</h2>
 			</SectionHeader>
 			<SectionBody>
 				<dl>
@@ -45,4 +44,4 @@ function CheckKwdFind({setCheckKwd, kwdNameSearch, setKwdNameSearch}: Props) {
 	);
 }
 
-export default CheckKwdFind;
+export default AdCheckKwdFind;

@@ -1,4 +1,4 @@
-import {Key, ReactNode} from "react";
+import {ReactNode} from "react";
 
 export interface ChildProps {
 	children: ReactNode
@@ -66,4 +66,16 @@ export interface AdMngKwd {
 export interface CheckKwd {
 	key: string,
 	kwdName: string
+}
+
+export interface AdCheckKwd {
+	key: number,
+	itemName: string,
+	kwdName: string,
+	checkReason: string,
+}
+
+export interface selectOption {
+	value: string,
+	label: string
 }

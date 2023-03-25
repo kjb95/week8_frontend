@@ -29,3 +29,10 @@ export function updateDadDetActOff(kwdIds: React.Key[]) {
 		kwdIds: kwdIds
 	})
 }
+
+/**
+ * 광고 검수 대상 리스트 조회
+ */
+export function findAllAdCheckList(kwdName: string) {
+	return api.get("/api/cnrReq/checkList?kwdName=" + kwdName)
+}

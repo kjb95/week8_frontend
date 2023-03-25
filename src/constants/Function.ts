@@ -1,11 +1,11 @@
 import React from "react";
 import {findAdGroup, findAdGroups} from "../api/agroup/AgroupApi";
-import {findKeywordsInItem} from "../api/dadDet/DadDetApi";
+import {findAllAdCheckList, findKeywordsInItem} from "../api/dadDet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
 import {findAllKwd} from "../api/kwd/KwdApi";
 import {hasBlank, hasForbiddenStr, isEndStr, isValidStrLen} from "../utils/Utils";
 import {AUTHENTICATED_MEMBER_ID} from "./Constant";
-import {AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd} from "./Interface";
+import {AdCheckKwd, AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd} from "./Interface";
 
 export function updateAdGroups(adGroupNameSearchKeyword: string, setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>) {
 	findAdGroups(adGroupNameSearchKeyword)
@@ -62,3 +62,10 @@ export function updateCheckKwds(kwdName: string, setCheckKwd: React.Dispatch<Rea
 		.then(res => setCheckKwd(res.data.kwds))
 		.catch(e => console.log(e));
 }
+
+export function updateAdCheckList(kwdName: string, setAdCheckList: React.Dispatch<React.SetStateAction<AdCheckKwd[]>>) {
+	findAllAdCheckList(kwdName)
+		.then(res => setAdCheckList(res.data.adCheckList))
+		.catch(e => console.log(e));
+}
+

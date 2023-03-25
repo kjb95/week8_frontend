@@ -24,7 +24,7 @@ function CheckKwdList({checkKwd, setCheckKwd, kwdNameSearch}: Props) {
 
 	function updateManualCnrKwdYnOffSuccess() {
 		updateCheckKwds(kwdNameSearch, setCheckKwd)
-		return Modal.error({content: "검수 키워드 삭제가 완료되었습니다"})
+		return Modal.error({title: "검수 키워드 삭제가 완료되었습니다"})
 	}
 
 	function handleDeleteClick(kwdId: string) {
