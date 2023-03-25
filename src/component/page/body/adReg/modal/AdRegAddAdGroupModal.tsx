@@ -1,7 +1,7 @@
 import {Button, Input, message, Modal} from "antd";
 import React, {useState} from 'react';
 import {onPressEnter} from "../../../../../constants/Function";
-import {AdRegAdGroup} from "../../../../../constants/Interface";
+import {SelectOption} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import DtModal from "../../../../table/DtModal";
@@ -9,8 +9,8 @@ import DtModal from "../../../../table/DtModal";
 interface Props {
 	isModalOpen: boolean,
 	setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>,
-	aGroups: AdRegAdGroup[],
-	setAGroups: React.Dispatch<React.SetStateAction<AdRegAdGroup[]>>,
+	aGroups: SelectOption[],
+	setAGroups: React.Dispatch<React.SetStateAction<SelectOption[]>>,
 	setAGroupId: React.Dispatch<React.SetStateAction<string>>,
 }
 
@@ -24,7 +24,7 @@ function AdRegAddAdGroupModal({isModalOpen, setIsModalOpen, aGroups, setAGroups,
 	}
 
 	function isExistAGroup() {
-		return aGroups.filter(aGroup => aGroup.agroupName === aGroupName).length !== 0;
+		return aGroups.filter(aGroup => aGroup.label === aGroupName).length !== 0;
 	}
 
 	function handleRegister() {
@@ -32,7 +32,7 @@ function AdRegAddAdGroupModal({isModalOpen, setIsModalOpen, aGroups, setAGroups,
 			return messageApi.error("동일한 광고그룹명이 존재합니다 !!");
 		}
 		setAGroupId(aGroupName);
-		setAGroups([...aGroups, {agroupId: aGroupName, agroupName: aGroupName}]);
+		setAGroups([...aGroups, {value: aGroupName, label: aGroupName}]);
 		closeModal();
 	}
 

@@ -5,7 +5,7 @@ import {api} from "../Api";
  * 직접광고 사용 설정 여부 변경
  */
 export function updateDadDetUseConfig(kwdIds: Key[], on: boolean) {
-	return api.put("/api/daddet/use-config", {
+	return api.put("/api/daddet/useConfig", {
 		kwdIds: kwdIds,
 		on: on
 	})
@@ -25,7 +25,7 @@ export function findKeywordsInItem(itemId: string | undefined, keywordNameSearch
  * 직접광고 활성 여부 끄기
  */
 export function updateDadDetActOff(kwdIds: React.Key[]) {
-	return api.put("/api/daddet/act-off", {
+	return api.put("/api/daddet/actOff", {
 		kwdIds: kwdIds
 	})
 }

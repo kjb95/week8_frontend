@@ -45,11 +45,6 @@ export interface AdMngAdGroupListAdGroup {
 	itemCountLiveAndAll: string,
 }
 
-export interface AdRegAdGroup {
-	agroupId: string,
-	agroupName: string
-}
-
 export interface AdMngSetAdGroup {
 	agroupName: string,
 	agroupUseConfigYn: boolean,
@@ -75,7 +70,7 @@ export interface AdCheckKwd {
 	checkReason: string,
 }
 
-export interface selectOption {
+export interface SelectOption {
 	value: string,
 	label: string
 }

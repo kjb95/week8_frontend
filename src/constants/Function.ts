@@ -1,5 +1,5 @@
 import React from "react";
-import {findAdGroup, findAdGroups} from "../api/agroup/AgroupApi";
+import {findAdGroup, findAllAdGroupsByAdGroupName} from "../api/agroup/AgroupApi";
 import {findAllAdCheckList, findKeywordsInItem} from "../api/dadDet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
 import {findAllKwd} from "../api/kwd/KwdApi";
@@ -8,7 +8,7 @@ import {AUTHENTICATED_MEMBER_ID} from "./Constant";
 import {AdCheckKwd, AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd} from "./Interface";
 
 export function updateAdGroups(adGroupNameSearchKeyword: string, setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>) {
-	findAdGroups(adGroupNameSearchKeyword)
+	findAllAdGroupsByAdGroupName(adGroupNameSearchKeyword)
 		.then(res => setAdGroups(res.data.agroups))
 		.catch(e => console.log(e))
 }

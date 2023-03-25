@@ -2,7 +2,7 @@ import {Button, Input, Modal, Select} from "antd";
 import React, {useEffect, useState} from 'react';
 import {findAllCnrFailCause, updateCheckProcess} from "../../../../../api/cnrReq/CnrReqApi";
 import {onPressEnter, updateAdCheckList} from "../../../../../constants/Function";
-import {AdCheckKwd, selectOption} from "../../../../../constants/Interface";
+import {AdCheckKwd, SelectOption} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import Dd from "../../../../table/Dd";
 import Dt from "../../../../table/Dt";
@@ -18,7 +18,7 @@ interface Props {
 function SetRejectModal({isSetRejectModalOpen, setIsSetRejectModalOpen, dadDetId, setAdCheckList, kwdNameSearch}: Props) {
 	const [selectedCnrFailCause, setSelectedCnrFailCause] = useState<string>("");
 	const [cnrFailComt, setCnrFailComt] = useState<string>("");
-	const [cnrFailCauseOptions, setCnrFailCauseOptions] = useState<selectOption[]>([]);
+	const [cnrFailCauseOptions, setCnrFailCauseOptions] = useState<SelectOption[]>([]);
 
 	useEffect(() => {
 		findAllCnrFailCause()

@@ -18,7 +18,7 @@ export function registerAd(agroupId: string, itemId: string, advId: string | nul
  * 광고 사용 설정 여부, 직접광고 사용 설정 여부 변경
  */
 export function updateAdUseConfigAndDadUseConfig(itemIds: Key[], on: boolean) {
-	return api.put("/api/ad/use-config", {
+	return api.put("/api/ad/useConfig", {
 		itemIds: itemIds,
 		on: on
 	})
@@ -28,7 +28,7 @@ export function updateAdUseConfigAndDadUseConfig(itemIds: Key[], on: boolean) {
  * 광고 활성 여부 끄기
  */
 export function updateAdActOff(itemIds: React.Key[]) {
-	return api.put("/api/ad/act-off", {
+	return api.put("/api/ad/actOff", {
 		itemIds: itemIds
 	})
 }

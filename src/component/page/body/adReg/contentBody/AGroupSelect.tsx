@@ -1,12 +1,12 @@
 import {Button, Select} from "antd";
 import React, {useEffect, useState} from 'react';
-import {findAllAdGroupIdAndName} from "../../../../../api/agroup/AgroupApi";
-import {AdRegAdGroup} from "../../../../../constants/Interface";
-import AdRegAddAdGroupModal from "../modal/AdRegAddAdGroupModal";
+import {findAllAdGroup} from "../../../../../api/agroup/AgroupApi";
+import {SelectOption} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 import Dd from "../../../../table/Dd";
 import Dt from "../../../../table/Dt";
+import AdRegAddAdGroupModal from "../modal/AdRegAddAdGroupModal";
 
 interface Props {
 	agroupId: string,
@@ -15,12 +15,11 @@ interface Props {
 
 function AGroupSelect({setAGroupId, agroupId}: Props) {
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const [aGroups, setAGroups] = useState<AdRegAdGroup[]>([]);
-	const aGroupsOptions = aGroups.map((aGroup) => ({value: aGroup.agroupId, label: aGroup.agroupName}))
+	const [aGroups, setAGroups] = useState<SelectOption[]>([]);
 	const selectValue = agroupId === "" ? null : agroupId;
 
 	useEffect(() => {
-		findAllAdGroupIdAndName()
+		findAllAdGroup()
 			.then((res) => setAGroups(res.data.agroups))
 			.catch((e) => console.log(e))
 	}, [])
@@ -34,7 +33,7 @@ function AGroupSelect({setAGroupId, agroupId}: Props) {
 				<dl>
 					<Dt title="광고 그룹"/>
 					<Dd>
-						<Select style={{width: 250}} options={aGroupsOptions} value={selectValue} placeholder="광고그룹을 선택해주세요"
+						<Select style={{width: 250}} options={aGroups} value={selectValue} placeholder="광고그룹을 선택해주세요"
 						        onChange={(value) => setAGroupId(value)}
 						/>
 					</Dd>
