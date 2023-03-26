@@ -13,12 +13,12 @@ function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefine
 	const items = []
 	if (roleAdv) {
 		items.push(createItem('광고 등록', 'adReg', <i className="ico ico-menu-01"/>));
-		items.push(createItem('광고 관리', 'adMng', <i className="ico ico-menu-02"/>));
+		items.push(createItem('광고 관리', 'adMng', <i className="ico ico-menu-01"/>));
 	}
 	if (roleAdmin) {
-		items.push(createItem('키워드 검수', 'checkKwd', <i className="ico ico-menu-03"/>));
-		items.push(createItem('광고 검수', 'checkAd', <i className="ico ico-menu-04"/>));
-		items.push(createItem('광고 현황', 'adStatus', <i className="ico ico-menu-05"/>));
+		items.push(createItem('키워드 검수', 'checkKwd', <i className="ico ico-menu-02"/>));
+		items.push(createItem('광고 검수', 'checkAd', <i className="ico ico-menu-02"/>));
+		items.push(createItem('광고 현황', 'adStatus', <i className="ico ico-menu-02"/>));
 	}
 	return items;
 }

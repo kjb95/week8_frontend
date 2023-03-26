@@ -18,3 +18,10 @@ export function updateCheckProcess(dadDetId: number, cnrIngStatus: boolean, sele
 export function findAllCnrFailCause() {
 	return api.get("/api/cnrReq/cnrFailCause");
 }
+
+/**
+ * 광고 검수 대상 리스트 조회
+ */
+export function findAllAdCheckList(kwdName: string) {
+	return api.get("/api/cnrReq/checkList?kwdName=" + kwdName)
+}

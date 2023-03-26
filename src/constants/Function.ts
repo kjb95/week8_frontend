@@ -1,6 +1,7 @@
 import React from "react";
 import {findAdGroup, findAllAdGroupsByAdGroupName} from "../api/agroup/AgroupApi";
-import {findAllAdCheckList, findKeywordsInItem} from "../api/dadDet/DadDetApi";
+import {findAllAdCheckList} from "../api/cnrReq/CnrReqApi";
+import {findKeywordsInItem} from "../api/dadDet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
 import {findAllKwd} from "../api/kwd/KwdApi";
 import {hasBlank, hasForbiddenStr, isEndStr, isValidStrLen} from "../utils/Utils";
