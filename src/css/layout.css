@@ -21,7 +21,7 @@
 .ant-layout-header .ant-menu,
 .ant-layout-header .user-info {
     display:table-cell;
-    width:33.33333333%;
+    /*width:33.33333333%;*/
     vertical-align:middle;
 }
 /* Header Common : End */

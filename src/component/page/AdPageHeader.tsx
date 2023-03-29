@@ -18,6 +18,7 @@ function createItems(roleAdv: boolean | undefined, roleAdmin: boolean | undefine
 	if (roleAdmin) {
 		items.push(createItem('키워드 검수', 'checkKwd', <i className="ico ico-menu-02"/>));
 		items.push(createItem('광고 검수', 'checkAd', <i className="ico ico-menu-02"/>));
+		items.push(createItem('작업 관리', 'massMng', <i className="ico ico-menu-02"/>));
 		items.push(createItem('광고 현황', 'adStatus', <i className="ico ico-menu-02"/>));
 	}
 	return items;

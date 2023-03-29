@@ -16,6 +16,7 @@ import AdReg from './pages/AdReg';
 import AdStatus from "./pages/AdStatus";
 import CheckAd from "./pages/CheckAd";
 import CheckKeyword from "./pages/CheckKeyword";
+import MassMng from "./pages/MassMng";
 import Login from "./pages/Login";
 import SimplePage from "./pages/SimplePage";
 
@@ -46,6 +47,7 @@ function App() {
 							<Route path="/checkKwd" element={<CheckKeyword/>}/>
 							<Route path="/checkAd" element={<CheckAd/>}/>
 							<Route path="/adStatus" element={<AdStatus/>}/>
+							<Route path="/massMng" element={<MassMng/>}/>
 						</Route>
 					</Route>
 					<Route element={<AuthenticationNoneRequiredRouter/>}>
