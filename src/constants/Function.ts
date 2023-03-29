@@ -4,9 +4,10 @@ import {findAllAdCheckList} from "../api/cnrReq/CnrReqApi";
 import {findKeywordsInItem} from "../api/dadDet/DadDetApi";
 import {findItemsInAdGroup} from "../api/item/ItemApi";
 import {findAllKwd} from "../api/kwd/KwdApi";
+import {findTaskReqHistory} from "../api/taskReq/TaskReqApi";
 import {hasBlank, hasForbiddenStr, isEndStr, isValidStrLen} from "../utils/Utils";
 import {AUTHENTICATED_MEMBER_ID} from "./Constant";
-import {AdCheckKwd, AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd} from "./Interface";
+import {AdCheckKwd, AdMngAdGroupListAdGroup, AdMngItem, AdMngKwd, AdMngSetAdGroup, CheckKwd, Task} from "./Interface";
 
 export function updateAdGroups(adGroupNameSearchKeyword: string, setAdGroups: React.Dispatch<React.SetStateAction<AdMngAdGroupListAdGroup[]>>) {
 	findAllAdGroupsByAdGroupName(adGroupNameSearchKeyword)
@@ -70,3 +71,8 @@ export function updateAdCheckList(kwdName: string, setAdCheckList: React.Dispatc
 		.catch(e => console.log(e));
 }
 
+export function updateTaskReqHistory(setTaskHistory: React.Dispatch<React.SetStateAction<Task[]>>) {
+	findTaskReqHistory()
+		.then(res => setTaskHistory(res.data.taskReqHistory))
+		.catch(e => console.log(e));
+}

@@ -17,3 +17,13 @@ export const ItemDefaultValue: AdRegItem = {
 	itemOrgCost: 0,
 	itemActYn: "",
 }
+
+export const taskReqHistoryCsvHeaders = [
+	{label: "날짜", key: "date"},
+	{label: "직접 광고 ID", key: "dadDetId"},
+	{label: "노출수", key: "impressions"},
+	{label: "클릭수", key: "clicks"},
+	{label: "평균 노출 순위", key: "averageImpressionRank"},
+	{label: "평균 클릭 비용", key: "averageClickCost"},
+	{label: "광고비", key: "advertisingCost"}
+];

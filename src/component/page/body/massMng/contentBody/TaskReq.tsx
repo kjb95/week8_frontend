@@ -4,10 +4,10 @@ import {RcFile} from "antd/es/upload";
 import {Button} from "antd/lib";
 import React, {useState} from 'react';
 import {CSVLink} from "react-csv";
-import {multipartFormDataApi} from "../../../../../api/Api";
-import {createTaskReq, deleteTaskReqFile} from "../../../../../api/taskReq/TaskReqApi";
-import {AUTHENTICATED_MEMBER_ID} from "../../../../../constants/Constant";
-import {onPressEnter} from "../../../../../constants/Function";
+import {createTaskReq, deleteTaskReqFile, uploadTaskReqFile} from "../../../../../api/taskReq/TaskReqApi";
+import {AUTHENTICATED_MEMBER_ID, taskReqHistoryCsvHeaders} from "../../../../../constants/Constant";
+import {onPressEnter, updateTaskReqHistory} from "../../../../../constants/Function";
+import {Task} from "../../../../../constants/Interface";
 import {hasBlank} from "../../../../../utils/Utils";
 
 import SectionBody from "../../../../section/SectionBody";
@@ -16,46 +16,32 @@ import SectionHeader from "../../../../section/SectionHeader";
 import Dd from "../../../../table/Dd";
 import Dt from "../../../../table/Dt";
 
-const csvHeaders = [
-	{label: "날짜", key: "date"},
-	{label: "직접 광고 ID", key: "dadDetId"},
-	{label: "노출수", key: "impressions"},
-	{label: "클릭수", key: "clicks"},
-	{label: "평균 노출 순위", key: "averageImpressionRank"},
-	{label: "평균 클릭 비용", key: "averageClickCost"},
-	{label: "광고비", key: "advertisingCost"}
-];
-
-interface JobReqInterface {
-	date: number,
-	dadDetId: number,
-	impressions: number,
-	clicks: number,
-	averageImpressionRank: number,
-	averageClickCost: number,
-	advertisingCost: number
+interface Props {
+	setTaskHistory: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-function JobReq() {
+function TaskReq({setTaskHistory}: Props) {
 	const [fileList, setFileList] = useState<UploadFile[]>([]);
-	const [jobName, setJobName] = useState<string>("")
+	const [taskName, setTaskName] = useState<string>("")
+	const [savedFileName, setSavedFileName] = useState<string>("");
 
 	const handleFileChange: UploadProps['onChange'] = ({fileList}) => {
 		setFileList([...fileList]);
 	};
 	const uploadProps: UploadProps = {fileList, onChange: handleFileChange, onRemove: handleFileRemove};
 
-	function handleFileRemove() {
-		setFileList([]);
-		if (fileList.length === 0) {
-			return;
+	function handleRegister() {
+		const errorMessage = validHandleRegister();
+		if (errorMessage) {
+			return Modal.error({title: errorMessage});
 		}
-		deleteTaskReqFile(fileList[0].name)
+		createTaskReq(sessionStorage.getItem(AUTHENTICATED_MEMBER_ID), taskName, savedFileName)
+			.then(() => Modal.success({title: "작업 요청 등록 성공", onOk: createTaskReqSuccess}))
 			.catch(e => console.log(e));
 	}
 
 	function validHandleRegister() {
-		if (hasBlank(jobName)) {
+		if (hasBlank(taskName)) {
 			return "작업명에 공백은 입력할 수 없습니다";
 		}
 		if (fileList.length == 0) {
@@ -65,31 +51,34 @@ function JobReq() {
 	}
 
 	function createTaskReqSuccess() {
-		setJobName("");
+		setTaskName("");
 		setFileList([]);
-	}
-
-	function handleRegister() {
-		const errorMessage = validHandleRegister();
-		if (errorMessage) {
-			return Modal.error({title: errorMessage});
-		}
-		createTaskReq(sessionStorage.getItem(AUTHENTICATED_MEMBER_ID), jobName, fileList[0].name)
-			.then(() => Modal.success({title: "작업 요청 등록 성공", onOk: createTaskReqSuccess}))
-			.catch(e => console.log(e));
+		updateTaskReqHistory(setTaskHistory);
 	}
 
 	function handleCancel() {
-		setJobName("");
+		setTaskName("");
 		handleFileRemove();
 	}
 
-	function uploadCustomRequest(file: string | Blob | RcFile, action: string, onSuccess: ((body: any, xhr?: (XMLHttpRequest | undefined)) => void) | undefined) {
-		const formData = new FormData();
-		formData.append('file', file);
-		multipartFormDataApi.post(action, formData)
-			.then(() => onSuccess!(true))
+	function handleFileRemove() {
+		if (fileList.length === 0) {
+			return;
+		}
+		deleteTaskReqFile(savedFileName)
+			.then(() => setFileList([]))
 			.catch(e => console.log(e));
+	}
+
+	function uploadCustomRequest(file: string | Blob | RcFile, action: string, onSuccess: ((body: any, xhr?: (XMLHttpRequest | undefined)) => void) | undefined) {
+		uploadTaskReqFile(file, action)
+			.then((res) => uploadTaskReqFileSuccess(res.data.savedFileName, onSuccess))
+			.catch(e => console.log(e));
+	}
+
+	function uploadTaskReqFileSuccess(savedFileName: string, onSuccess: ((body: any, xhr?: (XMLHttpRequest | undefined)) => void) | undefined) {
+		setSavedFileName(savedFileName)
+		onSuccess!(true)
 	}
 
 	return (
@@ -101,7 +90,7 @@ function JobReq() {
 				<dl>
 					<Dt title="요청 템플릿"/>
 					<Dd>
-						<CSVLink data={[]} headers={csvHeaders}>
+						<CSVLink data={[]} headers={taskReqHistoryCsvHeaders}>
 							<Button type="primary" className="pink">템플릿 다운로드</Button>
 						</CSVLink>
 					</Dd>
@@ -117,7 +106,7 @@ function JobReq() {
 				<dl>
 					<Dt title="작업명"/>
 					<Dd>
-						<Input style={{width: 300}} type="text" value={jobName} onChange={(e) => setJobName(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
+						<Input style={{width: 300}} type="text" value={taskName} onChange={(e) => setTaskName(e.target.value)} onPressEnter={(e) => onPressEnter(e, handleRegister)}/>
 					</Dd>
 				</dl>
 			</SectionBody>
@@ -129,4 +118,4 @@ function JobReq() {
 	);
 }
 
-export default JobReq;
+export default TaskReq;

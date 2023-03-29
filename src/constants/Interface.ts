@@ -74,3 +74,12 @@ export interface SelectOption {
 	value: string,
 	label: string
 }
+
+export interface Task {
+	key: number,
+	taskName: string,
+	taskStatus: string,
+	registrant: string,
+	regTime: string,
+	reqFile: string,
+}
