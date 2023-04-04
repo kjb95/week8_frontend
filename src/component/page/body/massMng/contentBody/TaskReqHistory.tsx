@@ -12,16 +12,6 @@ interface Props {
 	setTaskHistory: React.Dispatch<React.SetStateAction<Task[]>>
 }
 
-interface TaskReqInterface {
-	date: number,
-	dadDetId: number,
-	impressions: number,
-	clicks: number,
-	averageImpressionRank: number,
-	averageClickCost: number,
-	advertisingCost: number
-}
-
 function TaskReqHistory({taskHistory, setTaskHistory}: Props) {
 	function downloadTaskReqFileSuccess(data: string) {
 		const link = document.createElement('a');

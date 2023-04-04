@@ -44,7 +44,7 @@ function TaskReq({setTaskHistory}: Props) {
 		if (hasBlank(taskName)) {
 			return "작업명에 공백은 입력할 수 없습니다";
 		}
-		if (fileList.length == 0) {
+		if (fileList.length === 0) {
 			return "파일 업로드는 필수 입니다";
 		}
 		return null;

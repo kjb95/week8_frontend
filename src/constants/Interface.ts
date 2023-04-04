@@ -83,3 +83,9 @@ export interface Task {
 	regTime: string,
 	reqFile: string,
 }
+
+export interface DadDetReport {
+	category: string;
+	date: string;
+	value: number;
+}

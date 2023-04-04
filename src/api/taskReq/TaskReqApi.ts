@@ -36,6 +36,9 @@ export function downloadTaskReqFile(fileName: string) {
 	return api.get("api/taskReq/file?filename=" + fileName);
 }
 
+/**
+ * 테스크 요청 파일 업로드
+ */
 export function uploadTaskReqFile(file: string | Blob | RcFile, action: string) {
 	const formData = new FormData();
 	formData.append('file', file);
