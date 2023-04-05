@@ -1,17 +1,22 @@
 import React, {useState} from 'react';
-import {DadDetReport} from "../../../../constants/Interface";
+import {DadDetReportChart, DadDetReportTable} from "../../../../constants/Interface";
 import AdPageBody from "../../AdPageBody";
 import AdChartReport from "./contentBody/AdChartReport";
 import AdStatusList from "./contentBody/AdStatusList";
+import ReportTable from "./contentBody/ReportTable";
 
 function AdStatusContent() {
 	const [selectedItemName, setSelectedItemName] = useState<string>("");
-	const [dadDetReports, setDadDetReports] = useState<DadDetReport[]>([]);
+	const [dadDetReportChart, setDadDetReportChart] = useState<DadDetReportChart[]>([]);
+	const [dadDetReportTable, setDadDetReportTable] = useState<DadDetReportTable[]>([]);
 
 	return (
 		<AdPageBody title="광고 현황">
-			<AdStatusList setSelectedItemName={setSelectedItemName} setDadDetReports={setDadDetReports}/>
-			{selectedItemName !== "" && <AdChartReport selectedItemName={selectedItemName} dadDetReports={dadDetReports}/>}
+			<AdStatusList setSelectedItemName={setSelectedItemName} setDadDetReportChart={setDadDetReportChart} setDadDetReportTable={setDadDetReportTable}/>
+			{selectedItemName !== "" && <>
+				<AdChartReport selectedItemName={selectedItemName} dadDetReportChart={dadDetReportChart}/>
+				<ReportTable selectedItemName={selectedItemName} dadDetReportTable={dadDetReportTable}/>
+			</>}
 		</AdPageBody>
 	);
 }

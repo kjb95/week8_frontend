@@ -2,20 +2,20 @@ import {Line, LineConfig} from "@ant-design/plots";
 import {Select} from "antd";
 import React, {useEffect, useState} from 'react';
 import {findAllDadDetReportCategory} from "../../../../../api/dadDetReport/DadDetReportApi";
-import {DadDetReport, SelectOption} from "../../../../../constants/Interface";
+import {DadDetReportChart, SelectOption} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 
 interface Props {
 	selectedItemName: string,
-	dadDetReports: DadDetReport[]
+	dadDetReportChart: DadDetReportChart[]
 }
 
-function AdChartReport({selectedItemName, dadDetReports}: Props) {
+function AdChartReport({selectedItemName, dadDetReportChart}: Props) {
 	const [leftSelect, setLeftSelect] = useState<string>("노출 수");
 	const [rightSelect, setRightSelect] = useState<string>("클릭 수");
 	const [dadDetReportCategory, setDadDetReportCategory] = useState<SelectOption[]>([]);
-	const [selectedDadDetReport, setSelectedDadDetReport] = useState<DadDetReport[]>([]);
+	const [selectedDadDetReport, setSelectedDadDetReport] = useState<DadDetReportChart[]>([]);
 
 	const lineConfig: LineConfig = {
 		data: selectedDadDetReport,
@@ -36,9 +36,9 @@ function AdChartReport({selectedItemName, dadDetReports}: Props) {
 	}, []);
 
 	useEffect(() => {
-		const filteredDadDetReports = dadDetReports.filter(dadReport => dadReport.category === leftSelect || dadReport.category === rightSelect);
-		setSelectedDadDetReport(filteredDadDetReports);
-	}, [leftSelect, rightSelect, dadDetReports]);
+		const filteredDadDetReportChart = dadDetReportChart.filter(dadReport => dadReport.category === leftSelect || dadReport.category === rightSelect);
+		setSelectedDadDetReport(filteredDadDetReportChart);
+	}, [leftSelect, rightSelect, dadDetReportChart]);
 
 	return (
 		<section className="wrap-section wrap-datagrid">

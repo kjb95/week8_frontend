@@ -84,8 +84,19 @@ export interface Task {
 	reqFile: string,
 }
 
-export interface DadDetReport {
+export interface DadDetReportChart {
 	category: string;
 	date: string;
 	value: number;
+}
+
+export interface DadDetReportTable {
+	key: string;
+	date: string;
+	impressions: number;
+	clicks: number;
+	clicksRate: string;
+	averageImpressionRank: number;
+	averageClickCost: number;
+	advertisingCost: number;
 }

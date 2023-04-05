@@ -1,9 +1,10 @@
 import {Table} from "antd";
 import Column from "antd/es/table/Column";
+import {AxiosResponse} from "axios";
 import React, {useEffect, useState} from 'react';
 import {findAdStatus} from "../../../../../api/dadDet/DadDetApi";
 import {findDadDetReport} from "../../../../../api/dadDetReport/DadDetReportApi";
-import {DadDetReport} from "../../../../../constants/Interface";
+import {DadDetReportChart, DadDetReportTable} from "../../../../../constants/Interface";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 
@@ -16,10 +17,11 @@ interface AdStatus {
 
 interface Props {
 	setSelectedItemName: React.Dispatch<React.SetStateAction<string>>
-	setDadDetReports: React.Dispatch<React.SetStateAction<DadDetReport[]>>
+	setDadDetReportChart: React.Dispatch<React.SetStateAction<DadDetReportChart[]>>
+	setDadDetReportTable: React.Dispatch<React.SetStateAction<DadDetReportTable[]>>
 }
 
-function AdStatusList({setSelectedItemName, setDadDetReports}: Props) {
+function AdStatusList({setSelectedItemName, setDadDetReportChart, setDadDetReportTable}: Props) {
 	const [adStatus, setAdStatus] = useState<AdStatus[]>([]);
 
 	useEffect(() => {
@@ -31,8 +33,13 @@ function AdStatusList({setSelectedItemName, setDadDetReports}: Props) {
 	function handleItemNoOnClick(record: AdStatus) {
 		setSelectedItemName(record.itemNo);
 		findDadDetReport(record.key)
-			.then(res => setDadDetReports(res.data.dadDetReport))
+			.then(res => findDadDetReportSuccess(res))
 			.catch(e => console.log(e));
+	}
+
+	function findDadDetReportSuccess(res: AxiosResponse<any, any>) {
+		setDadDetReportChart(res.data.reportChart);
+		setDadDetReportTable(res.data.reportTable);
 	}
 
 	return (
