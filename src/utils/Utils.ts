@@ -3,7 +3,11 @@ export function isInvalidRageNumber(target: number, min: number, max: number) {
 }
 
 export function toWon(num: number) {
-	return num.toLocaleString('ko-KR') + '원';
+	return addComma(num) + '원';
+}
+
+export function addComma(num: number) {
+	return num.toLocaleString('ko-KR');
 }
 
 export function hasBlank(str: string) {

@@ -22,11 +22,24 @@ function AdChartReport({selectedItemName, dadDetReportChart}: Props) {
 		xField: 'date',
 		yField: 'value',
 		seriesField: 'category',
-		legend: {
-			position: 'bottom',
-			offsetY: 20,
+		legend: {position: 'bottom', offsetY: 20,},
+		interactions: [{type: 'legend-filter', enable: false}],
+		point: {size: 7},
+		xAxis: {
+			grid: {
+				line: {style: {stroke: '#ddd', lineDash: [10, 5]}},
+				alternateColor: 'rgba(0,0,150,0.05)',
+			},
 		},
-		interactions: [{type: 'legend-filter', enable: false}]
+		yAxis: {
+			grid: {
+				line: {style: {stroke: '#ddd', lineDash: [10, 5]}},
+				alternateColor: 'rgba(0,0,150,0.05)',
+			},
+		},
+		label: {offset: 20},
+		smooth: true,
+		animation: {appear: {duration: 5000}},
 	}
 
 	useEffect(() => {

@@ -3,6 +3,7 @@ import Column from "antd/es/table/Column";
 import React from 'react';
 import { CSVLink } from "react-csv";
 import {DadDetReportTable} from "../../../../../constants/Interface";
+import {addComma, toWon} from "../../../../../utils/Utils";
 import SectionBody from "../../../../section/SectionBody";
 import SectionHeader from "../../../../section/SectionHeader";
 
@@ -33,12 +34,12 @@ function ReportTable({selectedItemName, dadDetReportTable}: Props) {
 			<SectionBody>
 				<Table dataSource={dadDetReportTable} bordered pagination={false}>
 					<Column title="날짜" dataIndex="date" align="center"/>
-					<Column title="노출수" dataIndex="impressions" align="center"/>
-					<Column title="클릭수" dataIndex="clicks" align="center"/>
+					<Column title="노출수" dataIndex="impressions" align="center" render={(text) => addComma(text)}/>
+					<Column title="클릭수" dataIndex="clicks" align="center" render={(text) => addComma(text)}/>
 					<Column title="클릭률" dataIndex="clicksRate" align="center"/>
-					<Column title="평균 노출 순위" dataIndex="averageImpressionRank" align="center"/>
-					<Column title="평균 클릭 비용" dataIndex="averageClickCost" align="center"/>
-					<Column title="광고비" dataIndex="advertisingCost" align="center"/>
+					<Column title="평균 노출 순위" dataIndex="averageImpressionRank" align="center" render={(text) => addComma(text)}/>
+					<Column title="평균 클릭 비용" dataIndex="averageClickCost" align="center" render={(text) => toWon(text)}/>
+					<Column title="광고비" dataIndex="advertisingCost" align="center" render={(text) => toWon(text)}/>
 				</Table>
 			</SectionBody>
 		</section>
