@@ -9,3 +9,10 @@ export function jwtAuthenticate(username: string, password: string) {
 		password: password
 	});
 }
+
+/**
+ * 유저가 가진 모든 권한 조회
+ */
+export function findAuthorities() {
+	return api.get("/api/jwt/authority");
+}

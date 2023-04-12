@@ -1,7 +1,6 @@
 import {Button, Input} from "antd";
 import React, {useState} from 'react';
-import {jwtAuthenticate} from "../api/jwt/JwtApi";
-import {findAuthorities} from "../api/member/MemberApi";
+import {findAuthorities, jwtAuthenticate} from "../api/jwt/JwtApi";
 import {AUTHENTICATED_MEMBER_ID, JWT_TOKEN, ROLE, ROLE_ADV} from "../constants/Constant";
 import {onPressEnter} from "../constants/Function";
 
@@ -14,7 +13,7 @@ function findAuthoritiesSuccess(roles: string[]) {
 function loginSuccess(username: string, password: string, token: string) {
 	sessionStorage.setItem(JWT_TOKEN, token);
 	sessionStorage.setItem(AUTHENTICATED_MEMBER_ID, username);
-	findAuthorities(username)
+	findAuthorities()
 		.then((res) => findAuthoritiesSuccess(res.data.roles))
 		.catch((e) => console.log(e));
 }
